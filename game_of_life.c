@@ -37,6 +37,8 @@
 *    HEADER FILES                                                    *
 *--------------------------------------------------------------------*/
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 //#include <ncurses.h>
 
 /*-------------------------------------------------------------------*
@@ -46,6 +48,8 @@
 
 
 /* Global constants */
+#define MIN_RAND 0
+#define MAX_RAND 2
 
 /* Global variables */
 
@@ -57,7 +61,7 @@ int future;   /* temporary calculation area for next round calculation */
 
 };
 
-struct cell board [10] [10] = {0, 0};
+
 
 /*-------------------------------------------------------------------*
 *    FUNCTION PROTOTYPES                                             *
@@ -66,12 +70,61 @@ struct cell board [10] [10] = {0, 0};
 /*********************************************************************
 *    MAIN PROGRAM                                                      *
 **********************************************************************/
+/* 3 sääntöä- birth, death, survival
+depends neibhpours
 
+0 -> 1 vain jos 3 naapuria on hengissä = 0->1 >3 naapuria
+1 -> 0 jos vähemmän kuin 2 hengissä tai enemmän kuin 3 ---- 
+*/
 int main(void){
+srand(time(NULL));
+            //   rivi  paikka
+            //     y    x
+struct cell board [10] [10] = {0, 0};
 
+int row = 0, colum = 0;
 
+  for (row = 0; row < 10; row++){
+    for (colum = 0; colum < 10; colum++){
+        board[row][colum].current=rand()%MAX_RAND+MIN_RAND;
+    }
+  }
+
+// print current life
+/*************************/
+printf("current life\n");
+    for (row = 0; row < 10; row++){
+        for (colum=0;colum<10;colum++){
+            printf("%d", board[row][colum]);
+            /*if (board[row][colum].current>0){
+                printf("%c", live);
+            }
+            else{
+                printf("%c", empty);
+            }*/
+        }
+        printf("\n");
+    }
+/*************************/
+
+// print Future life
+/*************************/
+printf("Future life\n");
+    for (row = 0; row < 10; row++){
+        for ( colum = 0; colum < 10; colum++){
+            printf("%d", board[row][colum]);
+            /*if (board[row][colum].future>0){
+                printf("%c", live);
+            }
+            else{
+                printf("%c", empty);
+            }*/
+        }
+        printf("\n");
+    }
 
 } /* end of main */
+
 
 
 
