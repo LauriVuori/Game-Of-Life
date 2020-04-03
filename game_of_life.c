@@ -51,6 +51,9 @@
 #define MIN_RAND 0
 #define MAX_RAND 2
 
+#define BOARD_WIDTH 10
+#define BOARD_HEIGHT 10
+
 /* Global variables */
 
 /* Global structures */
@@ -63,9 +66,13 @@ int future;   /* temporary calculation area for next round calculation */
 
 
 
+
 /*-------------------------------------------------------------------*
 *    FUNCTION PROTOTYPES                                             *
 *--------------------------------------------------------------------*/
+
+void RandBoard(struct cell start[10][10]);
+void PrintCurrentBoard(struct cell CurBoard[10][10]);
 
 /*********************************************************************
 *    MAIN PROGRAM                                                      *
@@ -76,53 +83,73 @@ depends neibhpours
 0 -> 1 vain jos 3 naapuria on hengissä = 0->1 >3 naapuria
 1 -> 0 jos vähemmän kuin 2 hengissä tai enemmän kuin 3 ---- 
 */
+
 int main(void){
+
 srand(time(NULL));
             //   rivi  paikka
             //     y    x
-struct cell board [10] [10] = {0, 0};
+struct cell board [BOARD_HEIGHT] [BOARD_WIDTH] = {0, 0};
+    RandBoard(board);
+    PrintCurrentBoard(board);
 
+/*
 int row = 0, colum = 0;
 
-  for (row = 0; row < 10; row++){
-    for (colum = 0; colum < 10; colum++){
-        board[row][colum].current=rand()%MAX_RAND+MIN_RAND;
+    for (row = 0; row < BOARD_HEIGHT; row++){
+        for (colum = 0; colum < BOARD_WIDTH; colum++){
+            board[row][colum].current=rand()%MAX_RAND+MIN_RAND;
+        }
     }
-  }
 
-// print current life
-/*************************/
+
+int row,colum;
 printf("current life\n");
-    for (row = 0; row < 10; row++){
-        for (colum=0;colum<10;colum++){
-            printf("%d", board[row][colum]);
-            /*if (board[row][colum].current>0){
-                printf("%c", live);
-            }
-            else{
-                printf("%c", empty);
-            }*/
+    for (row = 0; row < BOARD_HEIGHT; row++){
+        for (colum=0;colum < BOARD_WIDTH ;colum++){
+            printf("%d", board[row][colum].current);
         }
         printf("\n");
     }
-/*************************/
 
-// print Future life
-/*************************/
+
+
+
+int sum = 0;
+    for (row = 0; row < BOARD_HEIGHT; row++){
+        for (colum = 0; colum < BOARD_WIDTH; colum++){
+
+            
+            /*sum += board[row - 1][colum - 1].current;
+            sum += board[row][colum - 1].current;
+            sum += board[row + 1][colum - 1].current;
+            sum += board[row + 1][colum].current;
+            sum += board[row + 1][colum + 1].current;
+            sum += board[row][colum + 1].current;
+            sum += board[row - 1][colum + 1].current;
+            sum += board[row - 1][colum].current;
+        }
+    }
+  
+
+
+
+
+
+    for (row = 0;row < BOARD_HEIGHT; row++){
+        for (colum = 0 ;colum < BOARD_WIDTH ;colum++){
+            board[row][colum].future = board[row][colum].current; 
+        }
+    }
+
 printf("Future life\n");
-    for (row = 0; row < 10; row++){
-        for ( colum = 0; colum < 10; colum++){
-            printf("%d", board[row][colum]);
-            /*if (board[row][colum].future>0){
-                printf("%c", live);
-            }
-            else{
-                printf("%c", empty);
-            }*/
+    for (row = 0; row < BOARD_HEIGHT; row++){
+        for ( colum = 0; colum < BOARD_WIDTH; colum++){
+            printf("%d", board[row][colum].future);
         }
         printf("\n");
     }
-
+*/
 } /* end of main */
 
 
@@ -139,7 +166,7 @@ printf("Future life\n");
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
- NAME:
+ NAME:RandBoard
  DESCRIPTION:
 	Input:
 	Output:
@@ -147,6 +174,15 @@ printf("Future life\n");
   Used global constants:
  REMARKS when using this function:
 *********************************************************************/
+void RandBoard(struct cell start[BOARD_HEIGHT][BOARD_WIDTH]){
+int row,colum;
+
+    for (row = 0; row < BOARD_HEIGHT; row++){
+        for (colum = 0; colum < BOARD_WIDTH; colum++){
+            start[row][colum].current=rand()%MAX_RAND+MIN_RAND;
+        }
+    }
+}
 
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
@@ -159,6 +195,17 @@ printf("Future life\n");
   Used global constants:
  REMARKS when using this function:
 *********************************************************************/
+void PrintCurrentBoard(struct cell CurBoard[10][10]){
+    int row,colum;
+    printf("current life\n");
+    for (row = 0; row < BOARD_HEIGHT; row++){
+        for (colum=0;colum < BOARD_WIDTH ;colum++){
+            printf("%d", CurBoard[row][colum].current);
+        }
+        printf("\n");
+    }
+
+}
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
