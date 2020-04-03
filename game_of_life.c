@@ -37,7 +37,7 @@
 *    HEADER FILES                                                    *
 *--------------------------------------------------------------------*/
 #include <stdio.h>
-#include <ncurses.h>
+//#include <ncurses.h>
 
 /*-------------------------------------------------------------------*
 *    GLOBAL VARIABLES AND CONSTANTS                                  *
@@ -46,42 +46,38 @@
 
 
 /* Global constants */
-#define BASIC 1
-#define WIN_TOPBOT '-'
-#define WIN_SIDES  '|'
-#define WIN_TBLC   '+'
-#define WIN_TBRC   '+'
 
 /* Global variables */
 
 /* Global structures */
+struct cell{
+
+int current;  /* current situation, which is visible on screen */
+int future;   /* temporary calculation area for next round calculation */
+
+};
+
+struct cell board [10] [10] = {0, 0};
 
 /*-------------------------------------------------------------------*
 *    FUNCTION PROTOTYPES                                             *
 *--------------------------------------------------------------------*/
-void Start_menu(void);
+
 /*********************************************************************
 *    MAIN PROGRAM                                                      *
 **********************************************************************/
 
 int main(void){
-    initscr (); 
-    clear ();   
-    nodelay (stdscr, TRUE);	
-    
-    start_color (); 
-    init_pair (BASIC, COLOR_RED, COLOR_BLACK); 
-    bkgd (COLOR_PAIR (BASIC)); 
-    noecho ();
-
-    Start_menu();
 
 
-    nodelay (stdscr, FALSE);
-    getch ();
-    endwin ();
 
 } /* end of main */
+
+
+
+
+
+
 
 /*********************************************************************
 *    FUNCTIONS                                                       *
@@ -98,58 +94,7 @@ int main(void){
   Used global constants:
  REMARKS when using this function:
 *********************************************************************/
-void Start_menu(void){
-    int choice, highlight = 0;
-    int i = 0;
-    char choices[10][255] = {
-                            "Start game",
-                            "exit",
-                            
-    };
 
-    WINDOW * menuwindow = newwin(15, 15, 15, 15);
-    wborder(menuwindow, WIN_SIDES, WIN_SIDES, WIN_TOPBOT, WIN_TOPBOT, WIN_TBLC, WIN_TBLC, WIN_TBRC, WIN_TBRC);
-    refresh();
-    wrefresh(menuwindow);
-
-    keypad(menuwindow, true);
-
-    while(1){
-       
-        for (i = 0; i < 2; i++){
-            if (i == highlight){
-                wattron(menuwindow, A_REVERSE);
-            }
-            mvwprintw(menuwindow, i+1, 1, choices[i]);
-            wattroff(menuwindow, A_REVERSE);
-
-        }
-        choice = wgetch(menuwindow);
-        
-        switch (choice){
-            case KEY_UP:
-                highlight--;
-                
-                    if (highlight == -1){ //TODO: ALARAJA
-                        highlight = highlight+1;
-                    }
-                break;
-        
-            case KEY_DOWN:
-                highlight++;
-                    
-                    if (highlight == 2){ // TODO:YLÄRAJA
-                        highlight = highlight-1;
-                    }
-                break;
-        default:
-        break;
-        }
-        if (choice == 10){ // enter
-            break;
-        }
-    }
-}
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
