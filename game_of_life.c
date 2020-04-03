@@ -109,31 +109,14 @@ struct cell board [BOARD_HEIGHT] [BOARD_WIDTH] = {0, 0};
 
     //PrintCurrentBoard(board); 
 int i = 0;
-curs_set(0);
-bool ex = FALSE;
-    while ( !ex )
-    {
-        int ch = getch();
-
-        switch ( ch )
-        {
-        case ERR:
-            
-            break;
-        case KEY_F(2): 
-            ex = TRUE;
-            break;
-        default: 
+while(i < 500000){
+    refresh();
             EvalFutureBoard(board);
             Drawboard(board);
-            break;
-        }
-
-        refresh(); //Выводим на настоящий экран
-
-    }
-
-
+            usleep(45000);
+    refresh();
+i++;
+}
     //PrintFutureBoard(board);
 
 
