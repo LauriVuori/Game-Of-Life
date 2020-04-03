@@ -39,7 +39,8 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-//#include <ncurses.h>
+#include <curses.h>
+#include <unistd.h>
 
 /*-------------------------------------------------------------------*
 *    GLOBAL VARIABLES AND CONSTANTS                                  *
@@ -51,8 +52,8 @@
 #define MIN_RAND 0
 #define MAX_RAND 2
 
-#define BOARD_WIDTH 10
-#define BOARD_HEIGHT 10
+#define BOARD_WIDTH 100
+#define BOARD_HEIGHT 60
 
 /* Global variables */
 
@@ -71,9 +72,13 @@ int future;   /* temporary calculation area for next round calculation */
 *    FUNCTION PROTOTYPES                                             *
 *--------------------------------------------------------------------*/
 
-void RandBoard(struct cell start[10][10]);
-void PrintCurrentBoard(struct cell CurBoard[10][10]);
+void RandBoard(struct cell start[BOARD_HEIGHT][BOARD_WIDTH]);
+void PrintCurrentBoard(struct cell CurBoard[BOARD_HEIGHT][BOARD_WIDTH]);
+int CountNeighbour(struct cell Neighbour[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol);
+void EvalFutureBoard(struct cell FutBoard[BOARD_HEIGHT][BOARD_WIDTH]);
+void PrintFutureBoard(struct cell PrintFutBoard[BOARD_HEIGHT][BOARD_WIDTH]);
 
+void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH]);
 /*********************************************************************
 *    MAIN PROGRAM                                                      *
 **********************************************************************/
@@ -85,71 +90,57 @@ depends neibhpours
 */
 
 int main(void){
-
+    initscr (); 
+    clear ();   
+    nodelay (stdscr, TRUE);	
+    
+    start_color(); 
+    init_pair (1, COLOR_RED, COLOR_BLACK); 
+    init_pair (2, COLOR_GREEN, COLOR_BLACK); 
+    bkgd (COLOR_PAIR (1)); 
+    noecho ();
+    keypad(stdscr, TRUE);
 srand(time(NULL));
             //   rivi  paikka
             //     y    x
 struct cell board [BOARD_HEIGHT] [BOARD_WIDTH] = {0, 0};
+
     RandBoard(board);
-    PrintCurrentBoard(board);
 
-/*
-int row = 0, colum = 0;
+    //PrintCurrentBoard(board); 
+int i = 0;
+curs_set(0);
+bool ex = FALSE;
+    while ( !ex )
+    {
+        int ch = getch();
 
-    for (row = 0; row < BOARD_HEIGHT; row++){
-        for (colum = 0; colum < BOARD_WIDTH; colum++){
-            board[row][colum].current=rand()%MAX_RAND+MIN_RAND;
-        }
-    }
-
-
-int row,colum;
-printf("current life\n");
-    for (row = 0; row < BOARD_HEIGHT; row++){
-        for (colum=0;colum < BOARD_WIDTH ;colum++){
-            printf("%d", board[row][colum].current);
-        }
-        printf("\n");
-    }
-
-
-
-
-int sum = 0;
-    for (row = 0; row < BOARD_HEIGHT; row++){
-        for (colum = 0; colum < BOARD_WIDTH; colum++){
-
+        switch ( ch )
+        {
+        case ERR:
             
-            /*sum += board[row - 1][colum - 1].current;
-            sum += board[row][colum - 1].current;
-            sum += board[row + 1][colum - 1].current;
-            sum += board[row + 1][colum].current;
-            sum += board[row + 1][colum + 1].current;
-            sum += board[row][colum + 1].current;
-            sum += board[row - 1][colum + 1].current;
-            sum += board[row - 1][colum].current;
+            break;
+        case KEY_F(2): 
+            ex = TRUE;
+            break;
+        default: 
+            EvalFutureBoard(board);
+            Drawboard(board);
+            break;
         }
-    }
-  
 
+        refresh(); //Выводим на настоящий экран
 
-
-
-
-    for (row = 0;row < BOARD_HEIGHT; row++){
-        for (colum = 0 ;colum < BOARD_WIDTH ;colum++){
-            board[row][colum].future = board[row][colum].current; 
-        }
     }
 
-printf("Future life\n");
-    for (row = 0; row < BOARD_HEIGHT; row++){
-        for ( colum = 0; colum < BOARD_WIDTH; colum++){
-            printf("%d", board[row][colum].future);
-        }
-        printf("\n");
-    }
-*/
+
+    //PrintFutureBoard(board);
+
+
+
+    nodelay (stdscr, FALSE);
+    getch ();
+    endwin ();
 } /* end of main */
 
 
@@ -187,7 +178,7 @@ int row,colum;
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
- NAME:
+ NAME:PrintCurrentBoard
  DESCRIPTION:
 	Input:
 	Output:
@@ -195,11 +186,13 @@ int row,colum;
   Used global constants:
  REMARKS when using this function:
 *********************************************************************/
-void PrintCurrentBoard(struct cell CurBoard[10][10]){
-    int row,colum;
+void PrintCurrentBoard(struct cell CurBoard[BOARD_HEIGHT][BOARD_WIDTH]){
+int row,colum;
     printf("current life\n");
+
     for (row = 0; row < BOARD_HEIGHT; row++){
         for (colum=0;colum < BOARD_WIDTH ;colum++){
+
             printf("%d", CurBoard[row][colum].current);
         }
         printf("\n");
@@ -217,3 +210,112 @@ void PrintCurrentBoard(struct cell CurBoard[10][10]){
   Used global constants:
  REMARKS when using this function:
 *********************************************************************/
+int CountNeighbour(struct cell Neighbour[BOARD_HEIGHT][BOARD_WIDTH], int cRow, int cCol){
+
+int row,colum, sum = 0;
+int Mcol, Mrow;
+
+        for (row = -1; row < 2; row++){
+            for (colum = -1; colum < 2; colum++){
+                Mcol = (BOARD_HEIGHT + row + cRow) % BOARD_HEIGHT;
+                Mrow = (BOARD_WIDTH + colum + cCol) % BOARD_WIDTH;
+                sum += Neighbour[Mcol][Mrow].current;
+            }
+        }
+    // minus own life
+    sum -= Neighbour[cRow][cCol].current;
+    return sum;
+}
+/*********************************************************************
+	F U N C T I O N    D E S C R I P T I O N
+---------------------------------------------------------------------
+ NAME:EvalFutureBoard
+ DESCRIPTION:
+	Input:
+	Output:
+  Used global variables:
+  Used global constants:
+ REMARKS when using this function:
+*********************************************************************/
+void EvalFutureBoard(struct cell FutBoard[BOARD_HEIGHT][BOARD_WIDTH]){
+int row,colum, neighbours = 0, state = 0;
+    for (row = 0; row < BOARD_HEIGHT; row++){
+        for (colum = 0; colum < BOARD_WIDTH; colum++){
+            state = FutBoard[row][colum].current;
+            neighbours = CountNeighbour(FutBoard, row, colum);
+
+                if (state == 0 && neighbours == 3){
+                    FutBoard[row][colum].future = 1;
+                    
+                }
+                else if (state == 1 && (neighbours < 2 || neighbours > 3)){
+                    FutBoard[row][colum].future = 0;
+                }       
+                else {
+                    FutBoard[row][colum].future = state;
+                }
+        }
+
+    }
+    for (row = 0; row < BOARD_HEIGHT; row++){
+        for (colum = 0; colum < BOARD_WIDTH; colum++){
+            FutBoard[row][colum].current = FutBoard[row][colum].future;
+        }
+    }
+}
+
+
+
+/*********************************************************************
+	F U N C T I O N    D E S C R I P T I O N
+---------------------------------------------------------------------
+ NAME:
+ DESCRIPTION:
+	Input:
+	Output:
+  Used global variables:
+  Used global constants:
+ REMARKS when using this function:
+*********************************************************************/
+void PrintFutureBoard(struct cell PrintFutBoard[BOARD_HEIGHT][BOARD_WIDTH]){
+    int row,colum;
+    printf("FUTURE LIFE\n");
+
+    for (row = 0; row < BOARD_HEIGHT; row++){
+        for (colum = 0;colum < BOARD_WIDTH ;colum++){
+
+            printf("%d", PrintFutBoard[row][colum].future);
+        }
+        printf("\n");
+    }
+}
+
+/*********************************************************************
+	F U N C T I O N    D E S C R I P T I O N
+---------------------------------------------------------------------
+ NAME:
+ DESCRIPTION:
+	Input:
+	Output:
+  Used global variables:
+  Used global constants:
+ REMARKS when using this function:
+*********************************************************************/
+void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH]){
+int row, colum;
+    for (row = 0; row < BOARD_HEIGHT; row++){
+        for (colum = 0;colum < BOARD_WIDTH ;colum++){
+            move(row,colum);
+            if(Drawboard[row][colum].future == 1){
+                attron(COLOR_PAIR(2));
+                printw("%d", Drawboard[row][colum].future);
+                attroff(COLOR_PAIR(1));
+            }
+            else{
+            
+            printw("%d", Drawboard[row][colum].future);  
+            }
+            
+        }
+    }
+}
