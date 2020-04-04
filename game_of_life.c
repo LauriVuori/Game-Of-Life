@@ -33,13 +33,20 @@
 
 **********************************************************************/
 
+// define this to include curses drawing,
+//#define INCCURSES
+
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
 *--------------------------------------------------------------------*/
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
+
+#ifdef INCCURSES
 #include <curses.h>
+#endif
+
+#include <time.h>
 #include <unistd.h>
 
 /*-------------------------------------------------------------------*
@@ -52,8 +59,8 @@
 #define MIN_RAND 0
 #define MAX_RAND 2
 
-#define BOARD_WIDTH 100
-#define BOARD_HEIGHT 60
+#define BOARD_WIDTH 10
+#define BOARD_HEIGHT 10
 
 /* Global variables */
 
@@ -78,7 +85,9 @@ int CountNeighbour(struct cell Neighbour[BOARD_HEIGHT][BOARD_WIDTH],int cRow, in
 void EvalFutureBoard(struct cell FutBoard[BOARD_HEIGHT][BOARD_WIDTH]);
 void PrintFutureBoard(struct cell PrintFutBoard[BOARD_HEIGHT][BOARD_WIDTH]);
 
+#ifdef INCCURSES
 void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH]);
+#endif
 /*********************************************************************
 *    MAIN PROGRAM                                                      *
 **********************************************************************/
@@ -90,40 +99,48 @@ depends neibhpours
 */
 
 int main(void){
+    srand(time(NULL));
+                    //   rivi  paikka
+                    //     y    x
+    struct cell board [BOARD_HEIGHT] [BOARD_WIDTH] = {0, 0};
+
+    RandBoard(board);
+
+
+//include curses and drawing
+#ifdef INCCURSES
     initscr (); 
     clear ();   
     nodelay (stdscr, TRUE);	
     
     start_color(); 
-    init_pair (1, COLOR_RED, COLOR_BLACK); 
-    init_pair (2, COLOR_GREEN, COLOR_BLACK); 
+    init_pair (1, COLOR_BLACK, COLOR_BLACK); 
+    init_pair (2, COLOR_BLACK, COLOR_GREEN); 
     bkgd (COLOR_PAIR (1)); 
     noecho ();
     keypad(stdscr, TRUE);
-srand(time(NULL));
-            //   rivi  paikka
-            //     y    x
-struct cell board [BOARD_HEIGHT] [BOARD_WIDTH] = {0, 0};
 
-    RandBoard(board);
+    int i = 0;
+        while(i < 500000){
+            refresh();
+                    EvalFutureBoard(board);
+                    Drawboard(board);
+                    usleep(45000);
+            refresh();
+        i++;
+        }
 
-    //PrintCurrentBoard(board); 
-int i = 0;
-while(i < 500000){
-    refresh();
-            EvalFutureBoard(board);
-            Drawboard(board);
-            usleep(45000);
-    refresh();
-i++;
-}
-    //PrintFutureBoard(board);
 
 
 
     nodelay (stdscr, FALSE);
     getch ();
     endwin ();
+#else
+    PrintCurrentBoard(board);
+    EvalFutureBoard(board);
+    PrintFutureBoard(board);
+#endif
 } /* end of main */
 
 
@@ -284,14 +301,20 @@ void PrintFutureBoard(struct cell PrintFutBoard[BOARD_HEIGHT][BOARD_WIDTH]){
   Used global constants:
  REMARKS when using this function:
 *********************************************************************/
+#ifdef INCCURSES
 void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH]){
 int row, colum;
+
+
     for (row = 0; row < BOARD_HEIGHT; row++){
         for (colum = 0;colum < BOARD_WIDTH ;colum++){
             move(row,colum);
             if(Drawboard[row][colum].future == 1){
                 attron(COLOR_PAIR(2));
-                printw("%d", Drawboard[row][colum].future);
+
+                // Draw just green backround
+                mvaddch(row, colum, ' ');
+                //printw("%d", Drawboard[row][colum].future);
                 attroff(COLOR_PAIR(1));
             }
             else{
@@ -302,3 +325,4 @@ int row, colum;
         }
     }
 }
+#endif
