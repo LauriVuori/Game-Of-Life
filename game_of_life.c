@@ -30,8 +30,10 @@
          $Date$ / $Lauri Vuori$
 
        Version history:
-       5.4.2020-14:08 Normal GOF works, define INCCURSES to use curses. Start working on "virus".
-       -walls tested, and all different statements
+       <5.4.2020-14:08 Normal GOF works, define INCCURSES to use curses. Start working on "virus".
+       |14:10 - walls tested, and all different statements
+       |14:22 - Added generations/ board[0][0] adds one in every gene TODO: FIX generations to not array
+       >
 
 **********************************************************************/
 
@@ -71,6 +73,7 @@ struct cell{
 
 int current;  /* current situation, which is visible on screen */
 int future;   /* temporary calculation area for next round calculation */
+int generation;
 
 };
 
@@ -166,7 +169,7 @@ int main(void){
     getch ();
     endwin ();
 #else
-char command = 'y';
+char command = 10;
 
 // add dots on board
 //kokgalaxy(board);
@@ -178,10 +181,11 @@ char command = 'y';
     
 
     PrintCurrentBoard(board);
-while(command != 'n'){
+
+while(command == 10){
     EvalFutureBoard(board);
     PrintFutureBoard(board);
-    printf("any key continue/ n to stop");
+    printf("Enter to continue/ any char/key stop");
     scanf("%c", &command);
 }
 #endif
@@ -202,11 +206,11 @@ while(command != 'n'){
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
  NAME:RandBoard
- DESCRIPTION:
-	Input:
-	Output:
+ DESCRIPTION: Generate random lives on board
+	Input:Structure with 2 dimensional array to be filled with "lives" 
+	Output:Use rand to put number 1 on random places on the board
   Used global variables:
-  Used global constants:
+  Used global constants:BOARD_HEIGHT, BOARD_WIDTH
  REMARKS when using this function:
 *********************************************************************/
 void RandBoard(struct cell start[BOARD_HEIGHT][BOARD_WIDTH]){
@@ -232,7 +236,8 @@ int row,colum;
 *********************************************************************/
 void PrintCurrentBoard(struct cell CurBoard[BOARD_HEIGHT][BOARD_WIDTH]){
 int row,colum;
-    printf("current life\n");
+CurBoard[0][0].generation++;
+    printf("current life, GENER:%d\n", CurBoard[0][0].generation);
 
     for (row = 0; row < BOARD_HEIGHT; row++){
         for (colum=0;colum < BOARD_WIDTH ;colum++){
@@ -263,7 +268,9 @@ int Mcol, Mrow;
             for (colum = -1; colum < 2; colum++){
                 Mcol = (BOARD_HEIGHT + row + cRow) % BOARD_HEIGHT;
                 Mrow = (BOARD_WIDTH + colum + cCol) % BOARD_WIDTH;
-                sum += Neighbour[Mcol][Mrow].current;
+                    if(Neighbour[Mcol][Mrow].current > 0){
+                        sum += Neighbour[Mcol][Mrow].current;
+                    }
             }
         }
     // minus own life
@@ -283,6 +290,7 @@ int Mcol, Mrow;
 *********************************************************************/
 void EvalFutureBoard(struct cell FutBoard[BOARD_HEIGHT][BOARD_WIDTH]){
 int row,colum, neighbours = 0, state = 0;
+FutBoard[0][0].generation++;
     for (row = 0; row < BOARD_HEIGHT; row++){
         for (colum = 0; colum < BOARD_WIDTH; colum++){
             state = FutBoard[row][colum].current;
@@ -323,7 +331,7 @@ int row,colum, neighbours = 0, state = 0;
 *********************************************************************/
 void PrintFutureBoard(struct cell PrintFutBoard[BOARD_HEIGHT][BOARD_WIDTH]){
     int row,colum;
-    printf("FUTURE LIFE\n");
+    printf("FUTURE LIFE- GENERATION:%d\n", PrintFutBoard[0][0].generation);
 
     for (row = 0; row < BOARD_HEIGHT; row++){
         for (colum = 0;colum < BOARD_WIDTH ;colum++){
@@ -445,9 +453,4 @@ void kokgalaxy(struct cell galaxy[BOARD_HEIGHT][BOARD_WIDTH]){
     galaxy[11][13].current = 1;
     galaxy[12][13].current = 1;
     galaxy[13][13].current = 1;
-
-
-
-
-
 }
