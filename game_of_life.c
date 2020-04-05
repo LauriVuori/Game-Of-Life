@@ -34,6 +34,7 @@
        |14:10 - walls tested, and all different statements
        |14:22 - Added generations/ board[0][0] adds one in every gene TODO: FIX generations to not array
        |20.11 - Added infect and Checkinfected, need to do something to spawning, only spawning 1 doesnt work
+       |
        >
 
 **********************************************************************/
@@ -98,8 +99,8 @@ void PrintFutureBoard(struct cell PrintFutBoard[BOARD_HEIGHT][BOARD_WIDTH]);
 #ifdef INCCURSES
 void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH]);
 #endif
-void Checkinfected(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol);
-void infect(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol);
+int Checkinfected(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol);
+void infectOthers(struct cell infect[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol);
 // Testing patterns and oscillators
 void kokgalaxy(struct cell galaxy[BOARD_HEIGHT][BOARD_WIDTH]);
 /*********************************************************************
@@ -158,7 +159,7 @@ int main(void){
 
     int i = 0;
     //kokgalaxy(board);
-    //RandBoard(board);
+    RandBoard(board);
     /*missile
     board[2][3].current = 1;
     board[2][4].current = 1;
@@ -166,6 +167,14 @@ int main(void){
     board[1][5].current = 1;
     board[0][4].current = 1;
     */
+    RandBoard(board);
+    board[15][3].current = 2;
+    board[15][4].current = 2;
+    board[14][5].current = 2;
+    board[13][5].current = 2;
+    board[12][4].current = 2;
+    board[12][6].current = 2;
+    board[12][7].current = 2;
         while(i < 500000000){
             refresh();
                     
@@ -195,10 +204,9 @@ kokgalaxy(board);
     /*
     board[5][6].current = 1;
     board[6][6].current = 1;
-    board[7][6].current = 1;
-    board[8][6].current = 1;
-    board[9][6].current = 1;
-    board[10][6].current = 1;*/
+    board[6][7].current = 2;
+    board[7][6].current = 1;*/
+
 
 PrintCurrentBoard(board);
 while(command == 10){
@@ -312,6 +320,7 @@ int Mcol, Mrow;
 *********************************************************************/
 void EvalFutureBoard(struct cell FutBoard[BOARD_HEIGHT][BOARD_WIDTH]){
 int row,colum, neighbours = 0, state = 0;
+int isfected = 0;
 FutBoard[0][0].generation++;
     for (row = 0; row < BOARD_HEIGHT; row++){
         for (colum = 0; colum < BOARD_WIDTH; colum++){
@@ -321,7 +330,12 @@ FutBoard[0][0].generation++;
 
                 //all infecteds gets lost if spawns just 1
                 if (state == 0 && neighbours == 3){
-                    FutBoard[row][colum].future = 1;
+                    if (isfected = (Checkinfected(FutBoard,row,colum)) == 2){
+                        FutBoard[row][colum].future = 2;
+                    }
+                    else{
+                        FutBoard[row][colum].future = 1;
+                    } 
                 }
                 else if (state == 1 && (neighbours < 2 || neighbours > 3)){
                     FutBoard[row][colum].future = 0;
@@ -330,9 +344,11 @@ FutBoard[0][0].generation++;
                     FutBoard[row][colum].future = 1;
                 }
                 else if (state == 2 && (neighbours == 2 || neighbours == 3)){
+                    //infectOthers(FutBoard, row, colum);
                     FutBoard[row][colum].future = 2;
                 }
                 else if (state == 2 && (neighbours < 2 || neighbours > 3)){
+                    //infectOthers(FutBoard, row, colum);
                     FutBoard[row][colum].future = 0;
                 } 
                                   
@@ -360,8 +376,22 @@ FutBoard[0][0].generation++;
   Used global constants:
  REMARKS when using this function:
 *********************************************************************/
-void Checkinfected(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol){
+int Checkinfected(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol){
+int row,colum;
+int Mcol, Mrow;
+int isInfected;
 
+        for (row = -1; row < 2; row++){
+            for (colum = -1; colum < 2; colum++){
+                Mrow = (BOARD_HEIGHT + row + cRow) % BOARD_HEIGHT;
+                Mcol = (BOARD_WIDTH + colum + cCol) % BOARD_WIDTH;
+                    if (infected[Mrow][Mcol].current == 2){
+                        isInfected = 2;
+                        return isInfected;
+                    }
+            }
+        }
+    return 1;
 }
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
@@ -374,7 +404,7 @@ void Checkinfected(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int
   Used global constants:
  REMARKS when using this function:
 *********************************************************************/
-void infect(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol){
+void infectOthers(struct cell infect[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol){
 int row,colum;
 int Mcol, Mrow;
 
@@ -382,8 +412,8 @@ int Mcol, Mrow;
             for (colum = -1; colum < 2; colum++){
                 Mrow = (BOARD_HEIGHT + row + cRow) % BOARD_HEIGHT;
                 Mcol = (BOARD_WIDTH + colum + cCol) % BOARD_WIDTH;
-                    if (infected[Mrow][Mcol].current == 1){
-                        infected[Mrow][Mcol].future = 2;
+                    if (infect[Mrow][Mcol].current == 1){
+                        infect[Mrow][Mcol].future = 2;
                     }
             }
         }
@@ -440,7 +470,7 @@ int row, colum;
                 //printw("%d", Drawboard[row][colum].future);
                 attroff(COLOR_PAIR(DEFAULT));
             }
-               if(Drawboard[row][colum].future == 2){
+            else if (Drawboard[row][colum].future == 2){
                 attron(COLOR_PAIR(INFECTED));
 
                 // Draw just green backround
@@ -473,15 +503,15 @@ void kokgalaxy(struct cell galaxy[BOARD_HEIGHT][BOARD_WIDTH]){
     //left
     galaxy[5][5].current = 1;
     galaxy[6][5].current = 1;
-    galaxy[7][5].current = 1;
+    galaxy[7][5].current = 2;
     galaxy[8][5].current = 1;
     galaxy[9][5].current = 1;
     galaxy[10][5].current = 1;
 
     galaxy[5][6].current = 2;
-    galaxy[6][6].current = 2;
-    galaxy[7][6].current = 2;
-    galaxy[8][6].current = 2;
+    galaxy[6][6].current = 1;
+    galaxy[7][6].current = 1;
+    galaxy[8][6].current = 1;
     galaxy[9][6].current = 1;
     galaxy[10][6].current = 1;
 
