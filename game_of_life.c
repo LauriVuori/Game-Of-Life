@@ -33,6 +33,7 @@
        <5.4.2020-14:08 Normal GOF works, define INCCURSES to use curses. Start working on "virus".
        |14:10 - walls tested, and all different statements
        |14:22 - Added generations/ board[0][0] adds one in every gene TODO: FIX generations to not array
+       |20.11 - Added infect and Checkinfected, need to do something to spawning, only spawning 1 doesnt work
        >
 
 **********************************************************************/
@@ -97,7 +98,8 @@ void PrintFutureBoard(struct cell PrintFutBoard[BOARD_HEIGHT][BOARD_WIDTH]);
 #ifdef INCCURSES
 void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH]);
 #endif
-
+void Checkinfected(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol);
+void infect(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol);
 // Testing patterns and oscillators
 void kokgalaxy(struct cell galaxy[BOARD_HEIGHT][BOARD_WIDTH]);
 /*********************************************************************
@@ -155,14 +157,22 @@ int main(void){
     keypad(stdscr, TRUE);
 
     int i = 0;
-    kokgalaxy(board);
-        while(i < 5000000){
+    //kokgalaxy(board);
+    //RandBoard(board);
+    /*missile
+    board[2][3].current = 1;
+    board[2][4].current = 1;
+    board[2][5].current = 1;
+    board[1][5].current = 1;
+    board[0][4].current = 1;
+    */
+        while(i < 500000000){
             refresh();
                     
                     EvalFutureBoard(board);
                     Drawboard(board);
                     //isompi hitaampi
-                    usleep(200000);
+                    usleep(5000);
             refresh();
         i++;
         }
@@ -178,11 +188,19 @@ char command = 10;
 
 // add dots on board
 kokgalaxy(board);
+   /* board[5][5].current = 1;
+    board[6][5].current = 2;
+    board[7][5].current = 1;
+    */
+    /*
+    board[5][6].current = 1;
+    board[6][6].current = 1;
+    board[7][6].current = 1;
+    board[8][6].current = 1;
+    board[9][6].current = 1;
+    board[10][6].current = 1;*/
 
-    
-
-    PrintCurrentBoard(board);
-
+PrintCurrentBoard(board);
 while(command == 10){
     EvalFutureBoard(board);
     PrintFutureBoard(board);
@@ -269,8 +287,8 @@ int Mcol, Mrow;
             for (colum = -1; colum < 2; colum++){
                 Mrow = (BOARD_HEIGHT + row + cRow) % BOARD_HEIGHT;
                 Mcol = (BOARD_WIDTH + colum + cCol) % BOARD_WIDTH;
-                    if(Neighbour[Mrow][Mcol].current > 0){
-                        sum += Neighbour[Mrow][Mcol].current;
+                    if (Neighbour[Mrow][Mcol].current > 0){
+                        sum++;
                     }
             }
         }
@@ -298,19 +316,28 @@ FutBoard[0][0].generation++;
     for (row = 0; row < BOARD_HEIGHT; row++){
         for (colum = 0; colum < BOARD_WIDTH; colum++){
             state = FutBoard[row][colum].current;
+
             neighbours = CountNeighbour(FutBoard, row, colum);
 
+                //all infecteds gets lost if spawns just 1
                 if (state == 0 && neighbours == 3){
                     FutBoard[row][colum].future = 1;
-                    
                 }
                 else if (state == 1 && (neighbours < 2 || neighbours > 3)){
                     FutBoard[row][colum].future = 0;
                 } 
                 else if (state == 1 && (neighbours == 2 || neighbours == 3)){
                     FutBoard[row][colum].future = 1;
-                }     
-                /*else {
+                }
+                else if (state == 2 && (neighbours == 2 || neighbours == 3)){
+                    FutBoard[row][colum].future = 2;
+                }
+                else if (state == 2 && (neighbours < 2 || neighbours > 3)){
+                    FutBoard[row][colum].future = 0;
+                } 
+                                  
+                /*   
+                else {
                     FutBoard[row][colum].future = state;
                 }*/
         }
@@ -322,8 +349,45 @@ FutBoard[0][0].generation++;
         }
     }
 }
+/*********************************************************************
+	F U N C T I O N    D E S C R I P T I O N
+---------------------------------------------------------------------
+ NAME:Checkinfected
+ DESCRIPTION:
+	Input:
+	Output:
+  Used global variables:
+  Used global constants:
+ REMARKS when using this function:
+*********************************************************************/
+void Checkinfected(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol){
 
+}
+/*********************************************************************
+	F U N C T I O N    D E S C R I P T I O N
+---------------------------------------------------------------------
+ NAME:infect
+ DESCRIPTION:
+	Input:
+	Output:
+  Used global variables:
+  Used global constants:
+ REMARKS when using this function:
+*********************************************************************/
+void infect(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol){
+int row,colum;
+int Mcol, Mrow;
 
+        for (row = -1; row < 2; row++){
+            for (colum = -1; colum < 2; colum++){
+                Mrow = (BOARD_HEIGHT + row + cRow) % BOARD_HEIGHT;
+                Mcol = (BOARD_WIDTH + colum + cCol) % BOARD_WIDTH;
+                    if (infected[Mrow][Mcol].current == 1){
+                        infected[Mrow][Mcol].future = 2;
+                    }
+            }
+        }
+}
 
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
@@ -341,7 +405,7 @@ void PrintFutureBoard(struct cell PrintFutBoard[BOARD_HEIGHT][BOARD_WIDTH]){
     printf("FUTURE LIFE- GENERATION:%d\n", PrintFutBoard[0][0].generation);
 
     for (row = 0; row < BOARD_HEIGHT; row++){
-        for (colum = 0;colum < BOARD_WIDTH ;colum++){
+        for (colum = 0; colum < BOARD_WIDTH ;colum++){
 
             printf("%d", PrintFutBoard[row][colum].future);
         }
@@ -369,12 +433,20 @@ int row, colum;
         for (colum = 0;colum < BOARD_WIDTH ;colum++){
             move(row,colum);
             if(Drawboard[row][colum].future == 1){
-                attron(COLOR_PAIR(2));
+                attron(COLOR_PAIR(LIVE));
 
                 // Draw just green backround
                 mvaddch(row, colum, ' ');
                 //printw("%d", Drawboard[row][colum].future);
-                attroff(COLOR_PAIR(1));
+                attroff(COLOR_PAIR(DEFAULT));
+            }
+               if(Drawboard[row][colum].future == 2){
+                attron(COLOR_PAIR(INFECTED));
+
+                // Draw just green backround
+                mvaddch(row, colum, ' ');
+                //printw("%d", Drawboard[row][colum].future);
+                attroff(COLOR_PAIR(DEFAULT));
             }
             else{
             
@@ -406,10 +478,10 @@ void kokgalaxy(struct cell galaxy[BOARD_HEIGHT][BOARD_WIDTH]){
     galaxy[9][5].current = 1;
     galaxy[10][5].current = 1;
 
-    galaxy[5][6].current = 1;
-    galaxy[6][6].current = 1;
-    galaxy[7][6].current = 1;
-    galaxy[8][6].current = 1;
+    galaxy[5][6].current = 2;
+    galaxy[6][6].current = 2;
+    galaxy[7][6].current = 2;
+    galaxy[8][6].current = 2;
     galaxy[9][6].current = 1;
     galaxy[10][6].current = 1;
 
