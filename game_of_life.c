@@ -30,6 +30,8 @@
          $Date$ / $Lauri Vuori$
 
        Version history:
+       5.4.2020-14:08 Normal GOF works, define INCCURSES to use curses. Start working on "virus".
+       -walls tested, and all different statements
 
 **********************************************************************/
 
@@ -59,8 +61,8 @@
 #define MIN_RAND 0
 #define MAX_RAND 2
 
-#define BOARD_WIDTH 25
-#define BOARD_HEIGHT 25
+#define BOARD_WIDTH 15
+#define BOARD_HEIGHT 15
 
 /* Global variables */
 
@@ -165,7 +167,16 @@ int main(void){
     endwin ();
 #else
 char command = 'y';
-    kokgalaxy(board);
+
+// add dots on board
+//kokgalaxy(board);
+    board[5][9].current = 1;
+    board[6][9].current = 1;
+    board[7][9].current = 1;
+    board[8][9].current = 1;
+    board[9][9].current = 1;
+    
+
     PrintCurrentBoard(board);
 while(command != 'n'){
     EvalFutureBoard(board);
@@ -302,7 +313,7 @@ int row,colum, neighbours = 0, state = 0;
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
- NAME:
+ NAME:PrintFutureBoard
  DESCRIPTION:
 	Input:
 	Output:
