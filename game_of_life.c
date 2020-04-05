@@ -275,7 +275,10 @@ int Mcol, Mrow;
             }
         }
     // minus own life
-    sum -= Neighbour[cRow][cCol].current;
+    if (Neighbour[cRow][cCol].current > 0){
+        sum--;
+    }
+
     return sum;
 }
 /*********************************************************************
