@@ -38,7 +38,7 @@
 **********************************************************************/
 
 // define this to include curses drawing,
-//#define INCCURSES
+#define INCCURSES
 
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
@@ -63,8 +63,8 @@
 #define MIN_RAND 0
 #define MAX_RAND 2
 
-#define BOARD_WIDTH 15
-#define BOARD_HEIGHT 15
+#define BOARD_WIDTH 25
+#define BOARD_HEIGHT 25
 
 /* Global variables */
 
@@ -266,10 +266,10 @@ int Mcol, Mrow;
 
         for (row = -1; row < 2; row++){
             for (colum = -1; colum < 2; colum++){
-                Mcol = (BOARD_HEIGHT + row + cRow) % BOARD_HEIGHT;
-                Mrow = (BOARD_WIDTH + colum + cCol) % BOARD_WIDTH;
-                    if(Neighbour[Mcol][Mrow].current > 0){
-                        sum += Neighbour[Mcol][Mrow].current;
+                Mrow = (BOARD_HEIGHT + row + cRow) % BOARD_HEIGHT;
+                Mcol = (BOARD_WIDTH + colum + cCol) % BOARD_WIDTH;
+                    if(Neighbour[Mrow][Mcol].current > 0){
+                        sum += Neighbour[Mrow][Mcol].current;
                     }
             }
         }
