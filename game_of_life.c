@@ -38,7 +38,7 @@
 **********************************************************************/
 
 // define this to include curses drawing,
-#define INCCURSES
+//#define INCCURSES
 
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
@@ -63,8 +63,8 @@
 #define MIN_RAND 0
 #define MAX_RAND 2
 
-#define BOARD_WIDTH 25
-#define BOARD_HEIGHT 25
+#define BOARD_WIDTH 20
+#define BOARD_HEIGHT 20
 
 #define DEFAULT 1
 #define LIVE 2
@@ -177,12 +177,8 @@ int main(void){
 char command = 10;
 
 // add dots on board
-//kokgalaxy(board);
-    board[5][9].current = 1;
-    board[6][9].current = 1;
-    board[7][9].current = 1;
-    board[8][9].current = 1;
-    board[9][9].current = 1;
+kokgalaxy(board);
+
     
 
     PrintCurrentBoard(board);
@@ -307,10 +303,13 @@ FutBoard[0][0].generation++;
                 }
                 else if (state == 1 && (neighbours < 2 || neighbours > 3)){
                     FutBoard[row][colum].future = 0;
-                }       
-                else {
+                } 
+                else if (state == 1 && (neighbours == 2 || neighbours == 3)){
+                    FutBoard[row][colum].future = 1;
+                }     
+                /*else {
                     FutBoard[row][colum].future = state;
-                }
+                }*/
         }
 
     }
