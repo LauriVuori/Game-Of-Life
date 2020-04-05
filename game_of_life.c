@@ -59,8 +59,8 @@
 #define MIN_RAND 0
 #define MAX_RAND 2
 
-#define BOARD_WIDTH 10
-#define BOARD_HEIGHT 10
+#define BOARD_WIDTH 25
+#define BOARD_HEIGHT 25
 
 /* Global variables */
 
@@ -88,6 +88,9 @@ void PrintFutureBoard(struct cell PrintFutBoard[BOARD_HEIGHT][BOARD_WIDTH]);
 #ifdef INCCURSES
 void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH]);
 #endif
+
+// Testing patterns and oscillators
+void kokgalaxy(struct cell galaxy[BOARD_HEIGHT][BOARD_WIDTH]);
 /*********************************************************************
 *    MAIN PROGRAM                                                      *
 **********************************************************************/
@@ -104,10 +107,31 @@ int main(void){
                     //     y    x
     struct cell board [BOARD_HEIGHT] [BOARD_WIDTH] = {0, 0};
 
-    RandBoard(board);
+
+    /*--> beehive
+    board[5][5].current = 1;
+    board[5][6].current = 1;
+    board[5][7].current = 1;
+    board[5][8].current = 1;
+    */
+    /*--> beehive
+    board[5][5].current = 1;
+    board[6][5].current = 1;
+    board[6][6].current = 1;
+    board[6][7].current = 1;
+    */
+    /*--> traffic light
+    board[3][2].current = 1;
+    board[3][3].current = 1;
+    board[3][4].current = 1;
+    board[2][3].current = 1;
+    */
+
 
 
 //include curses and drawing
+
+//RandBoard(board);
 #ifdef INCCURSES
     initscr (); 
     clear ();   
@@ -121,11 +145,14 @@ int main(void){
     keypad(stdscr, TRUE);
 
     int i = 0;
-        while(i < 500000){
+    kokgalaxy(board);
+        while(i < 5000000){
             refresh();
+                    
                     EvalFutureBoard(board);
                     Drawboard(board);
-                    usleep(45000);
+                    //isompi hitaampi
+                    usleep(200000);
             refresh();
         i++;
         }
@@ -137,9 +164,15 @@ int main(void){
     getch ();
     endwin ();
 #else
+char command = 'y';
+    kokgalaxy(board);
     PrintCurrentBoard(board);
+while(command != 'n'){
     EvalFutureBoard(board);
     PrintFutureBoard(board);
+    printf("any key continue/ n to stop");
+    scanf("%c", &command);
+}
 #endif
 } /* end of main */
 
@@ -326,3 +359,84 @@ int row, colum;
     }
 }
 #endif
+
+/*********************************************************************
+	F U N C T I O N    D E S C R I P T I O N
+---------------------------------------------------------------------
+ NAME:kokgalaxy
+ DESCRIPTION:
+	Input:
+	Output:
+  Used global variables:
+  Used global constants:
+ REMARKS when using this function:
+*********************************************************************/
+void kokgalaxy(struct cell galaxy[BOARD_HEIGHT][BOARD_WIDTH]){
+    //left
+    galaxy[5][5].current = 1;
+    galaxy[6][5].current = 1;
+    galaxy[7][5].current = 1;
+    galaxy[8][5].current = 1;
+    galaxy[9][5].current = 1;
+    galaxy[10][5].current = 1;
+
+    galaxy[5][6].current = 1;
+    galaxy[6][6].current = 1;
+    galaxy[7][6].current = 1;
+    galaxy[8][6].current = 1;
+    galaxy[9][6].current = 1;
+    galaxy[10][6].current = 1;
+
+    //bottom 11 rivi väli
+
+    galaxy[12][5].current = 1;
+    galaxy[12][6].current = 1;
+    galaxy[12][7].current = 1;
+    galaxy[12][8].current = 1;
+    galaxy[12][9].current = 1;
+    galaxy[12][10].current = 1;
+
+    galaxy[13][5].current = 1;
+    galaxy[13][6].current = 1;
+    galaxy[13][7].current = 1;
+    galaxy[13][8].current = 1;
+    galaxy[13][9].current = 1;
+    galaxy[13][10].current = 1;
+
+    // top 7 väli
+
+    galaxy[5][8].current = 1;
+    galaxy[5][9].current = 1;
+    galaxy[5][10].current = 1;
+    galaxy[5][11].current = 1;
+    galaxy[5][12].current = 1;
+    galaxy[5][13].current = 1;
+
+    galaxy[6][8].current = 1;
+    galaxy[6][9].current = 1;
+    galaxy[6][10].current = 1;
+    galaxy[6][11].current = 1;
+    galaxy[6][12].current = 1;
+    galaxy[6][13].current = 1;
+
+    //right 7 väli
+
+    galaxy[8][12].current = 1;
+    galaxy[9][12].current = 1;
+    galaxy[10][12].current = 1;
+    galaxy[11][12].current = 1;
+    galaxy[12][12].current = 1;
+    galaxy[13][12].current = 1;
+
+    galaxy[8][13].current = 1;
+    galaxy[9][13].current = 1;
+    galaxy[10][13].current = 1;
+    galaxy[11][13].current = 1;
+    galaxy[12][13].current = 1;
+    galaxy[13][13].current = 1;
+
+
+
+
+
+}
