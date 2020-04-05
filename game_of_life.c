@@ -66,6 +66,10 @@
 #define BOARD_WIDTH 25
 #define BOARD_HEIGHT 25
 
+#define DEFAULT 1
+#define LIVE 2
+#define INFECTED 3
+
 /* Global variables */
 
 /* Global structures */
@@ -143,9 +147,10 @@ int main(void){
     nodelay (stdscr, TRUE);	
     
     start_color(); 
-    init_pair (1, COLOR_BLACK, COLOR_BLACK); 
-    init_pair (2, COLOR_BLACK, COLOR_GREEN); 
-    bkgd (COLOR_PAIR (1)); 
+    init_pair (DEFAULT, COLOR_BLACK, COLOR_BLACK);
+    init_pair (LIVE, COLOR_BLACK, COLOR_RED); 
+    init_pair (INFECTED, COLOR_BLACK, COLOR_GREEN);  
+    bkgd (COLOR_PAIR (DEFAULT));
     noecho ();
     keypad(stdscr, TRUE);
 
