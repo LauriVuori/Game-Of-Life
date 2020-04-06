@@ -34,7 +34,8 @@
        |14:10 - walls tested, and all different statements
        |14:22 - Added generations/ board[0][0] adds one in every gene TODO: FIX generations to not array
        |20.11 - Added infect and Checkinfected, need to do something to spawning, only spawning 1 doesnt work
-       |
+       |21.23 - Check works with new spawning is there virus in neighbours
+       |21.49 - Added random death on live while infected
        >
 
 **********************************************************************/
@@ -64,9 +65,11 @@
 /* Global constants */
 #define MIN_RAND 0
 #define MAX_RAND 2
+#define MIN_RAND_DEATH 0
+#define MAX_RAND_DEATH 10
 
-#define BOARD_WIDTH 20
-#define BOARD_HEIGHT 20
+#define BOARD_WIDTH 10
+#define BOARD_HEIGHT 10
 
 #define DEFAULT 1
 #define LIVE 2
@@ -159,7 +162,7 @@ int main(void){
 
     int i = 0;
     //kokgalaxy(board);
-    RandBoard(board);
+
     /*missile
     board[2][3].current = 1;
     board[2][4].current = 1;
@@ -168,20 +171,20 @@ int main(void){
     board[0][4].current = 1;
     */
     RandBoard(board);
-    board[15][3].current = 2;
-    board[15][4].current = 2;
-    board[14][5].current = 2;
-    board[13][5].current = 2;
-    board[12][4].current = 2;
-    board[12][6].current = 2;
-    board[12][7].current = 2;
+    board[35][75].current = 2;
+    board[35][77].current = 2;
+    board[35][76].current = 2;
+    board[35][77].current = 2;
+    board[35][77].current = 2;
+    board[35][76].current = 2;
+    board[35][79].current = 2;
         while(i < 500000000){
             refresh();
                     
                     EvalFutureBoard(board);
                     Drawboard(board);
                     //isompi hitaampi
-                    usleep(5000);
+                    usleep(100000);
             refresh();
         i++;
         }
@@ -196,7 +199,7 @@ int main(void){
 char command = 10;
 
 // add dots on board
-kokgalaxy(board);
+//kokgalaxy(board);
    /* board[5][5].current = 1;
     board[6][5].current = 2;
     board[7][5].current = 1;
@@ -207,7 +210,9 @@ kokgalaxy(board);
     board[6][7].current = 2;
     board[7][6].current = 1;*/
 
-
+    board[5][5].current = 2;
+    board[6][6].current = 2;
+    board[5][6].current = 2;
 PrintCurrentBoard(board);
 while(command == 10){
     EvalFutureBoard(board);
@@ -345,7 +350,14 @@ FutBoard[0][0].generation++;
                 }
                 else if (state == 2 && (neighbours == 2 || neighbours == 3)){
                     //infectOthers(FutBoard, row, colum);
+                    
+                    // 1/10 chance to die
+                    if (rand()%MAX_RAND_DEATH+MIN_RAND_DEATH == 1){
+                        FutBoard[row][colum].future = 0;
+                    }
+                    else {
                     FutBoard[row][colum].future = 2;
+                    }
                 }
                 else if (state == 2 && (neighbours < 2 || neighbours > 3)){
                     //infectOthers(FutBoard, row, colum);
@@ -391,7 +403,7 @@ int isInfected;
                     }
             }
         }
-    return 1;
+    return 0;
 }
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
@@ -501,14 +513,14 @@ int row, colum;
 *********************************************************************/
 void kokgalaxy(struct cell galaxy[BOARD_HEIGHT][BOARD_WIDTH]){
     //left
-    galaxy[5][5].current = 1;
+    galaxy[5][5].current = 2;
     galaxy[6][5].current = 1;
-    galaxy[7][5].current = 2;
+    galaxy[7][5].current = 1;
     galaxy[8][5].current = 1;
     galaxy[9][5].current = 1;
     galaxy[10][5].current = 1;
 
-    galaxy[5][6].current = 2;
+    galaxy[5][6].current = 1;
     galaxy[6][6].current = 1;
     galaxy[7][6].current = 1;
     galaxy[8][6].current = 1;
