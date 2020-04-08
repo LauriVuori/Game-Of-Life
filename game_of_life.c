@@ -41,7 +41,7 @@
 **********************************************************************/
 
 // define this to include curses drawing,
-//#define INCCURSES
+#define INCCURSES
 
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
@@ -66,14 +66,33 @@
 #define MIN_RAND 0
 #define MAX_RAND 2
 #define MIN_RAND_DEATH 0
-#define MAX_RAND_DEATH 10
+#define MAX_RAND_DEATH 100
 
-#define BOARD_WIDTH 10
-#define BOARD_HEIGHT 10
+#define BOARD_WIDTH 100
+#define BOARD_HEIGHT 75 //75 max
+
+#define UP_ARROW 450
+#define DOWN_ARROW 456
 
 #define DEFAULT 1
 #define LIVE 2
 #define INFECTED 3
+
+//MENU
+#define ARRAY_SIZE 1000
+#define MIN_MENU_OPTIONS -1
+#define MAX_MENU_OPTIONS 2
+#define WIN_HEIGHT 25
+#define WIN_WIDTH 30
+#define WIN_START_Y 0
+#define WIN_START_X 120
+
+#define OPTIONS 2
+
+#define WIN_TOPBOT '-'
+#define WIN_SIDES  '|'
+#define WIN_TBLC   '+'
+#define WIN_TBRC   '+'
 
 /* Global variables */
 
@@ -99,6 +118,9 @@ int CountNeighbour(struct cell Neighbour[BOARD_HEIGHT][BOARD_WIDTH],int cRow, in
 void EvalFutureBoard(struct cell FutBoard[BOARD_HEIGHT][BOARD_WIDTH]);
 void PrintFutureBoard(struct cell PrintFutBoard[BOARD_HEIGHT][BOARD_WIDTH]);
 
+void Spawn_live_cells(struct cell start[BOARD_HEIGHT][BOARD_WIDTH]);
+void Spawn_virus_cells(struct cell SpawnVirus[BOARD_HEIGHT][BOARD_WIDTH]);
+
 #ifdef INCCURSES
 void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH]);
 #endif
@@ -106,6 +128,10 @@ int Checkinfected(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int 
 void infectOthers(struct cell infect[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol);
 // Testing patterns and oscillators
 void kokgalaxy(struct cell galaxy[BOARD_HEIGHT][BOARD_WIDTH]);
+
+int Navigation(void);
+
+
 /*********************************************************************
 *    MAIN PROGRAM                                                      *
 **********************************************************************/
@@ -159,6 +185,7 @@ int main(void){
     bkgd (COLOR_PAIR (DEFAULT));
     noecho ();
     keypad(stdscr, TRUE);
+    curs_set(0);
 
     int i = 0;
     //kokgalaxy(board);
@@ -170,25 +197,70 @@ int main(void){
     board[1][5].current = 1;
     board[0][4].current = 1;
     */
-    RandBoard(board);
+    /*RandBoard(board);
     board[35][75].current = 2;
     board[35][77].current = 2;
     board[35][76].current = 2;
     board[35][77].current = 2;
     board[35][77].current = 2;
     board[35][76].current = 2;
-    board[35][79].current = 2;
-        while(i < 500000000){
-            refresh();
-                    
+    board[35][79].current = 2;*/
+    int command = 0;
+    int speed = 100000;
+
+    attron(COLOR_PAIR(LIVE));
+    mvaddstr(10,125, "Enter to exit");
+    mvaddstr(11,125, "1 faster, 2 slower");
+    mvaddstr(12,125, "3 Spawn live cells");
+    attroff(COLOR_PAIR(DEFAULT));
+do{
+    clear();
+    command = Navigation();
+        switch(command){ //enter to exit,
+            case 0:
+                clear();
+                attron(COLOR_PAIR(LIVE));
+                mvaddstr(10,125, "Esc to exit");
+                mvaddstr(11,125, "Key 1 Faster");
+                mvaddstr(12,125, "Key 2 slower");
+                mvaddstr(14,125, "Key 3 Spawn live cells");
+                mvaddstr(15,125, "Key 4 Virus cells");
+                mvaddstr(17,125, "Key 5 spawn kokgalaxy");
+
+                attroff(COLOR_PAIR(DEFAULT));
+                
+                while(command != 27){
+                    command = getch();
+                    if (command == 49 && speed >= 10000){
+                        speed -= 10000;
+                    }
+                    if (command == 50 && speed <= 180000){
+                        speed += 10000;
+                    }
+                    if (command == 51){
+                        RandBoard(board);
+                    }
+                    if (command == 52){
+                        Spawn_virus_cells(board);
+                    }
+                    if (command == 53){
+                        kokgalaxy(board);
+                    }
                     EvalFutureBoard(board);
                     Drawboard(board);
-                    //isompi hitaampi
-                    usleep(100000);
-            refresh();
-        i++;
+                    usleep(speed);
+                }
+                break;
+            case 1:
+                clear();
+                attron(COLOR_PAIR(LIVE));
+                mvaddstr(15,15, "Press enter to exit");
+                attroff(COLOR_PAIR(DEFAULT));
+                break;    
+        default:
+        break;
         }
-
+}while(command != 1);
 
 
 
@@ -233,6 +305,79 @@ while(command == 10){
 /*********************************************************************
 *    FUNCTIONS                                                       *
 **********************************************************************/
+/*********************************************************************
+	F U N C T I O N    D E S C R I P T I O N
+---------------------------------------------------------------------
+ NAME:Navigation
+ DESCRIPTION:
+	Input:
+	Output:
+  Used global variables:
+  Used global constants:
+ REMARKS when using this function:
+*********************************************************************/
+int Navigation(void){
+    int choice, highlight = 0;
+    int i = 0;              
+    char choices[ARRAY_SIZE][ARRAY_SIZE] = {
+                            "Start game with live cells",
+                            "exit",
+    };
+
+    WINDOW * menuwindow = newwin(WIN_HEIGHT, WIN_WIDTH, WIN_START_Y, WIN_START_X);
+    wborder(menuwindow, WIN_SIDES, WIN_SIDES, WIN_TOPBOT, WIN_TOPBOT, WIN_TBLC, WIN_TBLC, WIN_TBRC, WIN_TBRC);
+    refresh();
+    wrefresh(menuwindow);
+
+    keypad(menuwindow, TRUE);
+
+    while(1){
+       
+        for (i = 0; i < MAX_MENU_OPTIONS; i++){
+            if (i == highlight){
+                wattron(menuwindow, A_REVERSE);
+            }
+            mvwprintw(menuwindow, i+1, 1, choices[i]);
+            wattroff(menuwindow, A_REVERSE);
+
+        }
+        choice = wgetch(menuwindow);
+        
+        switch (choice){
+            case KEY_UP: //TODO: vaihda KEY_UP, ei toimi vsc terminal, windows nuoli ylös 450
+                highlight--;
+                
+                    if (highlight == MIN_MENU_OPTIONS){ 
+                        highlight = MIN_MENU_OPTIONS+1;
+                    }
+                break;
+        
+            case KEY_DOWN: //TODO: vaihda KEY_DOWN, ei toimi vsc terminal, windows nuoli alas
+                highlight++;
+                    
+                    if (highlight == MAX_MENU_OPTIONS){ 
+                        highlight = MAX_MENU_OPTIONS-1;
+                    }
+                break;
+        default:
+            break;
+        }
+        if (choice == 10){ // enter
+            return highlight;
+            break;
+        }
+        /* TODO: maybe del
+        else if(choice == 49){ //key 1
+            return 7; 
+            break;
+        }
+        else if(choice == 50){ //key 2
+            return 8;
+            break;
+        }*/
+    }
+
+}
 
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
@@ -253,6 +398,48 @@ int row,colum;
             start[row][colum].current=rand()%MAX_RAND+MIN_RAND;
         }
     }
+}
+/*********************************************************************
+	F U N C T I O N    D E S C R I P T I O N
+---------------------------------------------------------------------
+ NAME:Spawn cells
+ DESCRIPTION:
+	Input:
+	Output:
+  Used global variables:
+  Used global constants:
+ REMARKS when using this function:
+*********************************************************************/
+void Spawn_live_cells(struct cell SpawnLive[BOARD_HEIGHT][BOARD_WIDTH]){
+    SpawnLive[2][3].current = 1;
+    SpawnLive[2][4].current = 1;
+    SpawnLive[2][5].current = 1;
+    SpawnLive[1][5].current = 1;
+    SpawnLive[0][4].current = 1;
+    /*for(int i = 0; i<= 50; i++){
+    Spawn[rand()%BOARD_HEIGHT+0][rand()%BOARD_WIDTH+0].current= 1;
+    }*/
+}
+/*********************************************************************
+	F U N C T I O N    D E S C R I P T I O N
+---------------------------------------------------------------------
+ NAME:Spawn virus
+ DESCRIPTION:
+	Input:
+	Output:
+  Used global variables:
+  Used global constants:
+ REMARKS when using this function:
+*********************************************************************/
+void Spawn_virus_cells(struct cell SpawnVirus[BOARD_HEIGHT][BOARD_WIDTH]){
+    SpawnVirus[2][3].current = 2;
+    SpawnVirus[2][4].current = 2;
+    SpawnVirus[2][5].current = 2;
+    SpawnVirus[1][5].current = 2;
+    SpawnVirus[0][4].current = 2;
+    /*for(int i = 0; i<= 50; i++){
+    Spawn[rand()%BOARD_HEIGHT+0][rand()%BOARD_WIDTH+0].current= 1;
+    }*/
 }
 
 /*********************************************************************
@@ -351,8 +538,8 @@ FutBoard[0][0].generation++;
                 else if (state == 2 && (neighbours == 2 || neighbours == 3)){
                     //infectOthers(FutBoard, row, colum);
                     
-                    // 1/10 chance to die
-                    if (rand()%MAX_RAND_DEATH+MIN_RAND_DEATH == 1){
+                    // CHANCE TO INFECTED DIE RANDOM--->  
+                    if (rand()%MAX_RAND_DEATH+MIN_RAND_DEATH== 1){
                         FutBoard[row][colum].future = 0;
                     }
                     else {
@@ -512,66 +699,67 @@ int row, colum;
  REMARKS when using this function:
 *********************************************************************/
 void kokgalaxy(struct cell galaxy[BOARD_HEIGHT][BOARD_WIDTH]){
+    int i = 10;
     //left
-    galaxy[5][5].current = 2;
-    galaxy[6][5].current = 1;
-    galaxy[7][5].current = 1;
-    galaxy[8][5].current = 1;
-    galaxy[9][5].current = 1;
-    galaxy[10][5].current = 1;
+    galaxy[i+5][i+5].current = 1;
+    galaxy[i+6][i+5].current = 1;
+    galaxy[i+7][i+5].current = 1;
+    galaxy[i+8][i+5].current = 1;
+    galaxy[i+9][i+5].current = 1;
+    galaxy[i+10][i+5].current = 1;
 
-    galaxy[5][6].current = 1;
-    galaxy[6][6].current = 1;
-    galaxy[7][6].current = 1;
-    galaxy[8][6].current = 1;
-    galaxy[9][6].current = 1;
-    galaxy[10][6].current = 1;
+    galaxy[i+5][i+6].current = 1;
+    galaxy[i+6][i+6].current = 1;
+    galaxy[i+7][i+6].current = 1;
+    galaxy[i+8][i+6].current = 1;
+    galaxy[i+9][i+6].current = 1;
+    galaxy[i+10][i+6].current = 1;
 
     //bottom 11 rivi väli
 
-    galaxy[12][5].current = 1;
-    galaxy[12][6].current = 1;
-    galaxy[12][7].current = 1;
-    galaxy[12][8].current = 1;
-    galaxy[12][9].current = 1;
-    galaxy[12][10].current = 1;
+    galaxy[i+12][i+5].current = 1;
+    galaxy[i+12][i+6].current = 1;
+    galaxy[i+12][i+7].current = 1;
+    galaxy[i+12][i+8].current = 1;
+    galaxy[i+12][i+9].current = 1;
+    galaxy[i+12][i+10].current = 1;
 
-    galaxy[13][5].current = 1;
-    galaxy[13][6].current = 1;
-    galaxy[13][7].current = 1;
-    galaxy[13][8].current = 1;
-    galaxy[13][9].current = 1;
-    galaxy[13][10].current = 1;
+    galaxy[i+13][i+5].current = 1;
+    galaxy[i+13][i+6].current = 1;
+    galaxy[i+13][i+7].current = 1;
+    galaxy[i+13][i+8].current = 1;
+    galaxy[i+13][i+9].current = 1;
+    galaxy[i+13][i+10].current = 1;
 
     // top 7 väli
 
-    galaxy[5][8].current = 1;
-    galaxy[5][9].current = 1;
-    galaxy[5][10].current = 1;
-    galaxy[5][11].current = 1;
-    galaxy[5][12].current = 1;
-    galaxy[5][13].current = 1;
+    galaxy[i+5][i+8].current = 1;
+    galaxy[i+5][i+9].current = 1;
+    galaxy[i+5][i+10].current = 1;
+    galaxy[i+5][i+11].current = 1;
+    galaxy[i+5][i+12].current = 1;
+    galaxy[i+5][i+13].current = 1;
 
-    galaxy[6][8].current = 1;
-    galaxy[6][9].current = 1;
-    galaxy[6][10].current = 1;
-    galaxy[6][11].current = 1;
-    galaxy[6][12].current = 1;
-    galaxy[6][13].current = 1;
+    galaxy[i+6][i+8].current = 1;
+    galaxy[i+6][i+9].current = 1;
+    galaxy[i+6][i+10].current = 1;
+    galaxy[i+6][i+11].current = 1;
+    galaxy[i+6][i+12].current = 1;
+    galaxy[i+6][i+13].current = 1;
 
     //right 7 väli
 
-    galaxy[8][12].current = 1;
-    galaxy[9][12].current = 1;
-    galaxy[10][12].current = 1;
-    galaxy[11][12].current = 1;
-    galaxy[12][12].current = 1;
-    galaxy[13][12].current = 1;
+    galaxy[i+8][i+12].current = 1;
+    galaxy[i+9][i+12].current = 1;
+    galaxy[i+10][i+12].current = 1;
+    galaxy[i+11][i+12].current = 1;
+    galaxy[i+12][i+12].current = 1;
+    galaxy[i+13][i+12].current = 1;
 
-    galaxy[8][13].current = 1;
-    galaxy[9][13].current = 1;
-    galaxy[10][13].current = 1;
-    galaxy[11][13].current = 1;
-    galaxy[12][13].current = 1;
-    galaxy[13][13].current = 1;
+    galaxy[i+8][i+13].current = 1;
+    galaxy[i+9][i+13].current = 1;
+    galaxy[i+10][i+13].current = 1;
+    galaxy[i+11][i+13].current = 1;
+    galaxy[i+12][i+13].current = 1;
+    galaxy[i+13][i+13].current = 1;
 }
