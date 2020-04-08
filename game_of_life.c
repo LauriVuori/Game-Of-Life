@@ -37,6 +37,13 @@
        |21.23 - Check works with new spawning is there virus in neighbours
        |21.49 - Added random death on live while infected
        >
+       TODO: Checkinfected, infect others random amount or fixed
+       TODO: Virus is active for random rounds
+
+if infection time is crater than survival creature will die after survival time, onko mahdollsita
+Infected creature is visualized as red
+All parameters may be modified in configuration file
+
 
 **********************************************************************/
 
@@ -48,6 +55,7 @@
 *--------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #ifdef INCCURSES
 #include <curses.h>
@@ -120,6 +128,8 @@ void PrintFutureBoard(struct cell PrintFutBoard[BOARD_HEIGHT][BOARD_WIDTH]);
 
 void Spawn_live_cells(struct cell start[BOARD_HEIGHT][BOARD_WIDTH]);
 void Spawn_virus_cells(struct cell SpawnVirus[BOARD_HEIGHT][BOARD_WIDTH]);
+
+void ClearVirus(struct cell board[BOARD_HEIGHT][BOARD_WIDTH]);
 
 #ifdef INCCURSES
 void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH]);
@@ -208,11 +218,7 @@ int main(void){
     int command = 0;
     int speed = 100000;
 
-    attron(COLOR_PAIR(LIVE));
-    mvaddstr(10,125, "Enter to exit");
-    mvaddstr(11,125, "1 faster, 2 slower");
-    mvaddstr(12,125, "3 Spawn live cells");
-    attroff(COLOR_PAIR(DEFAULT));
+
 do{
     clear();
     command = Navigation();
@@ -226,29 +232,44 @@ do{
                 mvaddstr(14,125, "Key 3 Spawn live cells");
                 mvaddstr(15,125, "Key 4 Virus cells");
                 mvaddstr(17,125, "Key 5 spawn kokgalaxy");
-
+                mvaddstr(18,125, "Key 6 Clear table");
+                mvaddstr(19,125, "Key 7 Clear virus");
                 attroff(COLOR_PAIR(DEFAULT));
-                
+           
                 while(command != 27){
                     command = getch();
                     if (command == 49 && speed >= 10000){
                         speed -= 10000;
                     }
-                    if (command == 50 && speed <= 180000){
+                    else if (command == 50 && speed <= 180000){
                         speed += 10000;
                     }
-                    if (command == 51){
+                    else if (command == 51){
                         RandBoard(board);
+                        
                     }
-                    if (command == 52){
+                    else if (command == 52){
                         Spawn_virus_cells(board);
+                        //save virus start time
+                        board[0][1].generation = board[0][0].generation;
                     }
-                    if (command == 53){
+                    else if (command == 53){
                         kokgalaxy(board);
                     }
-                    EvalFutureBoard(board);
+                    else if (command == 54){
+                        memset(board, 0, sizeof board);
+                    }
+                    else if (command == 55){
+                        ClearVirus(board);
+                    }
+                    //if virus time goes over, clear virus
+                    /*if(board[0][0].generation <= 1000){
+
+                    }*/
+                    EvalFutureBoard(board);                   
                     Drawboard(board);
                     usleep(speed);
+
                 }
                 break;
             case 1:
@@ -378,7 +399,27 @@ int Navigation(void){
     }
 
 }
-
+/*********************************************************************
+	F U N C T I O N    D E S C R I P T I O N
+---------------------------------------------------------------------
+ NAME:ClearVirus
+ DESCRIPTION:Clear board from virus
+	Input:
+	Output:
+  Used global variables:
+  Used global constants:
+ REMARKS when using this function: //TODO: Maybe rand if survives
+*********************************************************************/
+void ClearVirus(struct cell Clear[BOARD_HEIGHT][BOARD_WIDTH]){
+    int row,colum;
+    for (row = 0; row < BOARD_HEIGHT; row++){
+        for (colum = 0; colum < BOARD_WIDTH; colum++){
+            if (Clear[row][colum].current == 2){
+                Clear[row][colum].current = 1;
+            }
+        }
+    }
+}
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
@@ -432,11 +473,18 @@ void Spawn_live_cells(struct cell SpawnLive[BOARD_HEIGHT][BOARD_WIDTH]){
  REMARKS when using this function:
 *********************************************************************/
 void Spawn_virus_cells(struct cell SpawnVirus[BOARD_HEIGHT][BOARD_WIDTH]){
+
     SpawnVirus[2][3].current = 2;
     SpawnVirus[2][4].current = 2;
     SpawnVirus[2][5].current = 2;
     SpawnVirus[1][5].current = 2;
     SpawnVirus[0][4].current = 2;
+
+
+
+
+
+
     /*for(int i = 0; i<= 50; i++){
     Spawn[rand()%BOARD_HEIGHT+0][rand()%BOARD_WIDTH+0].current= 1;
     }*/
