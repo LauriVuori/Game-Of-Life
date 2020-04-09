@@ -32,19 +32,12 @@
        Version history:
        <5.4.2020-14:08 Normal GOF works, define INCCURSES to use curses. Start working on "virus".
        |14:10 - walls tested, and all different statements
-       |14:22 - Added generations/ board[0][0] adds one in every gene TODO: FIX generations to not array
+       |14:22 - Added generations/ board[0][0] adds one in every gene 
        |20.11 - Added infect and Checkinfected, need to do something to spawning, only spawning 1 doesnt work
        |21.23 - Check works with new spawning is there virus in neighbours
        |21.49 - Added random death on live while infected
        >
-       TODO: Checkinfected, infect others random amount or fixed
-       TODO: Virus is active for random rounds
        TODO: ENUM
-
-if infection time is crater than survival creature will die after survival time, onko mahdollsita
-Infected creature is visualized as red
-All parameters may be modified in configuration file
-
 
 **********************************************************************/
 
@@ -147,17 +140,8 @@ int Navigation(void);
 /*********************************************************************
 *    MAIN PROGRAM                                                      *
 **********************************************************************/
-/* 3 sääntöä- birth, death, survival
-depends neibhpours
-
-0 -> 1 vain jos 3 naapuria on hengissä = 0->1 >3 naapuria
-1 -> 0 jos vähemmän kuin 2 hengissä tai enemmän kuin 3 ---- 
-*/
-
 int main(void){
     srand(time(NULL));
-                    //   rivi  paikka
-                    //     y    x
     struct cell board [BOARD_HEIGHT][BOARD_WIDTH] = {0, 0};
 
 
@@ -637,7 +621,6 @@ int Checkinfected(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int 
 int row,colum;
 int Mcol, Mrow;
 int isInfected;
-
         for (row = -1; row < 2; row++){
             for (colum = -1; colum < 2; colum++){
                 Mrow = (BOARD_HEIGHT + row + cRow) % BOARD_HEIGHT;
@@ -736,7 +719,6 @@ int row, colum;
                 attroff(COLOR_PAIR(DEFAULT));
             }
             else{
-            
             printw("%d", Drawboard[row][colum].future);  
             }
             
