@@ -39,6 +39,7 @@
        >
        TODO: Checkinfected, infect others random amount or fixed
        TODO: Virus is active for random rounds
+       TODO: ENUM
 
 if infection time is crater than survival creature will die after survival time, onko mahdollsita
 Infected creature is visualized as red
@@ -136,6 +137,7 @@ void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH]);
 #endif
 int Checkinfected(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol);
 void infectOthers(struct cell infect[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol);
+
 // Testing patterns and oscillators
 void kokgalaxy(struct cell galaxy[BOARD_HEIGHT][BOARD_WIDTH]);
 
@@ -187,7 +189,6 @@ int main(void){
     initscr (); 
     clear ();   
     nodelay (stdscr, TRUE);	
-    
     start_color(); 
     init_pair (DEFAULT, COLOR_BLACK, COLOR_BLACK);
     init_pair (LIVE, COLOR_BLACK, COLOR_RED); 
@@ -222,6 +223,7 @@ int main(void){
 do{
     clear();
     command = Navigation();
+
         switch(command){ //enter to exit,
             case 0:
                 clear();
@@ -238,27 +240,37 @@ do{
            
                 while(command != 27){
                     command = getch();
+
                     if (command == 49 && speed >= 10000){
                         speed -= 10000;
                     }
+
                     else if (command == 50 && speed <= 180000){
                         speed += 10000;
                     }
+
                     else if (command == 51){
                         RandBoard(board);
-                        
+                        board[5][5].current = 1;
+                        board[5][6].current = 1;
+                        board[5][7].current = 1;
+
                     }
+
                     else if (command == 52){
                         Spawn_virus_cells(board);
                         //save virus start time
                         board[0][1].generation = board[0][0].generation;
                     }
+
                     else if (command == 53){
                         kokgalaxy(board);
                     }
+
                     else if (command == 54){
                         memset(board, 0, sizeof board);
                     }
+
                     else if (command == 55){
                         ClearVirus(board);
                     }
@@ -412,8 +424,10 @@ int Navigation(void){
 *********************************************************************/
 void ClearVirus(struct cell Clear[BOARD_HEIGHT][BOARD_WIDTH]){
     int row,colum;
+
     for (row = 0; row < BOARD_HEIGHT; row++){
         for (colum = 0; colum < BOARD_WIDTH; colum++){
+
             if (Clear[row][colum].current == 2){
                 Clear[row][colum].current = 1;
             }
@@ -479,11 +493,6 @@ void Spawn_virus_cells(struct cell SpawnVirus[BOARD_HEIGHT][BOARD_WIDTH]){
     SpawnVirus[2][5].current = 2;
     SpawnVirus[1][5].current = 2;
     SpawnVirus[0][4].current = 2;
-
-
-
-
-
 
     /*for(int i = 0; i<= 50; i++){
     Spawn[rand()%BOARD_HEIGHT+0][rand()%BOARD_WIDTH+0].current= 1;
@@ -562,6 +571,7 @@ void EvalFutureBoard(struct cell FutBoard[BOARD_HEIGHT][BOARD_WIDTH]){
 int row,colum, neighbours = 0, state = 0;
 int isfected = 0;
 FutBoard[0][0].generation++;
+
     for (row = 0; row < BOARD_HEIGHT; row++){
         for (colum = 0; colum < BOARD_WIDTH; colum++){
             state = FutBoard[row][colum].current;
@@ -570,7 +580,7 @@ FutBoard[0][0].generation++;
 
                 //all infecteds gets lost if spawns just 1
                 if (state == 0 && neighbours == 3){
-                    if (isfected = (Checkinfected(FutBoard,row,colum)) == 2){
+                    if (isfected = (Checkinfected(FutBoard,row,colum)) == 2){ //TODO: Voisi esim. ehto syntyykö virus aina
                         FutBoard[row][colum].future = 2;
                     }
                     else{
@@ -595,7 +605,7 @@ FutBoard[0][0].generation++;
                     }
                 }
                 else if (state == 2 && (neighbours < 2 || neighbours > 3)){
-                    //infectOthers(FutBoard, row, colum);
+                    //infectOthers(FutBoard, row, colum); //TODO: mahd turha...
                     FutBoard[row][colum].future = 0;
                 } 
                                   
