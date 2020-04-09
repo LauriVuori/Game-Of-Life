@@ -158,7 +158,7 @@ int main(void){
     srand(time(NULL));
                     //   rivi  paikka
                     //     y    x
-    struct cell board [BOARD_HEIGHT] [BOARD_WIDTH] = {0, 0};
+    struct cell board [BOARD_HEIGHT][BOARD_WIDTH] = {0, 0};
 
 
     /*--> beehive
@@ -198,7 +198,6 @@ int main(void){
     keypad(stdscr, TRUE);
     curs_set(0);
 
-    int i = 0;
     //kokgalaxy(board);
 
     /*missile
@@ -274,10 +273,11 @@ do{
                     else if (command == 55){
                         ClearVirus(board);
                     }
-                    //if virus time goes over, clear virus
-                    /*if(board[0][0].generation <= 1000){
+                    //After time virus dissappears
+                    if ((board[0][0].generation - board[0][1].generation)  >= 100){
+                        ClearVirus(board);
+                    }
 
-                    }*/
                     EvalFutureBoard(board);                   
                     Drawboard(board);
                     usleep(speed);
