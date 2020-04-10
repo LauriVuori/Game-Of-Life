@@ -65,13 +65,21 @@
 
 
 /* Global constants */
+#define KEY_1 49 
+#define KEY_2 50 
+#define KEY_3 51 
+#define KEY_4 52
+#define KEY_5 53
+#define KEY_6 54
+#define KEY_7 55
+
 #define MIN_RAND 0
 #define MAX_RAND 2
 #define MIN_RAND_DEATH 0
 #define MAX_RAND_DEATH 100
 
-#define BOARD_WIDTH 100
-#define BOARD_HEIGHT 75 //75 max
+#define BOARD_WIDTH 50 //100 max
+#define BOARD_HEIGHT 50 //75 max
 
 #define UP_ARROW 450
 #define DOWN_ARROW 456
@@ -144,32 +152,6 @@ int main(void){
     srand(time(NULL));
     struct cell board [BOARD_HEIGHT][BOARD_WIDTH] = {0, 0};
 
-
-    /*--> beehive
-    board[5][5].current = 1;
-    board[5][6].current = 1;
-    board[5][7].current = 1;
-    board[5][8].current = 1;
-    */
-    /*--> beehive
-    board[5][5].current = 1;
-    board[6][5].current = 1;
-    board[6][6].current = 1;
-    board[6][7].current = 1;
-    */
-    /*--> traffic light
-    board[3][2].current = 1;
-    board[3][3].current = 1;
-    board[3][4].current = 1;
-    board[2][3].current = 1;
-    */
-
-
-
-//include curses and drawing
-
-//RandBoard(board);
-#ifdef INCCURSES
     initscr (); 
     clear ();   
     nodelay (stdscr, TRUE);	
@@ -182,23 +164,6 @@ int main(void){
     keypad(stdscr, TRUE);
     curs_set(0);
 
-    //kokgalaxy(board);
-
-    /*missile
-    board[2][3].current = 1;
-    board[2][4].current = 1;
-    board[2][5].current = 1;
-    board[1][5].current = 1;
-    board[0][4].current = 1;
-    */
-    /*RandBoard(board);
-    board[35][75].current = 2;
-    board[35][77].current = 2;
-    board[35][76].current = 2;
-    board[35][77].current = 2;
-    board[35][77].current = 2;
-    board[35][76].current = 2;
-    board[35][79].current = 2;*/
     int command = 0;
     int speed = 100000;
 
@@ -211,28 +176,28 @@ do{
             case 0:
                 clear();
                 attron(COLOR_PAIR(LIVE));
-                mvaddstr(10,125, "Esc to exit");
-                mvaddstr(11,125, "Key 1 Faster");
-                mvaddstr(12,125, "Key 2 slower");
-                mvaddstr(14,125, "Key 3 Spawn live cells");
-                mvaddstr(15,125, "Key 4 Virus cells");
-                mvaddstr(17,125, "Key 5 spawn kokgalaxy");
-                mvaddstr(18,125, "Key 6 Clear table");
-                mvaddstr(19,125, "Key 7 Clear virus");
+                mvaddstr(10,BOARD_WIDTH+10, "Esc to exit");
+                mvaddstr(11,BOARD_WIDTH+10, "Key 1 Faster");
+                mvaddstr(12,BOARD_WIDTH+10, "Key 2 slower");
+                mvaddstr(14,BOARD_WIDTH+10, "Key 3 Spawn live cells");
+                mvaddstr(15,BOARD_WIDTH+10, "Key 4 Virus cells");
+                mvaddstr(17,BOARD_WIDTH+10, "Key 5 spawn kokgalaxy");
+                mvaddstr(18,BOARD_WIDTH+10, "Key 6 Clear table");
+                mvaddstr(19,BOARD_WIDTH+10, "Key 7 Clear virus");
                 attroff(COLOR_PAIR(DEFAULT));
            
                 while(command != 27){
                     command = getch();
 
-                    if (command == 49 && speed >= 10000){
+                    if (command == KEY_1 && speed >= 10000){
                         speed -= 10000;
                     }
 
-                    else if (command == 50 && speed <= 180000){
+                    else if (command == KEY_2 && speed <= 180000){
                         speed += 10000;
                     }
 
-                    else if (command == 51){
+                    else if (command == KEY_3){
                         RandBoard(board);
                         board[5][5].current = 1;
                         board[5][6].current = 1;
@@ -240,26 +205,31 @@ do{
 
                     }
 
-                    else if (command == 52){
+                    else if (command == KEY_4){
                         Spawn_virus_cells(board);
                         //save virus start time
                         board[0][1].generation = board[0][0].generation;
+                        //if new virus spawned, just to clear text
+                        mvaddstr(35,BOARD_WIDTH+10, "                     ");
                     }
 
-                    else if (command == 53){
+                    else if (command == KEY_5){
                         kokgalaxy(board);
                     }
 
-                    else if (command == 54){
+                    else if (command == KEY_6){
                         memset(board, 0, sizeof board);
                     }
 
-                    else if (command == 55){
+                    else if (command == KEY_7){
                         ClearVirus(board);
                     }
                     //After time virus dissappears
                     if ((board[0][0].generation - board[0][1].generation)  >= 100){
                         ClearVirus(board);
+                        attron(COLOR_PAIR(LIVE));
+                        mvaddstr(35,BOARD_WIDTH+10, "Virus cleared itself");
+                        attroff(COLOR_PAIR(DEFAULT));
                     }
 
                     EvalFutureBoard(board);                   
@@ -278,46 +248,10 @@ do{
         break;
         }
 }while(command != 1);
-
-
-
     nodelay (stdscr, FALSE);
     getch ();
     endwin ();
-#else
-char command = 10;
-
-// add dots on board
-//kokgalaxy(board);
-   /* board[5][5].current = 1;
-    board[6][5].current = 2;
-    board[7][5].current = 1;
-    */
-    /*
-    board[5][6].current = 1;
-    board[6][6].current = 1;
-    board[6][7].current = 2;
-    board[7][6].current = 1;*/
-
-    board[5][5].current = 2;
-    board[6][6].current = 2;
-    board[5][6].current = 2;
-PrintCurrentBoard(board);
-while(command == 10){
-    EvalFutureBoard(board);
-    PrintFutureBoard(board);
-    printf("Enter to continue/ any char/key stop");
-    scanf("%c", &command);
-}
-#endif
 } /* end of main */
-
-
-
-
-
-
-
 
 /*********************************************************************
 *    FUNCTIONS                                                       *
@@ -383,15 +317,6 @@ int Navigation(void){
             return highlight;
             break;
         }
-        /* TODO: maybe del
-        else if(choice == 49){ //key 1
-            return 7; 
-            break;
-        }
-        else if(choice == 50){ //key 2
-            return 8;
-            break;
-        }*/
     }
 
 }
@@ -414,6 +339,7 @@ void ClearVirus(struct cell Clear[BOARD_HEIGHT][BOARD_WIDTH]){
 
             if (Clear[row][colum].current == 2){
                 Clear[row][colum].current = 1;
+                //TODO: rand death:
             }
         }
     }
@@ -472,21 +398,21 @@ void Spawn_live_cells(struct cell SpawnLive[BOARD_HEIGHT][BOARD_WIDTH]){
 *********************************************************************/
 void Spawn_virus_cells(struct cell SpawnVirus[BOARD_HEIGHT][BOARD_WIDTH]){
 
-    SpawnVirus[2][3].current = 2;
-    SpawnVirus[2][4].current = 2;
-    SpawnVirus[2][5].current = 2;
-    SpawnVirus[1][5].current = 2;
-    SpawnVirus[0][4].current = 2;
-
-    /*for(int i = 0; i<= 50; i++){
-    Spawn[rand()%BOARD_HEIGHT+0][rand()%BOARD_WIDTH+0].current= 1;
+    SpawnVirus[BOARD_HEIGHT/2+2][BOARD_WIDTH/2+3].current = 2;
+    SpawnVirus[BOARD_HEIGHT/2+2][BOARD_WIDTH/2+4].current = 2;
+    SpawnVirus[BOARD_HEIGHT/2+2][BOARD_WIDTH/2+5].current = 2;
+    SpawnVirus[BOARD_HEIGHT/2+1][BOARD_WIDTH/2+5].current = 2;
+    SpawnVirus[BOARD_HEIGHT/2+0][BOARD_WIDTH/2+4].current = 2;
+    /*
+    for(int i = 0; i<= 50; i++){
+    SpawnVirus[rand()%BOARD_HEIGHT+0][rand()%BOARD_WIDTH+0].current= 2;
     }*/
 }
 
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
- NAME:PrintCurrentBoard
+ NAME:PrintCurrentBoard //TODO: just for testing reasons, can be deleted
  DESCRIPTION:
 	Input:
 	Output:
@@ -662,7 +588,7 @@ int Mcol, Mrow;
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
- NAME:PrintFutureBoard
+ NAME:PrintFutureBoard TODO: FOR TESTING REASONS CAN BE DELETED
  DESCRIPTION:
 	Input:
 	Output:
