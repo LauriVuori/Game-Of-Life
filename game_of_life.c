@@ -17,7 +17,6 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-
 /*********************************************************************
 
  1.  NAME
@@ -41,8 +40,6 @@
 
 **********************************************************************/
 
-// define this to include curses drawing,
-#define INCCURSES
 
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
@@ -50,11 +47,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#ifdef INCCURSES
 #include <curses.h>
-#endif
-
 #include <time.h>
 #include <unistd.h>
 
@@ -123,27 +116,17 @@ int generation;
 *--------------------------------------------------------------------*/
 
 void RandBoard(struct cell start[BOARD_HEIGHT][BOARD_WIDTH]);
-void PrintCurrentBoard(struct cell CurBoard[BOARD_HEIGHT][BOARD_WIDTH]);
 int CountNeighbour(struct cell Neighbour[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol);
 void EvalFutureBoard(struct cell FutBoard[BOARD_HEIGHT][BOARD_WIDTH]);
-void PrintFutureBoard(struct cell PrintFutBoard[BOARD_HEIGHT][BOARD_WIDTH]);
-
-void Spawn_live_cells(struct cell start[BOARD_HEIGHT][BOARD_WIDTH]);
 void Spawn_virus_cells(struct cell SpawnVirus[BOARD_HEIGHT][BOARD_WIDTH]);
-
 void ClearVirus(struct cell board[BOARD_HEIGHT][BOARD_WIDTH]);
-
-#ifdef INCCURSES
 void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH]);
-#endif
 int Checkinfected(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol);
-void infectOthers(struct cell infect[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol);
 
 // Testing patterns and oscillators
 void kokgalaxy(struct cell galaxy[BOARD_HEIGHT][BOARD_WIDTH]);
 
 int Navigation(void);
-
 
 /*********************************************************************
 *    MAIN PROGRAM                                                      *
@@ -170,6 +153,7 @@ int main(void){
 
 do{
     clear();
+
     command = Navigation();
 
         switch(command){ //enter to exit,
@@ -199,10 +183,6 @@ do{
 
                     else if (command == KEY_3){
                         RandBoard(board);
-                        board[5][5].current = 1;
-                        board[5][6].current = 1;
-                        board[5][7].current = 1;
-
                     }
 
                     else if (command == KEY_4){
@@ -274,6 +254,15 @@ int Navigation(void){
                             "Start game with live cells",
                             "exit",
     };
+
+//print game of life on screen
+attron(COLOR_PAIR(LIVE));
+mvaddstr(5,5, " ______     ______     __    __     ______        ______     ______      __         __     ______   ______");
+mvaddstr(6,5, "/\\  ___\\   /\\  __ \\   /\\  -./  \\   /\\  ___\\      /\\  __ \\   /\\  ___\\    /\\ \\       /\\ \\   /\\  ___\\ /\\  ___\\");
+mvaddstr(7,5, "\\ \\ \\__ \\  \\ \\  __ \\  \\ \\ \\-./\\ \\  \\ \\  __\\      \\ \\ \\/\\ \\  \\ \\  __\\    \\ \\ \\____  \\ \\ \\  \\ \\  __\\ \\ \\  __\\"); 
+mvaddstr(8,5, " \\ \\_____\\  \\ \\_\\ \\_\\  \\ \\_\\ \\ \\_\\  \\ \\_____\\     \\ \\_____\\  \\ \\_\\       \\ \\_____\\  \\ \\_\\  \\ \\_\\    \\ \\_____\\");
+mvaddstr(9,5, "  \\/_____/   \\/_/\\/_/   \\/_/  \\/_/   \\/_____/      \\/_____/   \\/_/        \\/_____/   \\/_/   \\/_/     \\/_____/");
+attroff(COLOR_PAIR(DEFAULT));
 
     WINDOW * menuwindow = newwin(WIN_HEIGHT, WIN_WIDTH, WIN_START_Y, WIN_START_X);
     wborder(menuwindow, WIN_SIDES, WIN_SIDES, WIN_TOPBOT, WIN_TOPBOT, WIN_TBLC, WIN_TBLC, WIN_TBRC, WIN_TBRC);
@@ -367,27 +356,6 @@ int row,colum;
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
- NAME:Spawn cells
- DESCRIPTION:
-	Input:
-	Output:
-  Used global variables:
-  Used global constants:
- REMARKS when using this function:
-*********************************************************************/
-void Spawn_live_cells(struct cell SpawnLive[BOARD_HEIGHT][BOARD_WIDTH]){
-    SpawnLive[2][3].current = 1;
-    SpawnLive[2][4].current = 1;
-    SpawnLive[2][5].current = 1;
-    SpawnLive[1][5].current = 1;
-    SpawnLive[0][4].current = 1;
-    /*for(int i = 0; i<= 50; i++){
-    Spawn[rand()%BOARD_HEIGHT+0][rand()%BOARD_WIDTH+0].current= 1;
-    }*/
-}
-/*********************************************************************
-	F U N C T I O N    D E S C R I P T I O N
----------------------------------------------------------------------
  NAME:Spawn virus
  DESCRIPTION:
 	Input:
@@ -408,36 +376,10 @@ void Spawn_virus_cells(struct cell SpawnVirus[BOARD_HEIGHT][BOARD_WIDTH]){
     SpawnVirus[rand()%BOARD_HEIGHT+0][rand()%BOARD_WIDTH+0].current= 2;
     }*/
 }
-
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
- NAME:PrintCurrentBoard //TODO: just for testing reasons, can be deleted
- DESCRIPTION:
-	Input:
-	Output:
-  Used global variables:
-  Used global constants:
- REMARKS when using this function:
-*********************************************************************/
-void PrintCurrentBoard(struct cell CurBoard[BOARD_HEIGHT][BOARD_WIDTH]){
-int row,colum;
-CurBoard[0][0].generation++;
-    printf("current life, GENER:%d\n", CurBoard[0][0].generation);
-
-    for (row = 0; row < BOARD_HEIGHT; row++){
-        for (colum=0;colum < BOARD_WIDTH ;colum++){
-
-            printf("%d", CurBoard[row][colum].current);
-        }
-        printf("\n");
-    }
-
-}
-/*********************************************************************
-	F U N C T I O N    D E S C R I P T I O N
----------------------------------------------------------------------
- NAME:
+ NAME:CountNeighbour
  DESCRIPTION:
 	Input:
 	Output:
@@ -562,7 +504,7 @@ int isInfected;
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
- NAME:infect
+ NAME:Drawboard
  DESCRIPTION:
 	Input:
 	Output:
@@ -570,57 +512,6 @@ int isInfected;
   Used global constants:
  REMARKS when using this function:
 *********************************************************************/
-void infectOthers(struct cell infect[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol){
-int row,colum;
-int Mcol, Mrow;
-
-        for (row = -1; row < 2; row++){
-            for (colum = -1; colum < 2; colum++){
-                Mrow = (BOARD_HEIGHT + row + cRow) % BOARD_HEIGHT;
-                Mcol = (BOARD_WIDTH + colum + cCol) % BOARD_WIDTH;
-                    if (infect[Mrow][Mcol].current == 1){
-                        infect[Mrow][Mcol].future = 2;
-                    }
-            }
-        }
-}
-
-/*********************************************************************
-	F U N C T I O N    D E S C R I P T I O N
----------------------------------------------------------------------
- NAME:PrintFutureBoard TODO: FOR TESTING REASONS CAN BE DELETED
- DESCRIPTION:
-	Input:
-	Output:
-  Used global variables:
-  Used global constants:
- REMARKS when using this function:
-*********************************************************************/
-void PrintFutureBoard(struct cell PrintFutBoard[BOARD_HEIGHT][BOARD_WIDTH]){
-    int row,colum;
-    printf("FUTURE LIFE- GENERATION:%d\n", PrintFutBoard[0][0].generation);
-
-    for (row = 0; row < BOARD_HEIGHT; row++){
-        for (colum = 0; colum < BOARD_WIDTH ;colum++){
-
-            printf("%d", PrintFutBoard[row][colum].future);
-        }
-        printf("\n");
-    }
-}
-
-/*********************************************************************
-	F U N C T I O N    D E S C R I P T I O N
----------------------------------------------------------------------
- NAME:
- DESCRIPTION:
-	Input:
-	Output:
-  Used global variables:
-  Used global constants:
- REMARKS when using this function:
-*********************************************************************/
-#ifdef INCCURSES
 void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH]){
 int row, colum;
 
@@ -651,7 +542,6 @@ int row, colum;
         }
     }
 }
-#endif
 
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
