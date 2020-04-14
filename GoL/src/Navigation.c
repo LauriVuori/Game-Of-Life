@@ -54,7 +54,7 @@ attroff(COLOR_PAIR(DEFAULT));
         choice = wgetch(menuwindow);
         
         switch (choice){
-            case KEY_UP: //TODO: vaihda KEY_UP, ei toimi vsc terminal, windows nuoli ylös 450
+            case KEY_UP: 
                 highlight--;
                 
                     if (highlight == MIN_MENU_OPTIONS){ 
@@ -62,7 +62,7 @@ attroff(COLOR_PAIR(DEFAULT));
                     }
                 break;
         
-            case KEY_DOWN: //TODO: vaihda KEY_DOWN, ei toimi vsc terminal, windows nuoli alas
+            case KEY_DOWN: 
                 highlight++;
                     
                     if (highlight == MAX_MENU_OPTIONS){ 

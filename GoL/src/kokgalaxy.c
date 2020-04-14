@@ -10,14 +10,14 @@
 ---------------------------------------------------------------------
  NAME:kokgalaxy
  DESCRIPTION: Draw game of life oscillator
-	Input: Array to fill cells
-	Output: Array with predefined pattern
+	  Input: Array to fill cells
+	  Output: Array with predefined pattern
   Used global variables:
   Used global constants:
  REMARKS when using this function:
 *********************************************************************/
 void kokgalaxy(struct cell galaxy[BOARD_HEIGHT][BOARD_WIDTH]){
-    int i = 10;
+int i = 10;
 
     galaxy[i+5][i+5].current = 1;
     galaxy[i+6][i+5].current = 1;
