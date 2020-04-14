@@ -7,7 +7,7 @@ CFLAGS=-I$(IDIR)
 ODIR=obj
 LDIR =../lib
 
-LIBS=-lcurses
+LIBS=-lncurses
 
 _DEPS = main.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS)) 

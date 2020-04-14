@@ -14,17 +14,24 @@
 	Output:
   Used global variables:
   Used global constants:
- REMARKS when using this function: //TODO: Maybe rand if survives
+ REMARKS when using this function:
 *********************************************************************/
 void ClearVirus(struct cell Clear[BOARD_HEIGHT][BOARD_WIDTH]){
-    int row,colum;
+int row,colum;
 
     for (row = 0; row < BOARD_HEIGHT; row++){
         for (colum = 0; colum < BOARD_WIDTH; colum++){
 
             if (Clear[row][colum].current == 2){
-                Clear[row][colum].current = 1;
-                //TODO: rand death:
+                // chance to die randomly on virus disappears---> 
+                if (rand()%MAX_RAND_DEATH+MIN_RAND_DEATH== 1){
+                        FutBoard[row][colum].future = 0;
+                }
+                else{
+                    Clear[row][colum].current = 1;  
+                }
+                
+                
             }
         }
     }

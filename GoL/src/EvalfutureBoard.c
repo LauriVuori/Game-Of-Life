@@ -20,6 +20,8 @@
 void EvalFutureBoard(struct cell FutBoard[BOARD_HEIGHT][BOARD_WIDTH]){
 int row,colum, neighbours = 0, state = 0, isfected;
 int isinfected = 0;
+
+//Start counting generations
 FutBoard[0][0].generation++;
 
     for (row = 0; row < BOARD_HEIGHT; row++){
@@ -27,7 +29,6 @@ FutBoard[0][0].generation++;
             state = FutBoard[row][colum].current;
             neighbours = CountNeighbour(FutBoard, row, colum);
 
-                //all infecteds gets lost if spawns just 1
                 if (state == 0 && neighbours == 3){
                     if (isinfected = (Checkinfected(FutBoard,row,colum)) == 2){
                         FutBoard[row][colum].future = 2;
