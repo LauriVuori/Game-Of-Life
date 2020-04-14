@@ -17,18 +17,24 @@
  REMARKS when using this function:
 *********************************************************************/
 void Spawn_virus_cells(struct cell SpawnVirus[BOARD_HEIGHT][BOARD_WIDTH]){
+int startrow = 0;
+int startcolum= 0;
 
-    SpawnVirus[BOARD_HEIGHT/2+2][BOARD_WIDTH/2+3].current = 2;
-    SpawnVirus[BOARD_HEIGHT/2+2][BOARD_WIDTH/2+4].current = 2;
-    SpawnVirus[BOARD_HEIGHT/2+2][BOARD_WIDTH/2+5].current = 2;
-    SpawnVirus[BOARD_HEIGHT/2+1][BOARD_WIDTH/2+5].current = 2;
-    SpawnVirus[BOARD_HEIGHT/2+0][BOARD_WIDTH/2+4].current = 2;
-
+    startrow = rand()%BOARD_HEIGHT + 0;
+    startcolum = rand()%BOARD_WIDTH + 0;
+    SpawnVirus[startrow+2][startcolum+3].current = 2;
+    SpawnVirus[startrow+2][startcolum+4].current = 2;
+    SpawnVirus[startrow+2][startcolum+5].current = 2;
+    SpawnVirus[startrow+1][startcolum+5].current = 2;
+    SpawnVirus[startrow+0][startcolum+4].current = 2;
+    /*
+    startrow = rand()%BOARD_HEIGHT + 0;
     SpawnVirus[BOARD_HEIGHT/7+2][BOARD_WIDTH/2+3].current = 2;
     SpawnVirus[BOARD_HEIGHT/7+2][BOARD_WIDTH/2+4].current = 2;
     SpawnVirus[BOARD_HEIGHT/7+2][BOARD_WIDTH/2+5].current = 2;
     SpawnVirus[BOARD_HEIGHT/7+1][BOARD_WIDTH/2+5].current = 2;
     SpawnVirus[BOARD_HEIGHT/7+0][BOARD_WIDTH/2+4].current = 2;
+    */
     /*
     for(int i = 0; i<= 50; i++){
     SpawnVirus[rand()%BOARD_HEIGHT+0][rand()%BOARD_WIDTH+0].current= 2;
