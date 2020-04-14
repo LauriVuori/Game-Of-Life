@@ -10,7 +10,7 @@
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
  NAME:Navigation
- DESCRIPTION:
+ DESCRIPTION: Menu with options, move with arrows
 	Input:
 	Output:
   Used global variables:
@@ -72,7 +72,7 @@ attroff(COLOR_PAIR(DEFAULT));
         default:
             break;
         }
-        if (choice == 10){ // enter
+        if (choice == ENTER){ // enter
             return highlight;
             break;
         }

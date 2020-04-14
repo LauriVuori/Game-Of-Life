@@ -9,6 +9,7 @@
 #define KEY_5 53
 #define KEY_6 54
 #define KEY_7 55
+#define ENTER 10
 
 #define MIN_RAND 0
 #define MAX_RAND 2
@@ -16,7 +17,7 @@
 #define MAX_RAND_DEATH 100
 
 #define BOARD_WIDTH 50 //100 max
-#define BOARD_HEIGHT 50 //75 max
+#define BOARD_HEIGHT 25 //75 max
 
 #define UP_ARROW 450
 #define DOWN_ARROW 456

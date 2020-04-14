@@ -25,7 +25,7 @@ int row,colum;
             if (Clear[row][colum].current == 2){
                 // chance to die randomly on virus disappears---> 
                 if (rand()%MAX_RAND_DEATH+MIN_RAND_DEATH== 1){
-                        FutBoard[row][colum].future = 0;
+                        Clear[row][colum].future = 0;
                 }
                 else{
                     Clear[row][colum].current = 1;  

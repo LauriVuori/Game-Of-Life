@@ -57,23 +57,25 @@
 *    MAIN PROGRAM                                                      *
 **********************************************************************/
 int main(void){
-    srand(time(NULL));    
-    struct cell board [BOARD_HEIGHT][BOARD_WIDTH] = {0, 0};
-    initscr (); 
-    clear ();   
-    nodelay (stdscr, TRUE);	
-    start_color(); 
-    init_pair (DEFAULT, COLOR_BLACK, COLOR_BLACK);
-    init_pair (LIVE, COLOR_BLACK, COLOR_RED); 
-    init_pair (INFECTED, COLOR_BLACK, COLOR_GREEN);  
-    bkgd (COLOR_PAIR (DEFAULT));
-    noecho ();
-    keypad(stdscr, TRUE);
-    curs_set(0);
+srand(time(NULL));    
+struct cell board [BOARD_HEIGHT][BOARD_WIDTH] = {0, 0};
 
+initscr (); 
+clear ();   
+nodelay (stdscr, TRUE);	
+
+start_color(); 
+init_pair (DEFAULT, COLOR_BLACK, COLOR_BLACK);
+init_pair (LIVE, COLOR_BLACK, COLOR_RED); 
+init_pair (INFECTED, COLOR_BLACK, COLOR_GREEN);  
+
+bkgd (COLOR_PAIR (DEFAULT));
+noecho ();
+keypad(stdscr, TRUE);
+curs_set(0);
+    
     int command = 0;
     int speed = 100000;
-
 
 do{
     clear();
@@ -157,7 +159,3 @@ do{
     endwin ();
 return 0;
 } /* end of main */
-
-/*********************************************************************
-*    FUNCTIONS                                                       *
-**********************************************************************/
