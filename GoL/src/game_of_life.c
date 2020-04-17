@@ -70,14 +70,13 @@ keypad(stdscr, TRUE);
 curs_set(0);
     
     int command = 0;
-    int speed = 100000;
+    int draw_speed = 100000;
 
 do{
     clear();
-
     command = Navigation();
 
-        switch(command){ //enter to exit,
+        switch (command){ //enter to exit,
             case 0:
                 clear();
                 attron(COLOR_PAIR(LIVE));
@@ -91,15 +90,15 @@ do{
                 mvaddstr(19,BOARD_WIDTH+10, "Key 7 Clear virus");
                 attroff(COLOR_PAIR(DEFAULT));
            
-                while(command != 27){
+                while (command != KEY_ESC){
                     command = getch();
 
-                    if (command == KEY_1 && speed >= 10000){
-                        speed -= 10000;
+                    if (command == KEY_1 && draw_speed >= 10000){
+                        draw_speed -= 10000;
                     }
 
-                    else if (command == KEY_2 && speed <= 180000){
-                        speed += 10000;
+                    else if (command == KEY_2 && draw_speed <= 180000){
+                        draw_speed += 10000;
                     }
 
                     else if (command == KEY_3){
@@ -135,7 +134,7 @@ do{
 
                     EvalFutureBoard(board);                   
                     Drawboard(board);
-                    usleep(speed);
+                    usleep(draw_speed);
 
                 }
                 break;
@@ -148,7 +147,7 @@ do{
         default:
         break;
         }
-}while(command != 1);
+}while (command != CASE_1);
     nodelay (stdscr, FALSE);
     getch ();
     endwin ();

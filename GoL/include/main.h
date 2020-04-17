@@ -16,7 +16,10 @@
 #define KEY_5 53
 #define KEY_6 54
 #define KEY_7 55
+#define KEY_ESC 27
 #define ENTER 10
+
+#define CASE_1 1
 
 #define MIN_RAND 0
 #define MAX_RAND 2
