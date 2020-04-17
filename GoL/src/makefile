@@ -5,7 +5,8 @@ CC=gcc
 CFLAGS=-I$(IDIR)
 
 ODIR=obj
-LDIR =../lib
+LDIR=../lib
+SDIR=src
 
 LIBS=-lncurses
 
@@ -24,4 +25,4 @@ Runfile: $(OBJ)
 .PHONY: clean
 					
 clean:
-	rm -f $(ODIR)/*.o
+	rm -f $(ODIR)/*.o ./*.exe
