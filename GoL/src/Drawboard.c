@@ -17,10 +17,10 @@
 void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH]){
 int row, colum;
 
-
     for (row = 0; row < BOARD_HEIGHT; row++){
         for (colum = 0;colum < BOARD_WIDTH ;colum++){
             move(row,colum);
+            
             if(Drawboard[row][colum].future == 1){
                 attron(COLOR_PAIR(LIVE));
 
@@ -38,9 +38,8 @@ int row, colum;
                 attroff(COLOR_PAIR(DEFAULT));
             }
             else{
-            printw("%d", Drawboard[row][colum].future);  
-            }
-            
+                printw("%d", Drawboard[row][colum].future);  
+            }   
         }
     }
 }
