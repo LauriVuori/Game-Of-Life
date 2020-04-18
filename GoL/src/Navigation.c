@@ -16,12 +16,12 @@
  REMARKS when using this function:
 *********************************************************************/
 int Navigation(void){
-    int choice, highlight = 0;
-    int i = 0;              
-    char choices[ARRAY_SIZE][ARRAY_SIZE] = {
-                            "Start game with live cells",
-                            "exit",
-    };
+int choice, highlight = 0;
+int i = 0;              
+char choices[ARRAY_SIZE][ARRAY_SIZE] = {
+                        "Start game with live cells",
+                        "exit",
+};
 
 //print game of life on screen
 attron(COLOR_PAIR(LIVE));
@@ -70,7 +70,7 @@ attroff(COLOR_PAIR(DEFAULT));
         default:
             break;
         }
-        if (choice == ENTER){ // enter
+        if (choice == ENTER){ 
             return highlight;
             break;
         }

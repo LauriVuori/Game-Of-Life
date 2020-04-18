@@ -8,6 +8,7 @@
 /*-------------------------------------------------------------------*
 *    GLOBAL VARIABLES AND CONSTANTS                                  *
 *--------------------------------------------------------------------*/
+
 /* Global constants */
 #define KEY_1 49 
 #define KEY_2 50 
@@ -53,6 +54,7 @@
 #define WIN_TBRC   '+'
 
 /* Global structures */
+
 struct cell{
 
 int current;  /* current situation, which is visible on screen */
@@ -60,6 +62,8 @@ int future;   /* temporary calculation area for next round calculation */
 int generation;
 
 };
+
+
 
 /*-------------------------------------------------------------------*
 *    FUNCTION PROTOTYPES                                             *

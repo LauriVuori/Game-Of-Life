@@ -53,7 +53,7 @@
 **********************************************************************/
 int main(void){
 srand(time(NULL));    
-struct cell board [BOARD_HEIGHT][BOARD_WIDTH] = {0, 0};
+struct cell board [BOARD_HEIGHT][BOARD_WIDTH] ={0};
 
 initscr (); 
 clear ();   
@@ -70,7 +70,11 @@ keypad(stdscr, TRUE);
 curs_set(0);
     
     int command = 0;
-    int draw_speed = 100000;
+    long draw_speed = 100000000;
+    long seconds = 0;
+    
+    struct timespec Delay = {seconds, draw_speed};
+
 
 do{
     clear();
@@ -93,12 +97,12 @@ do{
                 while (command != KEY_ESC){
                     command = getch();
 
-                    if (command == KEY_1 && draw_speed >= 10000){
-                        draw_speed -= 10000;
+                    if (command == KEY_1 && Delay.tv_nsec >= 30000000){
+                        Delay.tv_nsec -= 20000000;
                     }
 
-                    else if (command == KEY_2 && draw_speed <= 180000){
-                        draw_speed += 10000;
+                    else if (command == KEY_2 && Delay.tv_nsec <= 400000000){
+                        Delay.tv_nsec += 20000000;
                     }
 
                     else if (command == KEY_3){
@@ -131,11 +135,9 @@ do{
                         mvaddstr(35,BOARD_WIDTH+10, "Virus cleared itself");
                         attroff(COLOR_PAIR(DEFAULT));
                     }
-
                     EvalFutureBoard(board);                   
                     Drawboard(board);
-                    usleep(draw_speed);
-
+                    nanosleep(&Delay, (struct timespec *) NULL);
                 }
                 break;
             case 1:
@@ -145,7 +147,7 @@ do{
                 attroff(COLOR_PAIR(DEFAULT));
                 break;    
         default:
-        break;
+            break;
         }
 }while (command != CASE_1);
     nodelay (stdscr, FALSE);

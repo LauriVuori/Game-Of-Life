@@ -2,7 +2,7 @@
 #Needed folders Main(include, lib, src(obj))
 IDIR =../include
 CC=gcc
-CFLAGS=-I$(IDIR)
+CFLAGS=-I$(IDIR) -Wall -pedantic -ansi -std=c99
 
 ODIR=obj
 LDIR=../lib
