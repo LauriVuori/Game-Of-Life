@@ -10,7 +10,7 @@
  NAME:Navigation
  DESCRIPTION: Menu with options, move with arrows
 	Input:
-	Output:
+	Output: menu screen
   Used global variables:
   Used global constants:
  REMARKS when using this function:

@@ -8,7 +8,8 @@
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
  NAME:EvalFutureBoard
- DESCRIPTION: Evaluate what happens to current cell
+ DESCRIPTION: Evaluate what happens to current cell and move future board
+              to current
 	Input: Array to determine cells future
 	Output: Array with new values
   Used global variables: BOARD_HEIGHT, BOARD_WIDTH

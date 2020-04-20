@@ -8,7 +8,7 @@
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
  NAME:ClearVirus
- DESCRIPTION:Clear board from virus
+ DESCRIPTION:Clear board from virus(num 2)
 	Input: Array to remove 2's from it
 	Output: array without 2's
   Used global variables:
