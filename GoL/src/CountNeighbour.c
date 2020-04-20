@@ -8,9 +8,9 @@
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
  NAME:CountNeighbour
- DESCRIPTION:
-	Input:
-	Output:
+ DESCRIPTION: Count numbers arount current array slot
+	Input: Array to count numbers, 2 numbers to determine current location
+	Output: Amount numbers around slot
   Used global variables:
   Used global constants:
  REMARKS when using this function:

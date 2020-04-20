@@ -8,8 +8,8 @@
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
  NAME:Drawboard
- DESCRIPTION:
-	Input:
+ DESCRIPTION: Draw Ncurses dots, depenging on state
+	Input: Array to draw dots from it
 	Output:
   Used global variables:
   Used global constants:
@@ -27,7 +27,6 @@ int row, colum;
 
                 // Draw just green backround
                 mvaddch(row, colum, ' ');
-                //printw("%d", Drawboard[row][colum].future);
                 attroff(COLOR_PAIR(DEFAULT));
             }
             else if (Drawboard[row][colum].future == 2){
@@ -35,7 +34,6 @@ int row, colum;
 
                 // Draw just green backround
                 mvaddch(row, colum, ' ');
-                //printw("%d", Drawboard[row][colum].future);
                 attroff(COLOR_PAIR(DEFAULT));
             }
             else{

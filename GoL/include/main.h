@@ -1,3 +1,7 @@
+/*-------------------------------------------------------------------*
+*    HEADER FILES                                                    *
+*--------------------------------------------------------------------*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -68,6 +72,7 @@ int generation;
 /*-------------------------------------------------------------------*
 *    FUNCTION PROTOTYPES                                             *
 *--------------------------------------------------------------------*/
+
 void RandBoard(struct cell start[BOARD_HEIGHT][BOARD_WIDTH]);
 int CountNeighbour(struct cell Neighbour[BOARD_HEIGHT][BOARD_WIDTH],int cRow, int cCol);
 void EvalFutureBoard(struct cell FutBoard[BOARD_HEIGHT][BOARD_WIDTH]);

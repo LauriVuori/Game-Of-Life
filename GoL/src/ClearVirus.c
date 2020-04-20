@@ -9,8 +9,8 @@
 ---------------------------------------------------------------------
  NAME:ClearVirus
  DESCRIPTION:Clear board from virus
-	Input:
-	Output:
+	Input: Array to remove 2's from it
+	Output: array without 2's
   Used global variables:
   Used global constants:
  REMARKS when using this function:
