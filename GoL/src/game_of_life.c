@@ -44,14 +44,16 @@
  @mainpage Game of Life
  @section Intro_sec Introduction
  @date 2020
+ @author Lauri Vuori
  @copyright GNU Public License.
 
  Game of liffe asddasdasdas....
  */
 /**
  @fn int main(void)
- @brief Menu
+ @brief Main file to operate game and initialize ncurses
  */
+
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
 *--------------------------------------------------------------------*/
