@@ -1,8 +1,8 @@
 /**
- * @fn 
- * @brief 
- * @param 
- * @return 
+ * @fn void RandBoard(struct cell start[BOARD_HEIGHT][BOARD_WIDTH])
+ * @brief Go every array cell and change value with random 0-1
+ * @param start 2d array to fill random numbers
+ * @return 2d array with random 0-1 numbers in cells
  */
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *

@@ -1,8 +1,8 @@
 /**
- * @fn 
- * @brief 
- * @param 
- * @return 
+ * @fn void EvalFutureBoard(struct cell FutBoard[BOARD_HEIGHT][BOARD_WIDTH])
+ * @brief Evaluate what happens to cell
+ * @param FutBoard 2d array to evaluate cells future
+ * @return New value in cells depending on terms
  */
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
@@ -16,7 +16,7 @@
  NAME:EvalFutureBoard
  DESCRIPTION: Evaluate what happens to current cell and move future board
               to current
-	Input: Array to determine cells future
+	Input: array valuate what happens to cell
 	Output: Array with new values
   Used global variables: BOARD_HEIGHT, BOARD_WIDTH
   Used global constants:

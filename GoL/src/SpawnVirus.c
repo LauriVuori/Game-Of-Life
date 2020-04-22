@@ -1,8 +1,8 @@
 /**
- * @fn 
- * @brief 
- * @param 
- * @return 
+ * @fn void Spawn_virus_cells(struct cell SpawnVirus[BOARD_HEIGHT][BOARD_WIDTH])
+ * @brief Spawn virus randomly to board
+ * @param SpawnVirus 2d to spawn virus on
+ * @return Spawned virus on board
  */
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *

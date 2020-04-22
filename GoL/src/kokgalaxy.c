@@ -1,8 +1,8 @@
 /**
- * @fn 
- * @brief 
- * @param 
- * @return 
+ * @fn void kokgalaxy(struct cell galaxy[BOARD_HEIGHT][BOARD_WIDTH])
+ * @brief Draw predefined pattern on array
+ * @param galaxy 2d array to draw on
+ * @return game of life oscillator "kok's galaxy" on array
  */
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *

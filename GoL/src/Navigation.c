@@ -1,8 +1,7 @@
 /**
- * @fn 
- * @brief 
- * @param 
- * @return 
+ * @fn int Navigation(void)
+ * @brief Draw menu options
+ * @return Options menu and return selected option
  */
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
@@ -16,7 +15,7 @@
  NAME:Navigation
  DESCRIPTION: Menu with options, move with arrows
 	Input:
-	Output: menu screen
+	Output: menu screen and value from decision
   Used global variables:
   Used global constants:
  REMARKS when using this function:

@@ -1,9 +1,12 @@
 /**
- * @fn 
- * @brief 
- * @param 
- * @return 
+ * @fn int CountNeighbour(struct cell Neighbour[BOARD_HEIGHT][BOARD_WIDTH], int cRow, int cCol)
+ * @brief Count numbers around cell and return it
+ * @param Neighbour 2d array to check Neighbouring cells
+ * @param cRow interger to determine current row
+ * @param cCol interger to determine current colum
+ * @return Sum of neighbouring cells
  */
+
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
 *--------------------------------------------------------------------*/

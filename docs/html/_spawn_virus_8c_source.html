@@ -87,42 +87,43 @@ $(document).ready(function(){initNavTree('_spawn_virus_8c_source.html',''); init
 <div class="title">SpawnVirus.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_spawn_virus_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">*    HEADER FILES                                                    *</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="main_8h.html">main.h</a>&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">/*********************************************************************</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">    F U N C T I O N    D E S C R I P T I O N</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">---------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> NAME:Spawn_virus_cells</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> DESCRIPTION: Spawn cells randomly to 2d array</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">      Input: 2d array to fill cells with &quot;virus&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">      Output: fixed spots filled with 2:s</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">  Used global variables:</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">  Used global constants:BOARD_HEIGHT,BOARD_WIDTH</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> REMARKS when using this function:</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">*********************************************************************/</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="_spawn_virus_8c.html#a371bcccbed0b7da136b0d4081ba895a7">   18</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_spawn_virus_8c.html#a371bcccbed0b7da136b0d4081ba895a7">Spawn_virus_cells</a>(<span class="keyword">struct</span> <a class="code" href="structcell.html">cell</a> SpawnVirus[<a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>][<a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>]){</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">int</span> startrow = 0;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">int</span> startcolum= 0;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    startrow = rand()%<a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a> + 0;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    startcolum = rand()%<a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> + 0;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    SpawnVirus[startrow+2][startcolum+3].current = 2;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    SpawnVirus[startrow+2][startcolum+4].current = 2;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    SpawnVirus[startrow+2][startcolum+5].current = 2;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    SpawnVirus[startrow+1][startcolum+5].current = 2;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    SpawnVirus[startrow+0][startcolum+4].current = 2;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
+<a href="_spawn_virus_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">*    HEADER FILES                                                    *</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="main_8h.html">main.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">/*********************************************************************</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">    F U N C T I O N    D E S C R I P T I O N</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">---------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> NAME:Spawn_virus_cells</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> DESCRIPTION: Spawn cells randomly to 2d array</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">      Input: 2d array to fill cells with &quot;virus&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">      Output: fixed spots filled with 2:s</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">  Used global variables:</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">  Used global constants:BOARD_HEIGHT,BOARD_WIDTH</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> REMARKS when using this function:</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">*********************************************************************/</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="_spawn_virus_8c.html#a371bcccbed0b7da136b0d4081ba895a7">   24</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_spawn_virus_8c.html#a371bcccbed0b7da136b0d4081ba895a7">Spawn_virus_cells</a>(<span class="keyword">struct</span> <a class="code" href="structcell.html">cell</a> SpawnVirus[<a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>][<a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>]){</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">int</span> startrow = 0;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">int</span> startcolum= 0;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    startrow = rand()%<a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a> + 0;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    startcolum = rand()%<a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> + 0;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    SpawnVirus[startrow+2][startcolum+3].current = 2;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    SpawnVirus[startrow+2][startcolum+4].current = 2;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    SpawnVirus[startrow+2][startcolum+5].current = 2;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    SpawnVirus[startrow+1][startcolum+5].current = 2;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    SpawnVirus[startrow+0][startcolum+4].current = 2;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="a_spawn_virus_8c_html_a371bcccbed0b7da136b0d4081ba895a7"><div class="ttname"><a href="_spawn_virus_8c.html#a371bcccbed0b7da136b0d4081ba895a7">Spawn_virus_cells</a></div><div class="ttdeci">void Spawn_virus_cells(struct cell SpawnVirus[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdef"><b>Definition:</b> <a href="_spawn_virus_8c_source.html#l00018">SpawnVirus.c:18</a></div></div>
-<div class="ttc" id="amain_8h_html_a94ed08e31d2f3a38d35f0cb89c762f04"><div class="ttname"><a href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a></div><div class="ttdeci">#define BOARD_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00045">main.h:44</a></div></div>
+<div class="ttc" id="a_spawn_virus_8c_html_a371bcccbed0b7da136b0d4081ba895a7"><div class="ttname"><a href="_spawn_virus_8c.html#a371bcccbed0b7da136b0d4081ba895a7">Spawn_virus_cells</a></div><div class="ttdeci">void Spawn_virus_cells(struct cell SpawnVirus[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdoc">Spawn virus randomly to board.</div><div class="ttdef"><b>Definition:</b> <a href="_spawn_virus_8c_source.html#l00024">SpawnVirus.c:24</a></div></div>
+<div class="ttc" id="amain_8h_html_a94ed08e31d2f3a38d35f0cb89c762f04"><div class="ttname"><a href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a></div><div class="ttdeci">#define BOARD_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00036">main.h:35</a></div></div>
 <div class="ttc" id="amain_8h_html"><div class="ttname"><a href="main_8h.html">main.h</a></div></div>
-<div class="ttc" id="astructcell_html"><div class="ttname"><a href="structcell.html">cell</a></div><div class="ttdoc">Structure to hold current and future tables.</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00071">main.h:71</a></div></div>
-<div class="ttc" id="amain_8h_html_a1cd139e8d1f7ae83f54c8d477313d8ea"><div class="ttname"><a href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a></div><div class="ttdeci">#define BOARD_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00044">main.h:43</a></div></div>
+<div class="ttc" id="astructcell_html"><div class="ttname"><a href="structcell.html">cell</a></div><div class="ttdoc">Structure to hold current and future tables.</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00060">main.h:60</a></div></div>
+<div class="ttc" id="amain_8h_html_a1cd139e8d1f7ae83f54c8d477313d8ea"><div class="ttname"><a href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a></div><div class="ttdeci">#define BOARD_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00035">main.h:34</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

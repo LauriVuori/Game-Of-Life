@@ -1,8 +1,8 @@
 /**
- * @fn 
- * @brief 
- * @param 
- * @return 
+ * @fn void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH])
+ * @brief Draw dots based on array
+ * @param Drawboard 2d array 
+ * @return drawn board with ncurses
  */
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
