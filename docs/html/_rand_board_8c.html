@@ -141,7 +141,16 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>2d array with random 0-1 numbers in cells </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_rand_board_8c_source.html#l00024">24</a> of file <a class="el" href="_rand_board_8c_source.html">RandBoard.c</a>.</p>
-<div class="dynheader">
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                                                            {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">int</span> row,colum;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">for</span> (row = 0; row &lt; <a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>; row++){</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">for</span> (colum = 0; colum &lt; <a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>; colum++){</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            start[row][colum].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a>=rand()%<a class="code" href="main_8h.html#ab3aae19d7f5ef86b69b55a19bcd62e06">MAX_RAND</a>+<a class="code" href="main_8h.html#ad3f7adefc1f452fb5ae78280d24188f8">MIN_RAND</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="_rand_board_8c_abcc04144a91aebe8feb8b4bee6005be2_icgraph.png" border="0" usemap="#_rand_board_8c_abcc04144a91aebe8feb8b4bee6005be2_icgraph" alt=""/></div>
@@ -155,6 +164,11 @@ Here is the caller graph for this function:</div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="astructcell_html_ab04e2d55ea4a544f3575812582af7b51"><div class="ttname"><a href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">cell::current</a></div><div class="ttdeci">int current</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00062">main.h:62</a></div></div>
+<div class="ttc" id="amain_8h_html_ad3f7adefc1f452fb5ae78280d24188f8"><div class="ttname"><a href="main_8h.html#ad3f7adefc1f452fb5ae78280d24188f8">MIN_RAND</a></div><div class="ttdeci">#define MIN_RAND</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00030">main.h:29</a></div></div>
+<div class="ttc" id="amain_8h_html_a94ed08e31d2f3a38d35f0cb89c762f04"><div class="ttname"><a href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a></div><div class="ttdeci">#define BOARD_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00036">main.h:35</a></div></div>
+<div class="ttc" id="amain_8h_html_ab3aae19d7f5ef86b69b55a19bcd62e06"><div class="ttname"><a href="main_8h.html#ab3aae19d7f5ef86b69b55a19bcd62e06">MAX_RAND</a></div><div class="ttdeci">#define MAX_RAND</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00031">main.h:30</a></div></div>
+<div class="ttc" id="amain_8h_html_a1cd139e8d1f7ae83f54c8d477313d8ea"><div class="ttname"><a href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a></div><div class="ttdeci">#define BOARD_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00035">main.h:34</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

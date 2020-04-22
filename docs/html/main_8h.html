@@ -229,7 +229,7 @@ Functions</h2></td></tr>
 <tr class="separator:a5e8b0ed42c6261475451afc16309cb51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ee02d88bdab2e975ec6823743ff5220"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a8ee02d88bdab2e975ec6823743ff5220">Checkinfected</a> (struct <a class="el" href="structcell.html">cell</a> infected[<a class="el" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>][<a class="el" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>], int cRow, int cCol)</td></tr>
 <tr class="memdesc:a8ee02d88bdab2e975ec6823743ff5220"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chech neighbour cells if there is infected(num 2) <br  />
-  <a href="main_8h.html#a8ee02d88bdab2e975ec6823743ff5220">More...</a><br /></td></tr>
+ #terve testi.  <a href="main_8h.html#a8ee02d88bdab2e975ec6823743ff5220">More...</a><br /></td></tr>
 <tr class="separator:a8ee02d88bdab2e975ec6823743ff5220"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81226711cf5f0535497a973e41d3acbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a81226711cf5f0535497a973e41d3acbd">kokgalaxy</a> (struct <a class="el" href="structcell.html">cell</a> galaxy[<a class="el" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>][<a class="el" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>])</td></tr>
 <tr class="memdesc:a81226711cf5f0535497a973e41d3acbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw predefined pattern on array.  <a href="main_8h.html#a81226711cf5f0535497a973e41d3acbd">More...</a><br /></td></tr>
@@ -801,24 +801,41 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Chech neighbour cells if there is infected(num 2) <br  />
- </p>
+ #terve testi. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">infected</td><td>2d array to go trough cells </td></tr>
     <tr><td class="paramname">cRow</td><td>interger to determine current row </td></tr>
-    <tr><td class="paramname">cCol</td><td>interger to determine current colum </td></tr>
+    <tr><td class="paramname">cCol</td><td>interger to determine current colum <br  />
+ </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>If there is number 2 in nearby cells return 2 else 0. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_check_infected_8c_source.html#l00027">27</a> of file <a class="el" href="_check_infected_8c_source.html">CheckInfected.c</a>.</p>
-<div class="dynheader">
+<p class="definition">Definition at line <a class="el" href="_check_infected_8c_source.html#l00020">20</a> of file <a class="el" href="_check_infected_8c_source.html">CheckInfected.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                                                                                     {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">int</span> row,colum, Mcol, Mrow, isInfected;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">for</span> (row = -1; row &lt; 2; row++){</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">for</span> (colum = -1; colum &lt; 2; colum++){</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                Mrow = (<a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a> + row + cRow) % <a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                Mcol = (<a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> + colum + cCol) % <a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                    <span class="keywordflow">if</span> (infected[Mrow][Mcol].current == 2){</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                        isInfected = 2;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                        <span class="keywordflow">return</span> isInfected;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                    }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8h_a8ee02d88bdab2e975ec6823743ff5220_icgraph.png" border="0" usemap="#main_8h_a8ee02d88bdab2e975ec6823743ff5220_icgraph" alt=""/></div>
 <map name="main_8h_a8ee02d88bdab2e975ec6823743ff5220_icgraph" id="main_8h_a8ee02d88bdab2e975ec6823743ff5220_icgraph">
-<area shape="rect" title="Chech neighbour cells if there is infected(num 2)" alt="" coords="269,5,373,32"/>
+<area shape="rect" title="Chech neighbour cells if there is infected(num 2) &#160;&#160;#terve testi." alt="" coords="269,5,373,32"/>
 <area shape="rect" href="_evalfuture_board_8c.html#aaa9ae83374dca5a69ed6b113a513d895" title="Evaluate what happens to cell." alt="" coords="104,5,221,32"/>
 <area shape="rect" href="game__of__life_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Main file to operate game and initialize ncurses." alt="" coords="5,5,56,32"/>
 </map>
@@ -852,7 +869,27 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>Array without 2's </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_clear_virus_8c_source.html#l00026">26</a> of file <a class="el" href="_clear_virus_8c_source.html">ClearVirus.c</a>.</p>
-<div class="dynheader">
+<div class="fragment"><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                                                             {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">int</span> row,colum;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">for</span> (row = 0; row &lt; <a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>; row++){</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">for</span> (colum = 0; colum &lt; <a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>; colum++){</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">if</span> (Clear[row][colum].current == 2){</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <span class="comment">// chance to die randomly on virus disappears---&gt; </span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                <span class="keywordflow">if</span> (rand()%<a class="code" href="main_8h.html#a203b677f6ecda62066d4024c36bedfe3">MAX_RAND_DEATH</a>+<a class="code" href="main_8h.html#a7ea6a5c5680fceb7a1cf0001e7ce53af">MIN_RAND_DEATH</a>== 1){</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                        Clear[row][colum].<a class="code" href="structcell.html#aa241470e0d60c525670c532ac936a87b">future</a> = 0;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                    Clear[row][colum].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;  </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8h_ac4fda42085e1d5ef20ea6df0ba3ef073_icgraph.png" border="0" usemap="#main_8h_ac4fda42085e1d5ef20ea6df0ba3ef073_icgraph" alt=""/></div>
@@ -908,7 +945,25 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>Sum of neighbouring cells </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_count_neighbour_8c_source.html#l00027">27</a> of file <a class="el" href="_count_neighbour_8c_source.html">CountNeighbour.c</a>.</p>
-<div class="dynheader">
+<div class="fragment"><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                                                                                        {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">int</span> row,colum, sum = 0, Mcol, Mrow;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">for</span> (row = -1; row &lt; 2; row++){</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keywordflow">for</span> (colum = -1; colum &lt; 2; colum++){</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                Mrow = (<a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a> + row + cRow) % <a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                Mcol = (<a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> + colum + cCol) % <a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                    <span class="keywordflow">if</span> (Neighbour[Mrow][Mcol].current &gt; 0){</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                        sum++;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                    }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">// minus own life</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">if</span> (Neighbour[cRow][cCol].current &gt; 0){</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        sum--;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">return</span> sum;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8h_ac01f727eb0a8c5587522f7e6f486ddf2_icgraph.png" border="0" usemap="#main_8h_ac01f727eb0a8c5587522f7e6f486ddf2_icgraph" alt=""/></div>
@@ -947,7 +1002,34 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>drawn board with ncurses </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_drawboard_8c_source.html#l00024">24</a> of file <a class="el" href="_drawboard_8c_source.html">Drawboard.c</a>.</p>
-<div class="dynheader">
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                                                                {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">int</span> row, colum;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">for</span> (row = 0; row &lt; <a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>; row++){</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">for</span> (colum = 0;colum &lt; <a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> ;colum++){</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            move(row,colum);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keywordflow">if</span>(<a class="code" href="_drawboard_8c.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a>[row][colum].future == 1){</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                attron(COLOR_PAIR(<a class="code" href="main_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a>));</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                <span class="comment">// Draw just green backround</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                mvaddch(row, colum, <span class="charliteral">&#39; &#39;</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                attroff(COLOR_PAIR(<a class="code" href="main_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="_drawboard_8c.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a>[row][colum].future == 2){</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                attron(COLOR_PAIR(<a class="code" href="main_8h.html#a8b19cb6c72378825e932122e09437621">INFECTED</a>));</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <span class="comment">// Draw just green backround</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                mvaddch(row, colum, <span class="charliteral">&#39; &#39;</span>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                attroff(COLOR_PAIR(<a class="code" href="main_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                printw(<span class="stringliteral">&quot;%d&quot;</span>, <a class="code" href="_drawboard_8c.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a>[row][colum].future);  </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            }   </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8h_a5e8b0ed42c6261475451afc16309cb51_icgraph.png" border="0" usemap="#main_8h_a5e8b0ed42c6261475451afc16309cb51_icgraph" alt=""/></div>
@@ -985,13 +1067,59 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>New value in cells depending on terms </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_evalfuture_board_8c_source.html#l00025">25</a> of file <a class="el" href="_evalfuture_board_8c_source.html">EvalfutureBoard.c</a>.</p>
-<div class="dynheader">
+<div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                                                                     {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">int</span> row,colum, neighbours = 0, state = 0;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">//Start counting generations</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;FutBoard[0][0].<a class="code" href="structcell.html#aad8eab95bc6ae0373f10cb2a0bdeb88c">generation</a>++;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">for</span> (row = 0; row &lt; <a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>; row++){</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">for</span> (colum = 0; colum &lt; <a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>; colum++){</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            state = FutBoard[row][colum].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            neighbours = <a class="code" href="main_8h.html#ac01f727eb0a8c5587522f7e6f486ddf2">CountNeighbour</a>(FutBoard, row, colum);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="keywordflow">if</span> (state == 0 &amp;&amp; neighbours == 3){</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                    <span class="keywordflow">if</span> ((<a class="code" href="main_8h.html#a8ee02d88bdab2e975ec6823743ff5220">Checkinfected</a>(FutBoard,row,colum)) == 2){</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                        FutBoard[row][colum].<a class="code" href="structcell.html#aa241470e0d60c525670c532ac936a87b">future</a> = 2;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                    }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                    <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                        FutBoard[row][colum].<a class="code" href="structcell.html#aa241470e0d60c525670c532ac936a87b">future</a> = 1;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                    } </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 1 &amp;&amp; (neighbours &lt; 2 || neighbours &gt; 3)){</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                    FutBoard[row][colum].<a class="code" href="structcell.html#aa241470e0d60c525670c532ac936a87b">future</a> = 0;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                } </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 1 &amp;&amp; (neighbours == 2 || neighbours == 3)){</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                    FutBoard[row][colum].<a class="code" href="structcell.html#aa241470e0d60c525670c532ac936a87b">future</a> = 1;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 2 &amp;&amp; (neighbours == 2 || neighbours == 3)){</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                    <span class="comment">// CHANCE TO INFECTED DIE RANDOM---&gt;  </span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                    <span class="keywordflow">if</span> (rand()%<a class="code" href="main_8h.html#a203b677f6ecda62066d4024c36bedfe3">MAX_RAND_DEATH</a>+<a class="code" href="main_8h.html#a7ea6a5c5680fceb7a1cf0001e7ce53af">MIN_RAND_DEATH</a>== 1){</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                        FutBoard[row][colum].<a class="code" href="structcell.html#aa241470e0d60c525670c532ac936a87b">future</a> = 0;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                    }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                    FutBoard[row][colum].<a class="code" href="structcell.html#aa241470e0d60c525670c532ac936a87b">future</a> = 2;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                    }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 2 &amp;&amp; (neighbours &lt; 2 || neighbours &gt; 3)){</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                    FutBoard[row][colum].<a class="code" href="structcell.html#aa241470e0d60c525670c532ac936a87b">future</a> = 0;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                } </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">//Current to new array</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">for</span> (row = 0; row &lt; <a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>; row++){</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">for</span> (colum = 0; colum &lt; <a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>; colum++){</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            FutBoard[row][colum].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = FutBoard[row][colum].<a class="code" href="structcell.html#aa241470e0d60c525670c532ac936a87b">future</a>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8h_aaa9ae83374dca5a69ed6b113a513d895_cgraph.png" border="0" usemap="#main_8h_aaa9ae83374dca5a69ed6b113a513d895_cgraph" alt=""/></div>
 <map name="main_8h_aaa9ae83374dca5a69ed6b113a513d895_cgraph" id="main_8h_aaa9ae83374dca5a69ed6b113a513d895_cgraph">
 <area shape="rect" title="Evaluate what happens to cell." alt="" coords="5,31,123,57"/>
-<area shape="rect" href="main_8h.html#a8ee02d88bdab2e975ec6823743ff5220" title="Chech neighbour cells if there is infected(num 2)" alt="" coords="176,5,280,32"/>
+<area shape="rect" href="main_8h.html#a8ee02d88bdab2e975ec6823743ff5220" title="Chech neighbour cells if there is infected(num 2) &#160;&#160;#terve testi." alt="" coords="176,5,280,32"/>
 <area shape="rect" href="main_8h.html#ac01f727eb0a8c5587522f7e6f486ddf2" title="Count numbers around cell and return it." alt="" coords="171,56,285,83"/>
 </map>
 </div>
@@ -1033,7 +1161,66 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>game of life oscillator "kok's galaxy" on array </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="kokgalaxy_8c_source.html#l00024">24</a> of file <a class="el" href="kokgalaxy_8c_source.html">kokgalaxy.c</a>.</p>
-<div class="dynheader">
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                                                             {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">int</span> i = 10;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    galaxy[i+5][i+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    galaxy[i+6][i+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    galaxy[i+7][i+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    galaxy[i+8][i+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    galaxy[i+9][i+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    galaxy[i+10][i+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    galaxy[i+5][i+6].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    galaxy[i+6][i+6].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    galaxy[i+7][i+6].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    galaxy[i+8][i+6].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    galaxy[i+9][i+6].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    galaxy[i+10][i+6].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    galaxy[i+12][i+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    galaxy[i+12][i+6].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    galaxy[i+12][i+7].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    galaxy[i+12][i+8].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    galaxy[i+12][i+9].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    galaxy[i+12][i+10].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    galaxy[i+13][i+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    galaxy[i+13][i+6].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    galaxy[i+13][i+7].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    galaxy[i+13][i+8].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    galaxy[i+13][i+9].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    galaxy[i+13][i+10].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    galaxy[i+5][i+8].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    galaxy[i+5][i+9].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    galaxy[i+5][i+10].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    galaxy[i+5][i+11].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    galaxy[i+5][i+12].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    galaxy[i+5][i+13].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    galaxy[i+6][i+8].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    galaxy[i+6][i+9].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    galaxy[i+6][i+10].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    galaxy[i+6][i+11].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    galaxy[i+6][i+12].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    galaxy[i+6][i+13].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    galaxy[i+8][i+12].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    galaxy[i+9][i+12].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    galaxy[i+10][i+12].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    galaxy[i+11][i+12].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    galaxy[i+12][i+12].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    galaxy[i+13][i+12].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    galaxy[i+8][i+13].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    galaxy[i+9][i+13].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    galaxy[i+10][i+13].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    galaxy[i+11][i+13].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    galaxy[i+12][i+13].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    galaxy[i+13][i+13].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8h_a81226711cf5f0535497a973e41d3acbd_icgraph.png" border="0" usemap="#main_8h_a81226711cf5f0535497a973e41d3acbd_icgraph" alt=""/></div>
@@ -1065,7 +1252,69 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>Options menu and return selected option </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_navigation_8c_source.html#l00023">23</a> of file <a class="el" href="_navigation_8c_source.html">Navigation.c</a>.</p>
-<div class="dynheader">
+<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                    {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">int</span> choice, highlight = 0;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">int</span> i = 0;              </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">char</span> choices[<a class="code" href="main_8h.html#a7ec751f49d6391028a94f1419374c2fa">ARRAY_SIZE</a>][<a class="code" href="main_8h.html#a7ec751f49d6391028a94f1419374c2fa">ARRAY_SIZE</a>] = {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                        <span class="stringliteral">&quot;Start game with live cells&quot;</span>,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                        <span class="stringliteral">&quot;exit&quot;</span>,</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;};</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">//print game of life on screen</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;attron(COLOR_PAIR(<a class="code" href="main_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a>));</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;mvaddstr(5,5, <span class="stringliteral">&quot; ______     ______     __    __     ______        ______     ______      __         __     ______   ______&quot;</span>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;mvaddstr(6,5, <span class="stringliteral">&quot;/\\  ___\\   /\\  __ \\   /\\  -./  \\   /\\  ___\\      /\\  __ \\   /\\  ___\\    /\\ \\       /\\ \\   /\\  ___\\ /\\  ___\\&quot;</span>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;mvaddstr(7,5, <span class="stringliteral">&quot;\\ \\ \\__ \\  \\ \\  __ \\  \\ \\ \\-./\\ \\  \\ \\  __\\      \\ \\ \\/\\ \\  \\ \\  __\\    \\ \\ \\____  \\ \\ \\  \\ \\  __\\ \\ \\  __\\&quot;</span>); </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;mvaddstr(8,5, <span class="stringliteral">&quot; \\ \\_____\\  \\ \\_\\ \\_\\  \\ \\_\\ \\ \\_\\  \\ \\_____\\     \\ \\_____\\  \\ \\_\\       \\ \\_____\\  \\ \\_\\  \\ \\_\\    \\ \\_____\\&quot;</span>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;mvaddstr(9,5, <span class="stringliteral">&quot;  \\/_____/   \\/_/\\/_/   \\/_/  \\/_/   \\/_____/      \\/_____/   \\/_/        \\/_____/   \\/_/   \\/_/     \\/_____/&quot;</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;attroff(COLOR_PAIR(<a class="code" href="main_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    WINDOW * menuwindow = newwin(<a class="code" href="main_8h.html#a0a33b1743038db1adbbf1045aa839b38">WIN_HEIGHT</a>, <a class="code" href="main_8h.html#a2e6ef411e0ff00ad889788b6cde701b5">WIN_WIDTH</a>, <a class="code" href="main_8h.html#aae3a8bc728ed373f1073114ade5899c6">WIN_START_Y</a>, <a class="code" href="main_8h.html#adbb680cce491211dcedd962d465f427d">WIN_START_X</a>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    wborder(menuwindow, <a class="code" href="main_8h.html#aa429166b4af11adb1f67a0bd9408838d">WIN_SIDES</a>, <a class="code" href="main_8h.html#aa429166b4af11adb1f67a0bd9408838d">WIN_SIDES</a>, <a class="code" href="main_8h.html#a8a285486a069486bd2ea483e06f230e9">WIN_TOPBOT</a>, <a class="code" href="main_8h.html#a8a285486a069486bd2ea483e06f230e9">WIN_TOPBOT</a>, <a class="code" href="main_8h.html#a80631ebdd24740ce480f80c338043fe4">WIN_TBLC</a>, <a class="code" href="main_8h.html#a80631ebdd24740ce480f80c338043fe4">WIN_TBLC</a>, <a class="code" href="main_8h.html#ab9fa45facd58580055606f8965244506">WIN_TBRC</a>, <a class="code" href="main_8h.html#ab9fa45facd58580055606f8965244506">WIN_TBRC</a>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    refresh();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    wrefresh(menuwindow);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    keypad(menuwindow, TRUE);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">while</span>(1){</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;       </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">for</span> (i = 0; i &lt; <a class="code" href="main_8h.html#a79abc13c9bc525eeb5ba4449ccd7ed27">MAX_MENU_OPTIONS</a>; i++){</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="keywordflow">if</span> (i == highlight){</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                wattron(menuwindow, A_REVERSE);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            mvwprintw(menuwindow, i+1, 1, choices[i]);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            wattroff(menuwindow, A_REVERSE);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        choice = wgetch(menuwindow);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">switch</span> (choice){</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keywordflow">case</span> KEY_UP: </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                highlight--;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                    <span class="keywordflow">if</span> (highlight == <a class="code" href="main_8h.html#a884a4c559d8b60240cea802a54d912a4">MIN_MENU_OPTIONS</a>){ </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                        highlight = <a class="code" href="main_8h.html#a884a4c559d8b60240cea802a54d912a4">MIN_MENU_OPTIONS</a>+1;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                    }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="keywordflow">case</span> KEY_DOWN: </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                highlight++;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                    </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                    <span class="keywordflow">if</span> (highlight == <a class="code" href="main_8h.html#a79abc13c9bc525eeb5ba4449ccd7ed27">MAX_MENU_OPTIONS</a>){ </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                        highlight = <a class="code" href="main_8h.html#a79abc13c9bc525eeb5ba4449ccd7ed27">MAX_MENU_OPTIONS</a>-1;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">if</span> (choice == <a class="code" href="main_8h.html#af4bced5cf8ed55746d4b5d34f9a0fe39">ENTER</a>){ </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordflow">return</span> highlight;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8h_abe11cf53ebb70032db7576b97512fb03_icgraph.png" border="0" usemap="#main_8h_abe11cf53ebb70032db7576b97512fb03_icgraph" alt=""/></div>
@@ -1103,7 +1352,16 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>2d array with random 0-1 numbers in cells </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_rand_board_8c_source.html#l00024">24</a> of file <a class="el" href="_rand_board_8c_source.html">RandBoard.c</a>.</p>
-<div class="dynheader">
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                                                            {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">int</span> row,colum;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">for</span> (row = 0; row &lt; <a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>; row++){</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">for</span> (colum = 0; colum &lt; <a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>; colum++){</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            start[row][colum].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a>=rand()%<a class="code" href="main_8h.html#ab3aae19d7f5ef86b69b55a19bcd62e06">MAX_RAND</a>+<a class="code" href="main_8h.html#ad3f7adefc1f452fb5ae78280d24188f8">MIN_RAND</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8h_abcc04144a91aebe8feb8b4bee6005be2_icgraph.png" border="0" usemap="#main_8h_abcc04144a91aebe8feb8b4bee6005be2_icgraph" alt=""/></div>
@@ -1141,7 +1399,19 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>Spawned virus on board </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_spawn_virus_8c_source.html#l00024">24</a> of file <a class="el" href="_spawn_virus_8c_source.html">SpawnVirus.c</a>.</p>
-<div class="dynheader">
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                                                                         {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">int</span> startrow = 0;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">int</span> startcolum= 0;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    startrow = rand()%<a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a> + 0;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    startcolum = rand()%<a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> + 0;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    SpawnVirus[startrow+2][startcolum+3].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    SpawnVirus[startrow+2][startcolum+4].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    SpawnVirus[startrow+2][startcolum+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    SpawnVirus[startrow+1][startcolum+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    SpawnVirus[startrow+0][startcolum+4].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8h_a371bcccbed0b7da136b0d4081ba895a7_icgraph.png" border="0" usemap="#main_8h_a371bcccbed0b7da136b0d4081ba895a7_icgraph" alt=""/></div>
@@ -1155,6 +1425,33 @@ Here is the caller graph for this function:</div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="amain_8h_html_a3148d7709dc6606cdc38956bd2635940"><div class="ttname"><a href="main_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a></div><div class="ttdeci">#define LIVE</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00042">main.h:41</a></div></div>
+<div class="ttc" id="amain_8h_html_a7ec751f49d6391028a94f1419374c2fa"><div class="ttname"><a href="main_8h.html#a7ec751f49d6391028a94f1419374c2fa">ARRAY_SIZE</a></div><div class="ttdeci">#define ARRAY_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00046">main.h:45</a></div></div>
+<div class="ttc" id="astructcell_html_aa241470e0d60c525670c532ac936a87b"><div class="ttname"><a href="structcell.html#aa241470e0d60c525670c532ac936a87b">cell::future</a></div><div class="ttdeci">int future</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00063">main.h:63</a></div></div>
+<div class="ttc" id="astructcell_html_ab04e2d55ea4a544f3575812582af7b51"><div class="ttname"><a href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">cell::current</a></div><div class="ttdeci">int current</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00062">main.h:62</a></div></div>
+<div class="ttc" id="amain_8h_html_ab9fa45facd58580055606f8965244506"><div class="ttname"><a href="main_8h.html#ab9fa45facd58580055606f8965244506">WIN_TBRC</a></div><div class="ttdeci">#define WIN_TBRC</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00057">main.h:56</a></div></div>
+<div class="ttc" id="amain_8h_html_adbb680cce491211dcedd962d465f427d"><div class="ttname"><a href="main_8h.html#adbb680cce491211dcedd962d465f427d">WIN_START_X</a></div><div class="ttdeci">#define WIN_START_X</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00052">main.h:51</a></div></div>
+<div class="ttc" id="amain_8h_html_ad3f7adefc1f452fb5ae78280d24188f8"><div class="ttname"><a href="main_8h.html#ad3f7adefc1f452fb5ae78280d24188f8">MIN_RAND</a></div><div class="ttdeci">#define MIN_RAND</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00030">main.h:29</a></div></div>
+<div class="ttc" id="amain_8h_html_af4bced5cf8ed55746d4b5d34f9a0fe39"><div class="ttname"><a href="main_8h.html#af4bced5cf8ed55746d4b5d34f9a0fe39">ENTER</a></div><div class="ttdeci">#define ENTER</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00026">main.h:25</a></div></div>
+<div class="ttc" id="amain_8h_html_a884a4c559d8b60240cea802a54d912a4"><div class="ttname"><a href="main_8h.html#a884a4c559d8b60240cea802a54d912a4">MIN_MENU_OPTIONS</a></div><div class="ttdeci">#define MIN_MENU_OPTIONS</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00047">main.h:46</a></div></div>
+<div class="ttc" id="amain_8h_html_a3da44afeba217135a680a7477b5e3ce3"><div class="ttname"><a href="main_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a></div><div class="ttdeci">#define DEFAULT</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00041">main.h:40</a></div></div>
+<div class="ttc" id="amain_8h_html_a94ed08e31d2f3a38d35f0cb89c762f04"><div class="ttname"><a href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a></div><div class="ttdeci">#define BOARD_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00036">main.h:35</a></div></div>
+<div class="ttc" id="amain_8h_html_ac01f727eb0a8c5587522f7e6f486ddf2"><div class="ttname"><a href="main_8h.html#ac01f727eb0a8c5587522f7e6f486ddf2">CountNeighbour</a></div><div class="ttdeci">int CountNeighbour(struct cell Neighbour[BOARD_HEIGHT][BOARD_WIDTH], int cRow, int cCol)</div><div class="ttdoc">Count numbers around cell and return it.</div><div class="ttdef"><b>Definition:</b> <a href="_count_neighbour_8c_source.html#l00027">CountNeighbour.c:27</a></div></div>
+<div class="ttc" id="amain_8h_html_a8a285486a069486bd2ea483e06f230e9"><div class="ttname"><a href="main_8h.html#a8a285486a069486bd2ea483e06f230e9">WIN_TOPBOT</a></div><div class="ttdeci">#define WIN_TOPBOT</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00054">main.h:53</a></div></div>
+<div class="ttc" id="amain_8h_html_a7ea6a5c5680fceb7a1cf0001e7ce53af"><div class="ttname"><a href="main_8h.html#a7ea6a5c5680fceb7a1cf0001e7ce53af">MIN_RAND_DEATH</a></div><div class="ttdeci">#define MIN_RAND_DEATH</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00032">main.h:31</a></div></div>
+<div class="ttc" id="amain_8h_html_aa429166b4af11adb1f67a0bd9408838d"><div class="ttname"><a href="main_8h.html#aa429166b4af11adb1f67a0bd9408838d">WIN_SIDES</a></div><div class="ttdeci">#define WIN_SIDES</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00055">main.h:54</a></div></div>
+<div class="ttc" id="amain_8h_html_ab3aae19d7f5ef86b69b55a19bcd62e06"><div class="ttname"><a href="main_8h.html#ab3aae19d7f5ef86b69b55a19bcd62e06">MAX_RAND</a></div><div class="ttdeci">#define MAX_RAND</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00031">main.h:30</a></div></div>
+<div class="ttc" id="astructcell_html_aad8eab95bc6ae0373f10cb2a0bdeb88c"><div class="ttname"><a href="structcell.html#aad8eab95bc6ae0373f10cb2a0bdeb88c">cell::generation</a></div><div class="ttdeci">int generation</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00064">main.h:64</a></div></div>
+<div class="ttc" id="amain_8h_html_a8b19cb6c72378825e932122e09437621"><div class="ttname"><a href="main_8h.html#a8b19cb6c72378825e932122e09437621">INFECTED</a></div><div class="ttdeci">#define INFECTED</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00043">main.h:42</a></div></div>
+<div class="ttc" id="amain_8h_html_aae3a8bc728ed373f1073114ade5899c6"><div class="ttname"><a href="main_8h.html#aae3a8bc728ed373f1073114ade5899c6">WIN_START_Y</a></div><div class="ttdeci">#define WIN_START_Y</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00051">main.h:50</a></div></div>
+<div class="ttc" id="amain_8h_html_a8ee02d88bdab2e975ec6823743ff5220"><div class="ttname"><a href="main_8h.html#a8ee02d88bdab2e975ec6823743ff5220">Checkinfected</a></div><div class="ttdeci">int Checkinfected(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH], int cRow, int cCol)</div><div class="ttdoc">Chech neighbour cells if there is infected(num 2)   #terve testi.</div><div class="ttdef"><b>Definition:</b> <a href="_check_infected_8c_source.html#l00020">CheckInfected.c:20</a></div></div>
+<div class="ttc" id="amain_8h_html_a80631ebdd24740ce480f80c338043fe4"><div class="ttname"><a href="main_8h.html#a80631ebdd24740ce480f80c338043fe4">WIN_TBLC</a></div><div class="ttdeci">#define WIN_TBLC</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00056">main.h:55</a></div></div>
+<div class="ttc" id="amain_8h_html_a1cd139e8d1f7ae83f54c8d477313d8ea"><div class="ttname"><a href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a></div><div class="ttdeci">#define BOARD_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00035">main.h:34</a></div></div>
+<div class="ttc" id="amain_8h_html_a0a33b1743038db1adbbf1045aa839b38"><div class="ttname"><a href="main_8h.html#a0a33b1743038db1adbbf1045aa839b38">WIN_HEIGHT</a></div><div class="ttdeci">#define WIN_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00049">main.h:48</a></div></div>
+<div class="ttc" id="amain_8h_html_a2e6ef411e0ff00ad889788b6cde701b5"><div class="ttname"><a href="main_8h.html#a2e6ef411e0ff00ad889788b6cde701b5">WIN_WIDTH</a></div><div class="ttdeci">#define WIN_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00050">main.h:49</a></div></div>
+<div class="ttc" id="amain_8h_html_a203b677f6ecda62066d4024c36bedfe3"><div class="ttname"><a href="main_8h.html#a203b677f6ecda62066d4024c36bedfe3">MAX_RAND_DEATH</a></div><div class="ttdeci">#define MAX_RAND_DEATH</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00033">main.h:32</a></div></div>
+<div class="ttc" id="a_drawboard_8c_html_a5e8b0ed42c6261475451afc16309cb51"><div class="ttname"><a href="_drawboard_8c.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a></div><div class="ttdeci">void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdoc">Draw dots based on array.</div><div class="ttdef"><b>Definition:</b> <a href="_drawboard_8c_source.html#l00024">Drawboard.c:24</a></div></div>
+<div class="ttc" id="amain_8h_html_a79abc13c9bc525eeb5ba4449ccd7ed27"><div class="ttname"><a href="main_8h.html#a79abc13c9bc525eeb5ba4449ccd7ed27">MAX_MENU_OPTIONS</a></div><div class="ttdeci">#define MAX_MENU_OPTIONS</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00048">main.h:47</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

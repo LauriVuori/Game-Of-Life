@@ -10,7 +10,7 @@ SDIR=src
 
 LIBS=-lncurses
 
-_DEPS = main.h
+_DEPS = game_of_life.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS)) 
 
 _OBJ = CheckInfected.o ClearVirus.o CountNeighbour.o Drawboard.o EvalfutureBoard.o game_of_life.o Navigation.o SpawnVirus.o RandBoard.o kokgalaxy.o
@@ -20,7 +20,7 @@ $(ODIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 Runfile: $(OBJ) 	
-	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+	$(CC) -o $@ $^ $(LIBS)
 	
 .PHONY: clean
 					

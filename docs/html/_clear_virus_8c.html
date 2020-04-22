@@ -141,7 +141,27 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Array without 2's </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_clear_virus_8c_source.html#l00026">26</a> of file <a class="el" href="_clear_virus_8c_source.html">ClearVirus.c</a>.</p>
-<div class="dynheader">
+<div class="fragment"><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                                                             {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">int</span> row,colum;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">for</span> (row = 0; row &lt; <a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>; row++){</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">for</span> (colum = 0; colum &lt; <a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>; colum++){</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">if</span> (Clear[row][colum].current == 2){</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <span class="comment">// chance to die randomly on virus disappears---&gt; </span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                <span class="keywordflow">if</span> (rand()%<a class="code" href="main_8h.html#a203b677f6ecda62066d4024c36bedfe3">MAX_RAND_DEATH</a>+<a class="code" href="main_8h.html#a7ea6a5c5680fceb7a1cf0001e7ce53af">MIN_RAND_DEATH</a>== 1){</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                        Clear[row][colum].<a class="code" href="structcell.html#aa241470e0d60c525670c532ac936a87b">future</a> = 0;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                    Clear[row][colum].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 1;  </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="_clear_virus_8c_a5a8f52f21dfb5ca0414abb4088b90eba_icgraph.png" border="0" usemap="#_clear_virus_8c_a5a8f52f21dfb5ca0414abb4088b90eba_icgraph" alt=""/></div>
@@ -155,6 +175,12 @@ Here is the caller graph for this function:</div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="astructcell_html_aa241470e0d60c525670c532ac936a87b"><div class="ttname"><a href="structcell.html#aa241470e0d60c525670c532ac936a87b">cell::future</a></div><div class="ttdeci">int future</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00063">main.h:63</a></div></div>
+<div class="ttc" id="astructcell_html_ab04e2d55ea4a544f3575812582af7b51"><div class="ttname"><a href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">cell::current</a></div><div class="ttdeci">int current</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00062">main.h:62</a></div></div>
+<div class="ttc" id="amain_8h_html_a94ed08e31d2f3a38d35f0cb89c762f04"><div class="ttname"><a href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a></div><div class="ttdeci">#define BOARD_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00036">main.h:35</a></div></div>
+<div class="ttc" id="amain_8h_html_a7ea6a5c5680fceb7a1cf0001e7ce53af"><div class="ttname"><a href="main_8h.html#a7ea6a5c5680fceb7a1cf0001e7ce53af">MIN_RAND_DEATH</a></div><div class="ttdeci">#define MIN_RAND_DEATH</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00032">main.h:31</a></div></div>
+<div class="ttc" id="amain_8h_html_a1cd139e8d1f7ae83f54c8d477313d8ea"><div class="ttname"><a href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a></div><div class="ttdeci">#define BOARD_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00035">main.h:34</a></div></div>
+<div class="ttc" id="amain_8h_html_a203b677f6ecda62066d4024c36bedfe3"><div class="ttname"><a href="main_8h.html#a203b677f6ecda62066d4024c36bedfe3">MAX_RAND_DEATH</a></div><div class="ttdeci">#define MAX_RAND_DEATH</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00033">main.h:32</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
