@@ -1,0 +1,26 @@
+digraph "main"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="main",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Menu."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="ClearVirus",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8h.html#ac4fda42085e1d5ef20ea6df0ba3ef073",tooltip=" "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Drawboard",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8h.html#a5e8b0ed42c6261475451afc16309cb51",tooltip=" "];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="EvalFutureBoard",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8h.html#aaa9ae83374dca5a69ed6b113a513d895",tooltip=" "];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Checkinfected",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8h.html#a8ee02d88bdab2e975ec6823743ff5220",tooltip="Chech neighbour cells if there is infected(num 2)"];
+  Node4 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="CountNeighbour",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8h.html#ac01f727eb0a8c5587522f7e6f486ddf2",tooltip=" "];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="kokgalaxy",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8h.html#a81226711cf5f0535497a973e41d3acbd",tooltip=" "];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Navigation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8h.html#abe11cf53ebb70032db7576b97512fb03",tooltip=" "];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="RandBoard",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8h.html#abcc04144a91aebe8feb8b4bee6005be2",tooltip=" "];
+  Node1 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="Spawn_virus_cells",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8h.html#a371bcccbed0b7da136b0d4081ba895a7",tooltip=" "];
+}

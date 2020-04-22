@@ -1,0 +1,88 @@
+[OPTIONS]
+Compatibility=1.1
+Full-text search=Yes
+Contents file=index.hhc
+Default Window=main
+Default topic=index.html
+Index file=index.hhk
+Language=0x409 English (United States)
+Title=Game of life
+
+[WINDOWS]
+main="Game of life","index.hhc","index.hhk","index.html","index.html",,,,,0x23520,,0x10387e,,,,,,,,0
+
+[FILES]
+main_8h_source.html
+main_8h.html
+_check_infected_8c.html
+_clear_virus_8c.html
+_count_neighbour_8c.html
+_drawboard_8c.html
+_evalfuture_board_8c.html
+game__of__life_8c.html
+kokgalaxy_8c.html
+_navigation_8c.html
+_rand_board_8c.html
+_spawn_virus_8c.html
+structcell.html
+graph_legend.html
+dir_d44c64559bbebec7f509842c48db8b23.html
+dir_68267d1309a1af8e8297ef4c3efbcdba.html
+dir_000001_000000.html
+index.html
+annotated.html
+classes.html
+functions.html
+functions_vars.html
+files.html
+globals.html
+globals_func.html
+globals_defs.html
+tab_a.png
+tab_b.png
+tab_h.png
+tab_s.png
+nav_h.png
+nav_f.png
+bc_s.png
+doxygen.png
+closed.png
+open.png
+bdwn.png
+sync_on.png
+sync_off.png
+main_8h__incl.png
+main_8h__dep__incl.png
+main_8h_a8ee02d88bdab2e975ec6823743ff5220_icgraph.png
+main_8h_ac4fda42085e1d5ef20ea6df0ba3ef073_icgraph.png
+main_8h_ac01f727eb0a8c5587522f7e6f486ddf2_icgraph.png
+main_8h_a5e8b0ed42c6261475451afc16309cb51_icgraph.png
+main_8h_aaa9ae83374dca5a69ed6b113a513d895_cgraph.png
+main_8h_aaa9ae83374dca5a69ed6b113a513d895_icgraph.png
+main_8h_a81226711cf5f0535497a973e41d3acbd_icgraph.png
+main_8h_abe11cf53ebb70032db7576b97512fb03_icgraph.png
+main_8h_abcc04144a91aebe8feb8b4bee6005be2_icgraph.png
+main_8h_a371bcccbed0b7da136b0d4081ba895a7_icgraph.png
+_check_infected_8c__incl.png
+_check_infected_8c_a8ee02d88bdab2e975ec6823743ff5220_icgraph.png
+_clear_virus_8c__incl.png
+_clear_virus_8c_a5a8f52f21dfb5ca0414abb4088b90eba_icgraph.png
+_count_neighbour_8c__incl.png
+_count_neighbour_8c_ac01f727eb0a8c5587522f7e6f486ddf2_icgraph.png
+_drawboard_8c__incl.png
+_drawboard_8c_a5e8b0ed42c6261475451afc16309cb51_icgraph.png
+_evalfuture_board_8c__incl.png
+_evalfuture_board_8c_aaa9ae83374dca5a69ed6b113a513d895_cgraph.png
+_evalfuture_board_8c_aaa9ae83374dca5a69ed6b113a513d895_icgraph.png
+game__of__life_8c__incl.png
+game__of__life_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph.png
+kokgalaxy_8c__incl.png
+kokgalaxy_8c_a81226711cf5f0535497a973e41d3acbd_icgraph.png
+_navigation_8c__incl.png
+_navigation_8c_abe11cf53ebb70032db7576b97512fb03_icgraph.png
+_rand_board_8c__incl.png
+_rand_board_8c_abcc04144a91aebe8feb8b4bee6005be2_icgraph.png
+_spawn_virus_8c__incl.png
+_spawn_virus_8c_a371bcccbed0b7da136b0d4081ba895a7_icgraph.png
+graph_legend.png
+dir_68267d1309a1af8e8297ef4c3efbcdba_dep.png

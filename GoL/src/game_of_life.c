@@ -39,8 +39,19 @@
        TODO: ENUM
 
 **********************************************************************/
+/**
+ @file game_of_life.c
+ @mainpage Game of Life
+ @section Intro_sec Introduction
+ @date 2020
+ @copyright GNU Public License.
 
-
+ Game of liffe asddasdasdas....
+ */
+/**
+ @fn int main(void)
+ @brief Menu
+ */
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
 *--------------------------------------------------------------------*/

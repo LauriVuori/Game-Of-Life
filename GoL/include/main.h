@@ -49,9 +49,7 @@
 #define WIN_WIDTH 30
 #define WIN_START_Y 0
 #define WIN_START_X 120
-
 #define OPTIONS 2
-
 #define WIN_TOPBOT '-'
 #define WIN_SIDES  '|'
 #define WIN_TBLC   '+'
@@ -67,7 +65,13 @@ int generation;
 
 };
 
-
+/*!
+    @struct cell
+    @brief Structure to hold current and future tables
+    @param current current table
+    @param future future table
+    @param generation adds generations every cycle
+*/ 
 
 /*-------------------------------------------------------------------*
 *    FUNCTION PROTOTYPES                                             *

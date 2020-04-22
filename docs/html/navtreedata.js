@@ -24,7 +24,9 @@
 */
 var NAVTREE =
 [
-  [ "Game of life", "index.html", [
+  [ "Game of Life", "index.html", [
+    [ "Introduction", "index.html#Intro_sec", null ],
+    [ "Modules", "modules.html", "modules" ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
