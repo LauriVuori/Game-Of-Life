@@ -48,7 +48,8 @@
 *--------------------------------------------------------------------*/
 
 /* Global constants */
-#define KEY_1 49 
+
+#define KEY_1 49
 #define KEY_2 50 
 #define KEY_3 51 
 #define KEY_4 52
@@ -57,8 +58,8 @@
 #define KEY_7 55
 #define KEY_ESC 27
 #define ENTER 10
-
-#define CASE_1 1
+#define UP_ARROW 450
+#define DOWN_ARROW 456
 
 #define MIN_RAND 0
 #define MAX_RAND 2
@@ -69,15 +70,12 @@
 /*75 max*/
 #define BOARD_HEIGHT 25
 
-#define UP_ARROW 450
-#define DOWN_ARROW 456
 
 #define DEFAULT 1
 #define LIVE 2
 #define INFECTED 3
-
 #define ARRAY_SIZE 1000
-
+#define CASE_1 1
 /* Global variables */
 
 /* Global structures */
