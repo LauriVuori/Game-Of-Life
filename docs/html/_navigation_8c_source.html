@@ -110,7 +110,7 @@ $(document).ready(function(){initNavTree('_navigation_8c_source.html',''); initR
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">/*********************************************************************</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> 1.  NAME</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">     $Source$ </span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">     $Navigation.c$ </span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"> 2.  DESCRIPTION</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"></span> </div>
@@ -126,114 +126,115 @@ $(document).ready(function(){initNavTree('_navigation_8c_source.html',''); initR
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="game__of__life_8h.html">game_of_life.h</a>&quot;</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">*    GLOBAL VARIABLES AND CONSTANTS                                  *</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">/* Control flags */</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">/* Global constants */</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#define MIN_MENU_OPTIONS -1</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="_navigation_8c.html#a884a4c559d8b60240cea802a54d912a4">   47</a></span>&#160;<span class="preprocessor">#define MAX_MENU_OPTIONS 2</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="_navigation_8c.html#a79abc13c9bc525eeb5ba4449ccd7ed27">   48</a></span>&#160;<span class="preprocessor">#define WIN_HEIGHT 25</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="_navigation_8c.html#a0a33b1743038db1adbbf1045aa839b38">   49</a></span>&#160;<span class="preprocessor">#define WIN_WIDTH 30</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="_navigation_8c.html#a2e6ef411e0ff00ad889788b6cde701b5">   50</a></span>&#160;<span class="preprocessor">#define WIN_START_Y 0</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="_navigation_8c.html#aae3a8bc728ed373f1073114ade5899c6">   51</a></span>&#160;<span class="preprocessor">#define WIN_START_X 120</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="_navigation_8c.html#adbb680cce491211dcedd962d465f427d">   52</a></span>&#160;<span class="preprocessor">#define OPTIONS 2</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="_navigation_8c.html#aec95ee3aec6673f51ed3c6a833a2dc71">   53</a></span>&#160;<span class="preprocessor">#define WIN_TOPBOT &#39;-&#39;</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="_navigation_8c.html#a8a285486a069486bd2ea483e06f230e9">   54</a></span>&#160;<span class="preprocessor">#define WIN_SIDES  &#39;|&#39;</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="_navigation_8c.html#aa429166b4af11adb1f67a0bd9408838d">   55</a></span>&#160;<span class="preprocessor">#define WIN_TBLC   &#39;+&#39;</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="_navigation_8c.html#a80631ebdd24740ce480f80c338043fe4">   56</a></span>&#160;<span class="preprocessor">#define WIN_TBRC   &#39;+&#39;</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="_navigation_8c.html#ab9fa45facd58580055606f8965244506">   57</a></span>&#160;<span class="comment">/* Global variables */</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">/* Global structures */</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">*    FUNCTION PROTOTYPES                                             *</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">/*********************************************************************</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">    F U N C T I O N    D E S C R I P T I O N</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">---------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment"></span><span class="comment">/*********************************************************************/</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="_navigation_8c.html#abe11cf53ebb70032db7576b97512fb03">   73</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="_navigation_8c.html#abe11cf53ebb70032db7576b97512fb03">Navigation</a>(<span class="keywordtype">void</span>){</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">int</span> choice, highlight = 0;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">int</span> i = 0;              </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">char</span> choices[<a class="code" href="game__of__life_8h.html#a7ec751f49d6391028a94f1419374c2fa">ARRAY_SIZE</a>][<a class="code" href="game__of__life_8h.html#a7ec751f49d6391028a94f1419374c2fa">ARRAY_SIZE</a>] = {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                        <span class="stringliteral">&quot;Start game with live cells&quot;</span>,</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                        <span class="stringliteral">&quot;exit&quot;</span>,</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">//print game of life on screen</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;attron(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a>));</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;mvaddstr(5,5, <span class="stringliteral">&quot; ______     ______     __    __     ______        ______     ______      __         __     ______   ______&quot;</span>);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;mvaddstr(6,5, <span class="stringliteral">&quot;/\\  ___\\   /\\  __ \\   /\\  -./  \\   /\\  ___\\      /\\  __ \\   /\\  ___\\    /\\ \\       /\\ \\   /\\  ___\\ /\\  ___\\&quot;</span>);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;mvaddstr(7,5, <span class="stringliteral">&quot;\\ \\ \\__ \\  \\ \\  __ \\  \\ \\ \\-./\\ \\  \\ \\  __\\      \\ \\ \\/\\ \\  \\ \\  __\\    \\ \\ \\____  \\ \\ \\  \\ \\  __\\ \\ \\  __\\&quot;</span>); </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;mvaddstr(8,5, <span class="stringliteral">&quot; \\ \\_____\\  \\ \\_\\ \\_\\  \\ \\_\\ \\ \\_\\  \\ \\_____\\     \\ \\_____\\  \\ \\_\\       \\ \\_____\\  \\ \\_\\  \\ \\_\\    \\ \\_____\\&quot;</span>);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;mvaddstr(9,5, <span class="stringliteral">&quot;  \\/_____/   \\/_/\\/_/   \\/_/  \\/_/   \\/_____/      \\/_____/   \\/_/        \\/_____/   \\/_/   \\/_/     \\/_____/&quot;</span>);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;attroff(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    WINDOW * menuwindow = newwin(<a class="code" href="_navigation_8c.html#a0a33b1743038db1adbbf1045aa839b38">WIN_HEIGHT</a>, <a class="code" href="_navigation_8c.html#a2e6ef411e0ff00ad889788b6cde701b5">WIN_WIDTH</a>, <a class="code" href="_navigation_8c.html#aae3a8bc728ed373f1073114ade5899c6">WIN_START_Y</a>, <a class="code" href="_navigation_8c.html#adbb680cce491211dcedd962d465f427d">WIN_START_X</a>);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    wborder(menuwindow, <a class="code" href="_navigation_8c.html#aa429166b4af11adb1f67a0bd9408838d">WIN_SIDES</a>, <a class="code" href="_navigation_8c.html#aa429166b4af11adb1f67a0bd9408838d">WIN_SIDES</a>, <a class="code" href="_navigation_8c.html#a8a285486a069486bd2ea483e06f230e9">WIN_TOPBOT</a>, <a class="code" href="_navigation_8c.html#a8a285486a069486bd2ea483e06f230e9">WIN_TOPBOT</a>, <a class="code" href="_navigation_8c.html#a80631ebdd24740ce480f80c338043fe4">WIN_TBLC</a>, <a class="code" href="_navigation_8c.html#a80631ebdd24740ce480f80c338043fe4">WIN_TBLC</a>, <a class="code" href="_navigation_8c.html#ab9fa45facd58580055606f8965244506">WIN_TBRC</a>, <a class="code" href="_navigation_8c.html#ab9fa45facd58580055606f8965244506">WIN_TBRC</a>);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    refresh();</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    wrefresh(menuwindow);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    keypad(menuwindow, TRUE);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">while</span>(1){</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;       </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordflow">for</span> (i = 0; i &lt; <a class="code" href="_navigation_8c.html#a79abc13c9bc525eeb5ba4449ccd7ed27">MAX_MENU_OPTIONS</a>; i++){</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            <span class="keywordflow">if</span> (i == highlight){</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                wattron(menuwindow, A_REVERSE);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            mvwprintw(menuwindow, i+1, 1, choices[i]);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            wattroff(menuwindow, A_REVERSE);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        }</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        choice = wgetch(menuwindow);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">switch</span> (choice){</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="keywordflow">case</span> KEY_UP: </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                highlight--;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                    <span class="keywordflow">if</span> (highlight == <a class="code" href="_navigation_8c.html#a884a4c559d8b60240cea802a54d912a4">MIN_MENU_OPTIONS</a>){ </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                        highlight = <a class="code" href="_navigation_8c.html#a884a4c559d8b60240cea802a54d912a4">MIN_MENU_OPTIONS</a>+1;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                    }</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            <span class="keywordflow">case</span> KEY_DOWN: </div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                highlight++;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                    </div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                    <span class="keywordflow">if</span> (highlight == <a class="code" href="_navigation_8c.html#a79abc13c9bc525eeb5ba4449ccd7ed27">MAX_MENU_OPTIONS</a>){ </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                        highlight = <a class="code" href="_navigation_8c.html#a79abc13c9bc525eeb5ba4449ccd7ed27">MAX_MENU_OPTIONS</a>-1;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                    }</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        }</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keywordflow">if</span> (choice == <a class="code" href="game__of__life_8h.html#af4bced5cf8ed55746d4b5d34f9a0fe39">ENTER</a>){ </div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            <span class="keywordflow">return</span> highlight;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        }</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    }</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;}</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">*    GLOBAL VARIABLES AND CONSTANTS                                  *</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">/* Control flags */</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">/* Global constants */</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#define MIN_MENU_OPTIONS -1</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="_navigation_8c.html#a884a4c559d8b60240cea802a54d912a4">   48</a></span>&#160;<span class="preprocessor">#define MAX_MENU_OPTIONS 2</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="_navigation_8c.html#a79abc13c9bc525eeb5ba4449ccd7ed27">   49</a></span>&#160;<span class="preprocessor">#define WIN_HEIGHT 25</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="_navigation_8c.html#a0a33b1743038db1adbbf1045aa839b38">   50</a></span>&#160;<span class="preprocessor">#define WIN_WIDTH 30</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="_navigation_8c.html#a2e6ef411e0ff00ad889788b6cde701b5">   51</a></span>&#160;<span class="preprocessor">#define WIN_START_Y 0</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="_navigation_8c.html#aae3a8bc728ed373f1073114ade5899c6">   52</a></span>&#160;<span class="preprocessor">#define WIN_START_X 120</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="_navigation_8c.html#adbb680cce491211dcedd962d465f427d">   53</a></span>&#160;<span class="preprocessor">#define OPTIONS 2</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="_navigation_8c.html#aec95ee3aec6673f51ed3c6a833a2dc71">   54</a></span>&#160;<span class="preprocessor">#define WIN_TOPBOT &#39;-&#39;</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="_navigation_8c.html#a8a285486a069486bd2ea483e06f230e9">   55</a></span>&#160;<span class="preprocessor">#define WIN_SIDES  &#39;|&#39;</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="_navigation_8c.html#aa429166b4af11adb1f67a0bd9408838d">   56</a></span>&#160;<span class="preprocessor">#define WIN_TBLC   &#39;+&#39;</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="_navigation_8c.html#a80631ebdd24740ce480f80c338043fe4">   57</a></span>&#160;<span class="preprocessor">#define WIN_TBRC   &#39;+&#39;</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="_navigation_8c.html#ab9fa45facd58580055606f8965244506">   58</a></span>&#160;<span class="comment">/* Global variables */</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">/* Global structures */</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">*    FUNCTION PROTOTYPES                                             *</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">/*********************************************************************</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">    F U N C T I O N    D E S C R I P T I O N</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">---------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">/*********************************************************************/</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="_navigation_8c.html#abe11cf53ebb70032db7576b97512fb03">   74</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="_navigation_8c.html#abe11cf53ebb70032db7576b97512fb03">Navigation</a>(<span class="keywordtype">void</span>){</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">int</span> choice, highlight = 0;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">int</span> i = 0;              </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">char</span> choices[<a class="code" href="game__of__life_8h.html#a7ec751f49d6391028a94f1419374c2fa">ARRAY_SIZE</a>][<a class="code" href="game__of__life_8h.html#a7ec751f49d6391028a94f1419374c2fa">ARRAY_SIZE</a>] = {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                        <span class="stringliteral">&quot;Start game with live cells&quot;</span>,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                        <span class="stringliteral">&quot;exit&quot;</span>,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;WINDOW * menuwindow = newwin(<a class="code" href="_navigation_8c.html#a0a33b1743038db1adbbf1045aa839b38">WIN_HEIGHT</a>, <a class="code" href="_navigation_8c.html#a2e6ef411e0ff00ad889788b6cde701b5">WIN_WIDTH</a>, <a class="code" href="_navigation_8c.html#aae3a8bc728ed373f1073114ade5899c6">WIN_START_Y</a>, <a class="code" href="_navigation_8c.html#adbb680cce491211dcedd962d465f427d">WIN_START_X</a>);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">/*print game of life on screen*/</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;attron(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a>));</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;mvaddstr(5,5, <span class="stringliteral">&quot; ______     ______     __    __     ______        ______     ______      __         __     ______   ______&quot;</span>);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;mvaddstr(6,5, <span class="stringliteral">&quot;/\\  ___\\   /\\  __ \\   /\\  -./  \\   /\\  ___\\      /\\  __ \\   /\\  ___\\    /\\ \\       /\\ \\   /\\  ___\\ /\\  ___\\&quot;</span>);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;mvaddstr(7,5, <span class="stringliteral">&quot;\\ \\ \\__ \\  \\ \\  __ \\  \\ \\ \\-./\\ \\  \\ \\  __\\      \\ \\ \\/\\ \\  \\ \\  __\\    \\ \\ \\____  \\ \\ \\  \\ \\  __\\ \\ \\  __\\&quot;</span>); </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;mvaddstr(8,5, <span class="stringliteral">&quot; \\ \\_____\\  \\ \\_\\ \\_\\  \\ \\_\\ \\ \\_\\  \\ \\_____\\     \\ \\_____\\  \\ \\_\\       \\ \\_____\\  \\ \\_\\  \\ \\_\\    \\ \\_____\\&quot;</span>);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;mvaddstr(9,5, <span class="stringliteral">&quot;  \\/_____/   \\/_/\\/_/   \\/_/  \\/_/   \\/_____/      \\/_____/   \\/_/        \\/_____/   \\/_/   \\/_/     \\/_____/&quot;</span>);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;attroff(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    wborder(menuwindow, <a class="code" href="_navigation_8c.html#aa429166b4af11adb1f67a0bd9408838d">WIN_SIDES</a>, <a class="code" href="_navigation_8c.html#aa429166b4af11adb1f67a0bd9408838d">WIN_SIDES</a>, <a class="code" href="_navigation_8c.html#a8a285486a069486bd2ea483e06f230e9">WIN_TOPBOT</a>, <a class="code" href="_navigation_8c.html#a8a285486a069486bd2ea483e06f230e9">WIN_TOPBOT</a>, <a class="code" href="_navigation_8c.html#a80631ebdd24740ce480f80c338043fe4">WIN_TBLC</a>, <a class="code" href="_navigation_8c.html#a80631ebdd24740ce480f80c338043fe4">WIN_TBLC</a>, <a class="code" href="_navigation_8c.html#ab9fa45facd58580055606f8965244506">WIN_TBRC</a>, <a class="code" href="_navigation_8c.html#ab9fa45facd58580055606f8965244506">WIN_TBRC</a>);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    refresh();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    wrefresh(menuwindow);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    keypad(menuwindow, TRUE);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">while</span>(1){</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;       </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">for</span> (i = 0; i &lt; <a class="code" href="_navigation_8c.html#a79abc13c9bc525eeb5ba4449ccd7ed27">MAX_MENU_OPTIONS</a>; i++){</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keywordflow">if</span> (i == highlight){</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                wattron(menuwindow, A_REVERSE);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            mvwprintw(menuwindow, i+1, 1, choices[i]);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            wattroff(menuwindow, A_REVERSE);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        choice = wgetch(menuwindow);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">switch</span> (choice){</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <span class="keywordflow">case</span> KEY_UP: </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                highlight--;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                    <span class="keywordflow">if</span> (highlight == <a class="code" href="_navigation_8c.html#a884a4c559d8b60240cea802a54d912a4">MIN_MENU_OPTIONS</a>){ </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                        highlight = <a class="code" href="_navigation_8c.html#a884a4c559d8b60240cea802a54d912a4">MIN_MENU_OPTIONS</a>+1;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                    }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            <span class="keywordflow">case</span> KEY_DOWN: </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                highlight++;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                    </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                    <span class="keywordflow">if</span> (highlight == <a class="code" href="_navigation_8c.html#a79abc13c9bc525eeb5ba4449ccd7ed27">MAX_MENU_OPTIONS</a>){ </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                        highlight = <a class="code" href="_navigation_8c.html#a79abc13c9bc525eeb5ba4449ccd7ed27">MAX_MENU_OPTIONS</a>-1;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                    }</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        }</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keywordflow">if</span> (choice == <a class="code" href="game__of__life_8h.html#af4bced5cf8ed55746d4b5d34f9a0fe39">ENTER</a>){ </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <span class="keywordflow">return</span> highlight;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    }</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="a_navigation_8c_html_a79abc13c9bc525eeb5ba4449ccd7ed27"><div class="ttname"><a href="_navigation_8c.html#a79abc13c9bc525eeb5ba4449ccd7ed27">MAX_MENU_OPTIONS</a></div><div class="ttdeci">#define MAX_MENU_OPTIONS</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00048">Navigation.c:47</a></div></div>
-<div class="ttc" id="a_navigation_8c_html_aae3a8bc728ed373f1073114ade5899c6"><div class="ttname"><a href="_navigation_8c.html#aae3a8bc728ed373f1073114ade5899c6">WIN_START_Y</a></div><div class="ttdeci">#define WIN_START_Y</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00051">Navigation.c:50</a></div></div>
-<div class="ttc" id="agame__of__life_8h_html_a3da44afeba217135a680a7477b5e3ce3"><div class="ttname"><a href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a></div><div class="ttdeci">#define DEFAULT</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00075">game_of_life.h:74</a></div></div>
-<div class="ttc" id="a_navigation_8c_html_adbb680cce491211dcedd962d465f427d"><div class="ttname"><a href="_navigation_8c.html#adbb680cce491211dcedd962d465f427d">WIN_START_X</a></div><div class="ttdeci">#define WIN_START_X</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00052">Navigation.c:51</a></div></div>
-<div class="ttc" id="a_navigation_8c_html_ab9fa45facd58580055606f8965244506"><div class="ttname"><a href="_navigation_8c.html#ab9fa45facd58580055606f8965244506">WIN_TBRC</a></div><div class="ttdeci">#define WIN_TBRC</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00057">Navigation.c:56</a></div></div>
-<div class="ttc" id="a_navigation_8c_html_a80631ebdd24740ce480f80c338043fe4"><div class="ttname"><a href="_navigation_8c.html#a80631ebdd24740ce480f80c338043fe4">WIN_TBLC</a></div><div class="ttdeci">#define WIN_TBLC</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00056">Navigation.c:55</a></div></div>
-<div class="ttc" id="a_navigation_8c_html_a2e6ef411e0ff00ad889788b6cde701b5"><div class="ttname"><a href="_navigation_8c.html#a2e6ef411e0ff00ad889788b6cde701b5">WIN_WIDTH</a></div><div class="ttdeci">#define WIN_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00050">Navigation.c:49</a></div></div>
+<div class="ttc" id="a_navigation_8c_html_a79abc13c9bc525eeb5ba4449ccd7ed27"><div class="ttname"><a href="_navigation_8c.html#a79abc13c9bc525eeb5ba4449ccd7ed27">MAX_MENU_OPTIONS</a></div><div class="ttdeci">#define MAX_MENU_OPTIONS</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00049">Navigation.c:48</a></div></div>
+<div class="ttc" id="a_navigation_8c_html_aae3a8bc728ed373f1073114ade5899c6"><div class="ttname"><a href="_navigation_8c.html#aae3a8bc728ed373f1073114ade5899c6">WIN_START_Y</a></div><div class="ttdeci">#define WIN_START_Y</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00052">Navigation.c:51</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a3da44afeba217135a680a7477b5e3ce3"><div class="ttname"><a href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a></div><div class="ttdeci">#define DEFAULT</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00076">game_of_life.h:75</a></div></div>
+<div class="ttc" id="a_navigation_8c_html_adbb680cce491211dcedd962d465f427d"><div class="ttname"><a href="_navigation_8c.html#adbb680cce491211dcedd962d465f427d">WIN_START_X</a></div><div class="ttdeci">#define WIN_START_X</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00053">Navigation.c:52</a></div></div>
+<div class="ttc" id="a_navigation_8c_html_ab9fa45facd58580055606f8965244506"><div class="ttname"><a href="_navigation_8c.html#ab9fa45facd58580055606f8965244506">WIN_TBRC</a></div><div class="ttdeci">#define WIN_TBRC</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00058">Navigation.c:57</a></div></div>
+<div class="ttc" id="a_navigation_8c_html_a80631ebdd24740ce480f80c338043fe4"><div class="ttname"><a href="_navigation_8c.html#a80631ebdd24740ce480f80c338043fe4">WIN_TBLC</a></div><div class="ttdeci">#define WIN_TBLC</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00057">Navigation.c:56</a></div></div>
+<div class="ttc" id="a_navigation_8c_html_a2e6ef411e0ff00ad889788b6cde701b5"><div class="ttname"><a href="_navigation_8c.html#a2e6ef411e0ff00ad889788b6cde701b5">WIN_WIDTH</a></div><div class="ttdeci">#define WIN_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00051">Navigation.c:50</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html"><div class="ttname"><a href="game__of__life_8h.html">game_of_life.h</a></div></div>
-<div class="ttc" id="agame__of__life_8h_html_a3148d7709dc6606cdc38956bd2635940"><div class="ttname"><a href="game__of__life_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a></div><div class="ttdeci">#define LIVE</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00076">game_of_life.h:75</a></div></div>
-<div class="ttc" id="a_navigation_8c_html_aa429166b4af11adb1f67a0bd9408838d"><div class="ttname"><a href="_navigation_8c.html#aa429166b4af11adb1f67a0bd9408838d">WIN_SIDES</a></div><div class="ttdeci">#define WIN_SIDES</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00055">Navigation.c:54</a></div></div>
-<div class="ttc" id="a_navigation_8c_html_abe11cf53ebb70032db7576b97512fb03"><div class="ttname"><a href="_navigation_8c.html#abe11cf53ebb70032db7576b97512fb03">Navigation</a></div><div class="ttdeci">int Navigation(void)</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00073">Navigation.c:73</a></div></div>
-<div class="ttc" id="a_navigation_8c_html_a884a4c559d8b60240cea802a54d912a4"><div class="ttname"><a href="_navigation_8c.html#a884a4c559d8b60240cea802a54d912a4">MIN_MENU_OPTIONS</a></div><div class="ttdeci">#define MIN_MENU_OPTIONS</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00047">Navigation.c:46</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a3148d7709dc6606cdc38956bd2635940"><div class="ttname"><a href="game__of__life_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a></div><div class="ttdeci">#define LIVE</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00077">game_of_life.h:76</a></div></div>
+<div class="ttc" id="a_navigation_8c_html_aa429166b4af11adb1f67a0bd9408838d"><div class="ttname"><a href="_navigation_8c.html#aa429166b4af11adb1f67a0bd9408838d">WIN_SIDES</a></div><div class="ttdeci">#define WIN_SIDES</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00056">Navigation.c:55</a></div></div>
+<div class="ttc" id="a_navigation_8c_html_abe11cf53ebb70032db7576b97512fb03"><div class="ttname"><a href="_navigation_8c.html#abe11cf53ebb70032db7576b97512fb03">Navigation</a></div><div class="ttdeci">int Navigation(void)</div><div class="ttdoc">Draw menu options.</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00074">Navigation.c:74</a></div></div>
+<div class="ttc" id="a_navigation_8c_html_a884a4c559d8b60240cea802a54d912a4"><div class="ttname"><a href="_navigation_8c.html#a884a4c559d8b60240cea802a54d912a4">MIN_MENU_OPTIONS</a></div><div class="ttdeci">#define MIN_MENU_OPTIONS</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00048">Navigation.c:47</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_af4bced5cf8ed55746d4b5d34f9a0fe39"><div class="ttname"><a href="game__of__life_8h.html#af4bced5cf8ed55746d4b5d34f9a0fe39">ENTER</a></div><div class="ttdeci">#define ENTER</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00060">game_of_life.h:59</a></div></div>
-<div class="ttc" id="agame__of__life_8h_html_a7ec751f49d6391028a94f1419374c2fa"><div class="ttname"><a href="game__of__life_8h.html#a7ec751f49d6391028a94f1419374c2fa">ARRAY_SIZE</a></div><div class="ttdeci">#define ARRAY_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00079">game_of_life.h:78</a></div></div>
-<div class="ttc" id="a_navigation_8c_html_a8a285486a069486bd2ea483e06f230e9"><div class="ttname"><a href="_navigation_8c.html#a8a285486a069486bd2ea483e06f230e9">WIN_TOPBOT</a></div><div class="ttdeci">#define WIN_TOPBOT</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00054">Navigation.c:53</a></div></div>
-<div class="ttc" id="a_navigation_8c_html_a0a33b1743038db1adbbf1045aa839b38"><div class="ttname"><a href="_navigation_8c.html#a0a33b1743038db1adbbf1045aa839b38">WIN_HEIGHT</a></div><div class="ttdeci">#define WIN_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00049">Navigation.c:48</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a7ec751f49d6391028a94f1419374c2fa"><div class="ttname"><a href="game__of__life_8h.html#a7ec751f49d6391028a94f1419374c2fa">ARRAY_SIZE</a></div><div class="ttdeci">#define ARRAY_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00080">game_of_life.h:79</a></div></div>
+<div class="ttc" id="a_navigation_8c_html_a8a285486a069486bd2ea483e06f230e9"><div class="ttname"><a href="_navigation_8c.html#a8a285486a069486bd2ea483e06f230e9">WIN_TOPBOT</a></div><div class="ttdeci">#define WIN_TOPBOT</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00055">Navigation.c:54</a></div></div>
+<div class="ttc" id="a_navigation_8c_html_a0a33b1743038db1adbbf1045aa839b38"><div class="ttname"><a href="_navigation_8c.html#a0a33b1743038db1adbbf1045aa839b38">WIN_HEIGHT</a></div><div class="ttdeci">#define WIN_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00050">Navigation.c:49</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
