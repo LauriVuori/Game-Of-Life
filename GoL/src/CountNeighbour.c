@@ -77,7 +77,7 @@ int row,colum, sum = 0, Mcol, Mrow;
                     }
             }
         }
-    // minus own life
+    /* minus own life */
     if (Neighbour[cRow][cCol].current > 0){
         sum--;
     }

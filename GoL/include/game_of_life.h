@@ -64,9 +64,10 @@
 #define MAX_RAND 2
 #define MIN_RAND_DEATH 0
 #define MAX_RAND_DEATH 100
-
-#define BOARD_WIDTH 50 //100 max
-#define BOARD_HEIGHT 25 //75 max
+/*100 max*/
+#define BOARD_WIDTH 50
+/*75 max*/
+#define BOARD_HEIGHT 25
 
 #define UP_ARROW 450
 #define DOWN_ARROW 456

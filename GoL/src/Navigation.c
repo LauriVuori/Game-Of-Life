@@ -78,8 +78,9 @@ char choices[ARRAY_SIZE][ARRAY_SIZE] = {
                         "Start game with live cells",
                         "exit",
 };
+WINDOW * menuwindow = newwin(WIN_HEIGHT, WIN_WIDTH, WIN_START_Y, WIN_START_X);
 
-//print game of life on screen
+/*print game of life on screen*/
 attron(COLOR_PAIR(LIVE));
 mvaddstr(5,5, " ______     ______     __    __     ______        ______     ______      __         __     ______   ______");
 mvaddstr(6,5, "/\\  ___\\   /\\  __ \\   /\\  -./  \\   /\\  ___\\      /\\  __ \\   /\\  ___\\    /\\ \\       /\\ \\   /\\  ___\\ /\\  ___\\");
@@ -88,7 +89,6 @@ mvaddstr(8,5, " \\ \\_____\\  \\ \\_\\ \\_\\  \\ \\_\\ \\ \\_\\  \\ \\_____\\   
 mvaddstr(9,5, "  \\/_____/   \\/_/\\/_/   \\/_/  \\/_/   \\/_____/      \\/_____/   \\/_/        \\/_____/   \\/_/   \\/_/     \\/_____/");
 attroff(COLOR_PAIR(DEFAULT));
 
-    WINDOW * menuwindow = newwin(WIN_HEIGHT, WIN_WIDTH, WIN_START_Y, WIN_START_X);
     wborder(menuwindow, WIN_SIDES, WIN_SIDES, WIN_TOPBOT, WIN_TOPBOT, WIN_TBLC, WIN_TBLC, WIN_TBRC, WIN_TBRC);
     refresh();
     wrefresh(menuwindow);

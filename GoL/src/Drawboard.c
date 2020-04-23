@@ -72,14 +72,14 @@ int row, colum;
             if(Drawboard[row][colum].future == 1){
                 attron(COLOR_PAIR(LIVE));
 
-                // Draw just green backround
+                /* Draw just green backround */
                 mvaddch(row, colum, ' ');
                 attroff(COLOR_PAIR(DEFAULT));
             }
             else if (Drawboard[row][colum].future == 2){
                 attron(COLOR_PAIR(INFECTED));
 
-                // Draw just green backround
+                /* Draw just green backround */
                 mvaddch(row, colum, ' ');
                 attroff(COLOR_PAIR(DEFAULT));
             }

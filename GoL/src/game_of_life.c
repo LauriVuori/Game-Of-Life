@@ -63,7 +63,7 @@
 
 /*********************************************************************
    MAIN PROGRAM 
-/*********************************************************************/
+**********************************************************************/
 /**
  @file game_of_life.c
  @mainpage Game of Life
@@ -80,8 +80,12 @@
  */                                                    
 /**********************************************************************/
 int main(void){
+struct cell board [BOARD_HEIGHT][BOARD_WIDTH] ={{{0, 0, 0}}};
+int command = 0;
+
+struct timespec Delay = {0, 100000000};
+
 srand(time(NULL));    
-struct cell board [BOARD_HEIGHT][BOARD_WIDTH] ={0};
 
 initscr (); 
 clear ();   
@@ -97,18 +101,14 @@ noecho ();
 keypad(stdscr, TRUE);
 curs_set(0);
     
-    int command = 0;
-    long draw_speed = 100000000;
-    long seconds = 0;
-    
-    struct timespec Delay = {seconds, draw_speed};
+
 
 
 do{
     clear();
     command = Navigation();
 
-        switch (command){ //enter to exit,
+        switch (command){ /*enter to exit*/
             case 0:
                 clear();
                 attron(COLOR_PAIR(LIVE));
@@ -139,9 +139,9 @@ do{
 
                     else if (command == KEY_4){
                         Spawn_virus_cells(board);
-                        //save virus start time
+                        /*save virus start time*/
                         board[0][1].generation = board[0][0].generation;
-                        //if new virus spawned, just to clear text
+                        /*if new virus spawned, just to clear text*/
                         mvaddstr(35,BOARD_WIDTH+10, "                     ");
                     }
 
@@ -156,7 +156,7 @@ do{
                     else if (command == KEY_7){
                         ClearVirus(board);
                     }
-                    //After time virus dissappears
+                    /*After time virus dissappears*/
                     if ((board[0][0].generation - board[0][1].generation)  >= 100){
                         ClearVirus(board);
                         attron(COLOR_PAIR(LIVE));

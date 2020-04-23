@@ -71,7 +71,7 @@ int row,colum;
         for (colum = 0; colum < BOARD_WIDTH; colum++){
 
             if (Clear[row][colum].current == 2){
-                // chance to die randomly on virus disappears---> 
+                /* chance to die randomly on virus disappears--->*/
                 if (rand()%MAX_RAND_DEATH+MIN_RAND_DEATH== 1){
                         Clear[row][colum].future = 0;
                 }

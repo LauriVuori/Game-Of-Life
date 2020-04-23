@@ -24,7 +24,7 @@
      $Checkinfected.c$ 
 
  2.  DESCRIPTION
-
+    Chech neighbour cells if there is infected(num 2)	
  3.  VERSIONS
        Original:
          $22.4.2020$ / $Lauri Vuori$
