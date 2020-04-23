@@ -1,3 +1,37 @@
+/***************************************************************************
+ *   Copyright (C) $Year$ by $Lauri Vuori$   *
+ *   $Email$   *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
+
+/*********************************************************************
+
+ 1.  NAME
+     $game_of_life.h$ 
+
+ 2.  DESCRIPTION
+
+ 3.  VERSIONS
+       Original:
+         $22.4.2020$ / $Lauri Vuori$
+
+       Version history:
+
+**********************************************************************/
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
 *--------------------------------------------------------------------*/
@@ -41,22 +75,11 @@
 #define LIVE 2
 #define INFECTED 3
 
-//MENU
 #define ARRAY_SIZE 1000
-#define MIN_MENU_OPTIONS -1
-#define MAX_MENU_OPTIONS 2
-#define WIN_HEIGHT 25
-#define WIN_WIDTH 30
-#define WIN_START_Y 0
-#define WIN_START_X 120
-#define OPTIONS 2
-#define WIN_TOPBOT '-'
-#define WIN_SIDES  '|'
-#define WIN_TBLC   '+'
-#define WIN_TBRC   '+'
+
+/* Global variables */
 
 /* Global structures */
-
 struct cell{
 
 int current;  /* current situation, which is visible on screen */

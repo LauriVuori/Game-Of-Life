@@ -37,7 +37,30 @@
 *--------------------------------------------------------------------*/
 
 #include "game_of_life.h"
+/*-------------------------------------------------------------------*
+*    GLOBAL VARIABLES AND CONSTANTS                                  *
+*--------------------------------------------------------------------*/
+/* Control flags */
 
+/* Global constants */
+#define MIN_MENU_OPTIONS -1
+#define MAX_MENU_OPTIONS 2
+#define WIN_HEIGHT 25
+#define WIN_WIDTH 30
+#define WIN_START_Y 0
+#define WIN_START_X 120
+#define OPTIONS 2
+#define WIN_TOPBOT '-'
+#define WIN_SIDES  '|'
+#define WIN_TBLC   '+'
+#define WIN_TBRC   '+'
+/* Global variables */
+
+/* Global structures */
+
+/*-------------------------------------------------------------------*
+*    FUNCTION PROTOTYPES                                             *
+*--------------------------------------------------------------------*/
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------

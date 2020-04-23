@@ -21,7 +21,7 @@
 /*********************************************************************
 
  1.  NAME
-     $Source$ 
+     $ClearVirus.c$ 
 
  2.  DESCRIPTION
 
@@ -54,14 +54,16 @@
 /*-------------------------------------------------------------------*
 *    FUNCTION PROTOTYPES                                             *
 *--------------------------------------------------------------------*/
-
+/*********************************************************************
+	F U N C T I O N    D E S C R I P T I O N
+----------------------------------------------------------------------*/
 /**
  * @fn void ClearVirus(struct cell Clear[BOARD_HEIGHT][BOARD_WIDTH])
  * @brief Clear board from virus(num 2)
  * @param Array to remove 2's from it
  * @return Array without 2's
  */
-
+/*********************************************************************/
 void ClearVirus(struct cell Clear[BOARD_HEIGHT][BOARD_WIDTH]){
 int row,colum;
 
