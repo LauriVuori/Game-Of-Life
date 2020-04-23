@@ -89,14 +89,14 @@ $(document).ready(function(){initNavTree('_spawn_virus_8c.html',''); initResizab
 <div class="title">SpawnVirus.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="main_8h_source.html">main.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="game__of__life_8h_source.html">game_of_life.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for SpawnVirus.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="_spawn_virus_8c__incl.png" border="0" usemap="#_go_l_2src_2_spawn_virus_8c" alt=""/></div>
 <map name="_go_l_2src_2_spawn_virus_8c" id="_go_l_2src_2_spawn_virus_8c">
 <area shape="rect" title=" " alt="" coords="183,5,335,32"/>
-<area shape="rect" href="main_8h.html" title=" " alt="" coords="228,80,289,107"/>
+<area shape="rect" href="game__of__life_8h.html" title=" " alt="" coords="206,80,311,107"/>
 <area shape="rect" title=" " alt="" coords="5,155,67,181"/>
 <area shape="rect" title=" " alt="" coords="91,155,155,181"/>
 <area shape="rect" title=" " alt="" coords="179,155,245,181"/>
@@ -110,8 +110,7 @@ Include dependency graph for SpawnVirus.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a371bcccbed0b7da136b0d4081ba895a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_spawn_virus_8c.html#a371bcccbed0b7da136b0d4081ba895a7">Spawn_virus_cells</a> (struct <a class="el" href="structcell.html">cell</a> SpawnVirus[<a class="el" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>][<a class="el" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>])</td></tr>
-<tr class="memdesc:a371bcccbed0b7da136b0d4081ba895a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spawn virus randomly to board.  <a href="_spawn_virus_8c.html#a371bcccbed0b7da136b0d4081ba895a7">More...</a><br /></td></tr>
+<tr class="memitem:a371bcccbed0b7da136b0d4081ba895a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_spawn_virus_8c.html#a371bcccbed0b7da136b0d4081ba895a7">Spawn_virus_cells</a> (struct <a class="el" href="structcell.html">cell</a> SpawnVirus[<a class="el" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>][<a class="el" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>])</td></tr>
 <tr class="separator:a371bcccbed0b7da136b0d4081ba895a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -131,34 +130,25 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Spawn virus randomly to board. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">SpawnVirus</td><td>2d to spawn virus on </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Spawned virus on board </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="_spawn_virus_8c_source.html#l00024">24</a> of file <a class="el" href="_spawn_virus_8c_source.html">SpawnVirus.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                                                                         {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">int</span> startrow = 0;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">int</span> startcolum= 0;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    startrow = rand()%<a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a> + 0;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    startcolum = rand()%<a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> + 0;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    SpawnVirus[startrow+2][startcolum+3].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    SpawnVirus[startrow+2][startcolum+4].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    SpawnVirus[startrow+2][startcolum+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    SpawnVirus[startrow+1][startcolum+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    SpawnVirus[startrow+0][startcolum+4].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="_spawn_virus_8c_source.html#l00064">64</a> of file <a class="el" href="_spawn_virus_8c_source.html">SpawnVirus.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                                                                         {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">int</span> startrow = 0;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">int</span> startcolum= 0;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    startrow = rand()%<a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a> + 0;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    startcolum = rand()%<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> + 0;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    SpawnVirus[startrow+2][startcolum+3].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    SpawnVirus[startrow+2][startcolum+4].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    SpawnVirus[startrow+2][startcolum+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    SpawnVirus[startrow+1][startcolum+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    SpawnVirus[startrow+0][startcolum+4].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="_spawn_virus_8c_a371bcccbed0b7da136b0d4081ba895a7_icgraph.png" border="0" usemap="#_spawn_virus_8c_a371bcccbed0b7da136b0d4081ba895a7_icgraph" alt=""/></div>
 <map name="_spawn_virus_8c_a371bcccbed0b7da136b0d4081ba895a7_icgraph" id="_spawn_virus_8c_a371bcccbed0b7da136b0d4081ba895a7_icgraph">
-<area shape="rect" title="Spawn virus randomly to board." alt="" coords="104,5,232,32"/>
+<area shape="rect" title=" " alt="" coords="104,5,232,32"/>
 <area shape="rect" href="game__of__life_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Main file to operate game and initialize ncurses." alt="" coords="5,5,56,32"/>
 </map>
 </div>
@@ -167,9 +157,9 @@ Here is the caller graph for this function:</div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="astructcell_html_ab04e2d55ea4a544f3575812582af7b51"><div class="ttname"><a href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">cell::current</a></div><div class="ttdeci">int current</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00062">main.h:62</a></div></div>
-<div class="ttc" id="amain_8h_html_a94ed08e31d2f3a38d35f0cb89c762f04"><div class="ttname"><a href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a></div><div class="ttdeci">#define BOARD_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00036">main.h:35</a></div></div>
-<div class="ttc" id="amain_8h_html_a1cd139e8d1f7ae83f54c8d477313d8ea"><div class="ttname"><a href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a></div><div class="ttdeci">#define BOARD_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00035">main.h:34</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a1cd139e8d1f7ae83f54c8d477313d8ea"><div class="ttname"><a href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a></div><div class="ttdeci">#define BOARD_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00069">game_of_life.h:68</a></div></div>
+<div class="ttc" id="astructcell_html_ab04e2d55ea4a544f3575812582af7b51"><div class="ttname"><a href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">cell::current</a></div><div class="ttdeci">int current</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00085">game_of_life.h:85</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a94ed08e31d2f3a38d35f0cb89c762f04"><div class="ttname"><a href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a></div><div class="ttdeci">#define BOARD_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00070">game_of_life.h:69</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

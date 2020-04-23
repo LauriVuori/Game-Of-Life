@@ -89,14 +89,14 @@ $(document).ready(function(){initNavTree('_drawboard_8c.html',''); initResizable
 <div class="title">Drawboard.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="main_8h_source.html">main.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="game__of__life_8h_source.html">game_of_life.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Drawboard.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="_drawboard_8c__incl.png" border="0" usemap="#_go_l_2src_2_drawboard_8c" alt=""/></div>
 <map name="_go_l_2src_2_drawboard_8c" id="_go_l_2src_2_drawboard_8c">
 <area shape="rect" title=" " alt="" coords="187,5,331,32"/>
-<area shape="rect" href="main_8h.html" title=" " alt="" coords="228,80,289,107"/>
+<area shape="rect" href="game__of__life_8h.html" title=" " alt="" coords="206,80,311,107"/>
 <area shape="rect" title=" " alt="" coords="5,155,67,181"/>
 <area shape="rect" title=" " alt="" coords="91,155,155,181"/>
 <area shape="rect" title=" " alt="" coords="179,155,245,181"/>
@@ -110,7 +110,7 @@ Include dependency graph for Drawboard.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5e8b0ed42c6261475451afc16309cb51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_drawboard_8c.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a> (struct <a class="el" href="structcell.html">cell</a> Drawboard[<a class="el" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>][<a class="el" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>])</td></tr>
+<tr class="memitem:a5e8b0ed42c6261475451afc16309cb51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_drawboard_8c.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a> (struct <a class="el" href="structcell.html">cell</a> Drawboard[<a class="el" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>][<a class="el" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>])</td></tr>
 <tr class="memdesc:a5e8b0ed42c6261475451afc16309cb51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw dots based on array.  <a href="_drawboard_8c.html#a5e8b0ed42c6261475451afc16309cb51">More...</a><br /></td></tr>
 <tr class="separator:a5e8b0ed42c6261475451afc16309cb51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -140,34 +140,34 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>drawn board with ncurses </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_drawboard_8c_source.html#l00024">24</a> of file <a class="el" href="_drawboard_8c_source.html">Drawboard.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                                                                {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">int</span> row, colum;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">for</span> (row = 0; row &lt; <a class="code" href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>; row++){</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">for</span> (colum = 0;colum &lt; <a class="code" href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> ;colum++){</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            move(row,colum);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keywordflow">if</span>(<a class="code" href="_drawboard_8c.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a>[row][colum].future == 1){</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                attron(COLOR_PAIR(<a class="code" href="main_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a>));</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                <span class="comment">// Draw just green backround</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                mvaddch(row, colum, <span class="charliteral">&#39; &#39;</span>);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                attroff(COLOR_PAIR(<a class="code" href="main_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="_drawboard_8c.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a>[row][colum].future == 2){</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                attron(COLOR_PAIR(<a class="code" href="main_8h.html#a8b19cb6c72378825e932122e09437621">INFECTED</a>));</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <span class="comment">// Draw just green backround</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                mvaddch(row, colum, <span class="charliteral">&#39; &#39;</span>);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                attroff(COLOR_PAIR(<a class="code" href="main_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                printw(<span class="stringliteral">&quot;%d&quot;</span>, <a class="code" href="_drawboard_8c.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a>[row][colum].future);  </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            }   </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="_drawboard_8c_source.html#l00064">64</a> of file <a class="el" href="_drawboard_8c_source.html">Drawboard.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                                                                {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">int</span> row, colum;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">for</span> (row = 0; row &lt; <a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>; row++){</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">for</span> (colum = 0;colum &lt; <a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> ;colum++){</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            move(row,colum);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">if</span>(<a class="code" href="_drawboard_8c.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a>[row][colum].future == 1){</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                attron(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a>));</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <span class="comment">// Draw just green backround</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                mvaddch(row, colum, <span class="charliteral">&#39; &#39;</span>);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                attroff(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="_drawboard_8c.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a>[row][colum].future == 2){</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                attron(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a8b19cb6c72378825e932122e09437621">INFECTED</a>));</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                <span class="comment">// Draw just green backround</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                mvaddch(row, colum, <span class="charliteral">&#39; &#39;</span>);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                attroff(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                printw(<span class="stringliteral">&quot;%d&quot;</span>, <a class="code" href="_drawboard_8c.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a>[row][colum].future);  </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            }   </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -182,12 +182,12 @@ Here is the caller graph for this function:</div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="amain_8h_html_a3148d7709dc6606cdc38956bd2635940"><div class="ttname"><a href="main_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a></div><div class="ttdeci">#define LIVE</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00042">main.h:41</a></div></div>
-<div class="ttc" id="amain_8h_html_a3da44afeba217135a680a7477b5e3ce3"><div class="ttname"><a href="main_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a></div><div class="ttdeci">#define DEFAULT</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00041">main.h:40</a></div></div>
-<div class="ttc" id="amain_8h_html_a94ed08e31d2f3a38d35f0cb89c762f04"><div class="ttname"><a href="main_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a></div><div class="ttdeci">#define BOARD_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00036">main.h:35</a></div></div>
-<div class="ttc" id="amain_8h_html_a8b19cb6c72378825e932122e09437621"><div class="ttname"><a href="main_8h.html#a8b19cb6c72378825e932122e09437621">INFECTED</a></div><div class="ttdeci">#define INFECTED</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00043">main.h:42</a></div></div>
-<div class="ttc" id="amain_8h_html_a1cd139e8d1f7ae83f54c8d477313d8ea"><div class="ttname"><a href="main_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a></div><div class="ttdeci">#define BOARD_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="main_8h_source.html#l00035">main.h:34</a></div></div>
-<div class="ttc" id="a_drawboard_8c_html_a5e8b0ed42c6261475451afc16309cb51"><div class="ttname"><a href="_drawboard_8c.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a></div><div class="ttdeci">void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdoc">Draw dots based on array.</div><div class="ttdef"><b>Definition:</b> <a href="_drawboard_8c_source.html#l00024">Drawboard.c:24</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a1cd139e8d1f7ae83f54c8d477313d8ea"><div class="ttname"><a href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a></div><div class="ttdeci">#define BOARD_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00069">game_of_life.h:68</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a94ed08e31d2f3a38d35f0cb89c762f04"><div class="ttname"><a href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a></div><div class="ttdeci">#define BOARD_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00070">game_of_life.h:69</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a3da44afeba217135a680a7477b5e3ce3"><div class="ttname"><a href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a></div><div class="ttdeci">#define DEFAULT</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00075">game_of_life.h:74</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a3148d7709dc6606cdc38956bd2635940"><div class="ttname"><a href="game__of__life_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a></div><div class="ttdeci">#define LIVE</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00076">game_of_life.h:75</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a8b19cb6c72378825e932122e09437621"><div class="ttname"><a href="game__of__life_8h.html#a8b19cb6c72378825e932122e09437621">INFECTED</a></div><div class="ttdeci">#define INFECTED</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00077">game_of_life.h:76</a></div></div>
+<div class="ttc" id="a_drawboard_8c_html_a5e8b0ed42c6261475451afc16309cb51"><div class="ttname"><a href="_drawboard_8c.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a></div><div class="ttdeci">void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdoc">Draw dots based on array.</div><div class="ttdef"><b>Definition:</b> <a href="_drawboard_8c_source.html#l00064">Drawboard.c:64</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

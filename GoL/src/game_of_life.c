@@ -39,26 +39,13 @@
        TODO: ENUM
 
 **********************************************************************/
-/**
- @file game_of_life.c
- @mainpage Game of Life
- @section Intro_sec Introduction
- @date 2020
- @author Lauri Vuori
- @copyright GNU Public License.
-
- Game of liffe asddasdasdas....
- */
-/**
- @fn int main(void)
- @brief Main file to operate game and initialize ncurses
- */
 
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
 *--------------------------------------------------------------------*/
 
 #include "game_of_life.h"
+
 /*-------------------------------------------------------------------*
 *    GLOBAL VARIABLES AND CONSTANTS                                  *
 *--------------------------------------------------------------------*/
@@ -73,9 +60,25 @@
 /*-------------------------------------------------------------------*
 *    FUNCTION PROTOTYPES                                             *
 *--------------------------------------------------------------------*/
+
 /*********************************************************************
-*    MAIN PROGRAM                                                      *
-**********************************************************************/
+   MAIN PROGRAM 
+/*********************************************************************/
+/**
+ @file game_of_life.c
+ @mainpage Game of Life
+ @section Intro_sec Introduction
+ @date 2020
+ @author Lauri Vuori
+ @copyright GNU Public License.
+
+ Game of liffe asddasdasdas....
+ */
+/**
+ @fn int main(void)
+ @brief Main file to operate game and initialize ncurses
+ */                                                    
+/**********************************************************************/
 int main(void){
 srand(time(NULL));    
 struct cell board [BOARD_HEIGHT][BOARD_WIDTH] ={0};
