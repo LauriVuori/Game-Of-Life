@@ -60,11 +60,11 @@
 #define ENTER 10
 #define UP_ARROW 450
 #define DOWN_ARROW 456
-
 #define MIN_RAND 0
 #define MAX_RAND 2
 #define MIN_RAND_DEATH 0
 #define MAX_RAND_DEATH 100
+
 /*100 max*/
 #define BOARD_WIDTH 50
 /*75 max*/
