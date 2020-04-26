@@ -24,7 +24,7 @@
      $ClearVirus.c$ 
 
  2.  DESCRIPTION
-
+    Clear array from number '2' and change them randomly to 0 and 1
  3.  VERSIONS
        Original:
          $Date$ / $Lauri Vuori$
@@ -32,7 +32,6 @@
        Version history:
 
 **********************************************************************/
-
 
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
@@ -44,13 +43,9 @@
 *    GLOBAL VARIABLES AND CONSTANTS                                  *
 *--------------------------------------------------------------------*/
 /* Control flags */
-
 /* Global constants */
-
 /* Global variables */
-
 /* Global structures */
-
 /*-------------------------------------------------------------------*
 *    FUNCTION PROTOTYPES                                             *
 *--------------------------------------------------------------------*/

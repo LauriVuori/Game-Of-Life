@@ -140,19 +140,19 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Spawned virus on board </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_spawn_virus_8c_source.html#l00065">65</a> of file <a class="el" href="_spawn_virus_8c_source.html">SpawnVirus.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                                                                         {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">int</span> startrow = 0;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">int</span> startcolum= 0;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    startrow = rand()%<a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a> + 0;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    startcolum = rand()%<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> + 0;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    SpawnVirus[startrow+2][startcolum+3].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    SpawnVirus[startrow+2][startcolum+4].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    SpawnVirus[startrow+2][startcolum+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    SpawnVirus[startrow+1][startcolum+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    SpawnVirus[startrow+0][startcolum+4].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="_spawn_virus_8c_source.html#l00062">62</a> of file <a class="el" href="_spawn_virus_8c_source.html">SpawnVirus.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                                                                         {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keywordtype">int</span> startrow = 0;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">int</span> startcolum= 0;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    startrow = rand()%<a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a> + 0;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    startcolum = rand()%<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> + 0;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    SpawnVirus[startrow+2][startcolum+3].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    SpawnVirus[startrow+2][startcolum+4].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    SpawnVirus[startrow+2][startcolum+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    SpawnVirus[startrow+1][startcolum+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    SpawnVirus[startrow+0][startcolum+4].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 2;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">

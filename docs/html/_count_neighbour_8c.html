@@ -158,25 +158,25 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Sum of neighbouring cells </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_count_neighbour_8c_source.html#l00068">68</a> of file <a class="el" href="_count_neighbour_8c_source.html">CountNeighbour.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                                                                                        {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keywordtype">int</span> row,colum, sum = 0, Mcol, Mrow;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">for</span> (row = -1; row &lt; 2; row++){</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">for</span> (colum = -1; colum &lt; 2; colum++){</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                Mrow = (<a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a> + row + cRow) % <a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                Mcol = (<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> + colum + cCol) % <a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                    <span class="keywordflow">if</span> (Neighbour[Mrow][Mcol].current &gt; 0){</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                        sum++;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                    }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">/* minus own life */</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">if</span> (Neighbour[cRow][cCol].current &gt; 0){</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        sum--;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">return</span> sum;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="_count_neighbour_8c_source.html#l00065">65</a> of file <a class="el" href="_count_neighbour_8c_source.html">CountNeighbour.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                                                                                        {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">int</span> row,colum, sum = 0, Mcol, Mrow;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">for</span> (row = -1; row &lt; 2; row++){</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">for</span> (colum = -1; colum &lt; 2; colum++){</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                Mrow = (<a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a> + row + cRow) % <a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                Mcol = (<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> + colum + cCol) % <a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                    <span class="keywordflow">if</span> (Neighbour[Mrow][Mcol].current &gt; 0){</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                        sum++;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                    }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">/* minus own life */</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">if</span> (Neighbour[cRow][cCol].current &gt; 0){</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        sum--;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">return</span> sum;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">

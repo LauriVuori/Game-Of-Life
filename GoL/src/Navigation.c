@@ -24,7 +24,7 @@
      $Navigation.c$ 
 
  2.  DESCRIPTION
-
+    Draw menu options
  3.  VERSIONS
        Original:
          $22.4.2020$ / $Lauri Vuori$
@@ -32,6 +32,7 @@
        Version history:
 
 **********************************************************************/
+
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
 *--------------------------------------------------------------------*/
@@ -42,7 +43,6 @@
 *    GLOBAL VARIABLES AND CONSTANTS                                  *
 *--------------------------------------------------------------------*/
 /* Control flags */
-
 /* Global constants */
 #define MIN_MENU_OPTIONS -1
 #define MAX_MENU_OPTIONS 2
@@ -56,9 +56,7 @@
 #define WIN_TBLC   '+'
 #define WIN_TBRC   '+'
 /* Global variables */
-
 /* Global structures */
-
 /*-------------------------------------------------------------------*
 *    FUNCTION PROTOTYPES                                             *
 *--------------------------------------------------------------------*/

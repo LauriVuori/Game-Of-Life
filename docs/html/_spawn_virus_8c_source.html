@@ -113,7 +113,7 @@ $(document).ready(function(){initNavTree('_spawn_virus_8c_source.html',''); init
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">     $Source$ </span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"> 2.  DESCRIPTION</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">    Spawn virus randomly to board</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> 3.  VERSIONS</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">       Original:</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">         $22.4.2020$ / $Lauri Vuori$</span></div>
@@ -121,47 +121,44 @@ $(document).ready(function(){initNavTree('_spawn_virus_8c_source.html',''); init
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">       Version history:</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">**********************************************************************/</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">*    HEADER FILES                                                    *</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="game__of__life_8h.html">game_of_life.h</a>&quot;</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">*    GLOBAL VARIABLES AND CONSTANTS                                  *</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">/* Control flags */</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">*    HEADER FILES                                                    *</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="game__of__life_8h.html">game_of_life.h</a>&quot;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">*    GLOBAL VARIABLES AND CONSTANTS                                  *</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">/* Control flags */</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">/* Global constants */</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">/* Global variables */</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">/* Global structures */</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">*    FUNCTION PROTOTYPES                                             *</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">/*********************************************************************</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">    F U N C T I O N    D E S C R I P T I O N</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">---------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">/*********************************************************************/</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="_spawn_virus_8c.html#a371bcccbed0b7da136b0d4081ba895a7">   65</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_spawn_virus_8c.html#a371bcccbed0b7da136b0d4081ba895a7">Spawn_virus_cells</a>(<span class="keyword">struct</span> <a class="code" href="structcell.html">cell</a> SpawnVirus[<a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>][<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>]){</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">int</span> startrow = 0;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">int</span> startcolum= 0;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    startrow = rand()%<a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a> + 0;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    startcolum = rand()%<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> + 0;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    SpawnVirus[startrow+2][startcolum+3].current = 2;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    SpawnVirus[startrow+2][startcolum+4].current = 2;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    SpawnVirus[startrow+2][startcolum+5].current = 2;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    SpawnVirus[startrow+1][startcolum+5].current = 2;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    SpawnVirus[startrow+0][startcolum+4].current = 2;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">/* Global variables */</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">/* Global structures */</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">*    FUNCTION PROTOTYPES                                             *</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">/*********************************************************************</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">    F U N C T I O N    D E S C R I P T I O N</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">---------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">/*********************************************************************/</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="_spawn_virus_8c.html#a371bcccbed0b7da136b0d4081ba895a7">   62</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_spawn_virus_8c.html#a371bcccbed0b7da136b0d4081ba895a7">Spawn_virus_cells</a>(<span class="keyword">struct</span> <a class="code" href="structcell.html">cell</a> SpawnVirus[<a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>][<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>]){</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keywordtype">int</span> startrow = 0;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">int</span> startcolum= 0;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    startrow = rand()%<a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a> + 0;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    startcolum = rand()%<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> + 0;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    SpawnVirus[startrow+2][startcolum+3].current = 2;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    SpawnVirus[startrow+2][startcolum+4].current = 2;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    SpawnVirus[startrow+2][startcolum+5].current = 2;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    SpawnVirus[startrow+1][startcolum+5].current = 2;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    SpawnVirus[startrow+0][startcolum+4].current = 2;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="agame__of__life_8h_html_a1cd139e8d1f7ae83f54c8d477313d8ea"><div class="ttname"><a href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a></div><div class="ttdeci">#define BOARD_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00070">game_of_life.h:69</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_a94ed08e31d2f3a38d35f0cb89c762f04"><div class="ttname"><a href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a></div><div class="ttdeci">#define BOARD_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00072">game_of_life.h:71</a></div></div>
-<div class="ttc" id="a_spawn_virus_8c_html_a371bcccbed0b7da136b0d4081ba895a7"><div class="ttname"><a href="_spawn_virus_8c.html#a371bcccbed0b7da136b0d4081ba895a7">Spawn_virus_cells</a></div><div class="ttdeci">void Spawn_virus_cells(struct cell SpawnVirus[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdoc">Spawn virus randomly to board.</div><div class="ttdef"><b>Definition:</b> <a href="_spawn_virus_8c_source.html#l00065">SpawnVirus.c:65</a></div></div>
+<div class="ttc" id="a_spawn_virus_8c_html_a371bcccbed0b7da136b0d4081ba895a7"><div class="ttname"><a href="_spawn_virus_8c.html#a371bcccbed0b7da136b0d4081ba895a7">Spawn_virus_cells</a></div><div class="ttdeci">void Spawn_virus_cells(struct cell SpawnVirus[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdoc">Spawn virus randomly to board.</div><div class="ttdef"><b>Definition:</b> <a href="_spawn_virus_8c_source.html#l00062">SpawnVirus.c:62</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html"><div class="ttname"><a href="game__of__life_8h.html">game_of_life.h</a></div></div>
 <div class="ttc" id="astructcell_html"><div class="ttname"><a href="structcell.html">cell</a></div><div class="ttdoc">Structure to hold current and future tables.</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00082">game_of_life.h:82</a></div></div>
 <!-- start footer part -->
