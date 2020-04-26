@@ -6,7 +6,7 @@ My version have also "virus" that spreads rapidly neighbouring cells. Virus surv
 
 
 ![GOL DEMO](test/golvirus.gif)<br>
-**Game is already compiled, so you can run Runfile.exe to play the game!**
+**Game is already compiled, so you can run Runfile.exe to play the game!** (GoL/src/)
 <br>
 ## Documentation:<br>
 http://www.cc.puv.fi/~e1900498/docs/html/
