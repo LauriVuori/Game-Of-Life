@@ -70,7 +70,11 @@ FutBoard[0][0].generation++;
             neighbours = CountNeighbour(FutBoard, row, colum);
 
                 if (state == 0 && neighbours == 3){
-                    if ((Checkinfected(FutBoard,row,colum)) == 2){
+                    if((CheckCure(FutBoard,row,colum)) == 3){
+                        FutBoard[row][colum].future = 3;
+                    }
+
+                    else if ((Checkinfected(FutBoard,row,colum)) == 2){
                         FutBoard[row][colum].future = 2;
                     }
                     else{
@@ -95,6 +99,12 @@ FutBoard[0][0].generation++;
                 else if (state == 2 && (neighbours < 2 || neighbours > 3)){
                     FutBoard[row][colum].future = 0;
                 } 
+                else if (state == 3 && (neighbours == 2 || neighbours == 3)){
+                    FutBoard[row][colum].future = 3;
+                }
+                else if (state == 3 && (neighbours < 2 || neighbours > 3)){
+                    FutBoard[row][colum].future = 0;
+                }
         }
 
     }

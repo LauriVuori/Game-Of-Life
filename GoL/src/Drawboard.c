@@ -80,6 +80,13 @@ int row, colum;
                 mvaddch(row, colum, ' ');
                 attroff(COLOR_PAIR(DEFAULT));
             }
+            else if (Drawboard[row][colum].future == 3){
+                attron(COLOR_PAIR(CURE));
+
+                /* Draw just green backround */
+                mvaddch(row, colum, ' ');
+                attroff(COLOR_PAIR(DEFAULT));
+            }
             else{
                 printw("%d", Drawboard[row][colum].future);  
             }   

@@ -64,8 +64,10 @@ int row,colum;
 
     for (row = 0; row < BOARD_HEIGHT; row++){
         for (colum = 0; colum < BOARD_WIDTH; colum++){
-
-            if (Clear[row][colum].current == 2){
+            if (Clear[row][colum].current == 3){
+                Clear[row][colum].current = 1; 
+            }
+            else if (Clear[row][colum].current == 2){
                 /* chance to die randomly on virus disappears--->*/
                 if (rand()%MAX_RAND_DEATH+MIN_RAND_DEATH== 1){
                         Clear[row][colum].future = 0;

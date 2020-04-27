@@ -93,6 +93,7 @@ nodelay (stdscr, TRUE);
 start_color(); 
 init_pair (DEFAULT, COLOR_BLACK, COLOR_BLACK);
 init_pair (LIVE, COLOR_BLACK, COLOR_RED); 
+init_pair (CURE, COLOR_BLACK, COLOR_YELLOW);
 init_pair (INFECTED, COLOR_BLACK, COLOR_GREEN);  
 
 bkgd (COLOR_PAIR (DEFAULT));
@@ -116,9 +117,15 @@ do{
                 mvaddstr(12,BOARD_WIDTH+10, "Key 2 slower");
                 mvaddstr(14,BOARD_WIDTH+10, "Key 3 Spawn live cells");
                 mvaddstr(15,BOARD_WIDTH+10, "Key 4 Virus cells");
-                mvaddstr(17,BOARD_WIDTH+10, "Key 5 spawn kokgalaxy");
-                mvaddstr(18,BOARD_WIDTH+10, "Key 6 Clear table");
-                mvaddstr(19,BOARD_WIDTH+10, "Key 7 Clear virus");
+                mvaddstr(16,BOARD_WIDTH+10, "Key 5 Spawn Cure");
+                mvaddstr(18,BOARD_WIDTH+10, "Key 6 spawn kokgalaxy");
+                mvaddstr(19,BOARD_WIDTH+10, "Key 7 Clear table");
+                mvaddstr(20,BOARD_WIDTH+10, "Key 8 Clear virus");
+
+                mvaddstr(23,BOARD_WIDTH+10, "Red is live cell");
+                mvaddstr(24,BOARD_WIDTH+10, "Green is virus cell");
+                mvaddstr(25,BOARD_WIDTH+10, "Yellow is cure cell");
+
                 attroff(COLOR_PAIR(DEFAULT));
            
                 while (command != KEY_ESC){
@@ -143,16 +150,20 @@ do{
                         /*if new virus spawned, just to clear text*/
                         mvaddstr(35,BOARD_WIDTH+10, "                     ");
                     }
-
+                    
                     else if (command == KEY_5){
-                        kokgalaxy(board);
+                        Spawn_cure_cells(board);
                     }
 
                     else if (command == KEY_6){
-                        memset(board, 0, sizeof board);
+                        kokgalaxy(board);
                     }
 
                     else if (command == KEY_7){
+                        memset(board, 0, sizeof board);
+                    }
+
+                    else if (command == KEY_8){
                         ClearVirus(board);
                     }
                     /*After time virus dissappears*/
