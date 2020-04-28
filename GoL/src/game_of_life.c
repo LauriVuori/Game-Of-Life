@@ -78,13 +78,13 @@
  @brief Main file to operate game and initialize ncurses
  */                                                    
 /**********************************************************************/
+
 int main(void){
 struct cell board [BOARD_HEIGHT][BOARD_WIDTH] ={{{0, 0, 0}}};
 int command = 0;
 
-struct timespec Delay = {0, 100000000};
-
-srand(time(NULL));    
+struct timespec Delay = {0L, 120000000L}; 
+srand(time(NULL)); 
 
 initscr (); 
 clear ();   

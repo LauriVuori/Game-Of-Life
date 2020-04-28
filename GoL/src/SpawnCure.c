@@ -69,7 +69,7 @@
   Used global constants:
  REMARKS when using this function:
 *********************************************************************/
-void Spawn_cure_cells(struct cell SpawnCure[BOARD_HEIGHT][BOARD_WIDTH]){
+/*void Spawn_cure_cells(struct cell SpawnCure[BOARD_HEIGHT][BOARD_WIDTH]){
 int startrow = 0;
 int startcolum= 0;
 
@@ -80,4 +80,23 @@ int startcolum= 0;
     SpawnCure[startrow+2][startcolum+5].current = 3;
     SpawnCure[startrow+1][startcolum+5].current = 3;
     SpawnCure[startrow+0][startcolum+4].current = 3;
+}*/
+
+void Spawn_cure_cells(struct cell SpawnCure[BOARD_HEIGHT][BOARD_WIDTH]){
+int row,colum, neighbours = 0, state = 0;
+
+    for (row = 0; row < BOARD_HEIGHT; row++){
+        for (colum = 0; colum < BOARD_WIDTH; colum++){
+            state = SpawnCure[row][colum].current;
+            neighbours = CountNeighbour(SpawnCure, row, colum);
+
+              if (state == 2 && neighbours >= 4){
+                  SpawnCure[row+2][colum+3].current = 3;
+                  SpawnCure[row+2][colum+4].current = 3;
+                  SpawnCure[row+2][colum+5].current = 3;
+                  SpawnCure[row+1][colum+5].current = 3;
+                  SpawnCure[row+0][colum+4].current = 3;
+              }
+        }
+    }
 }
