@@ -24,7 +24,8 @@
      $SpawnCure.c$ 
 
  2.  DESCRIPTION
-
+    Spawn "cure" cells depending on neighbouring cells
+    
  3.  VERSIONS
        Original:
          $Date$ / $Lauri Vuori$

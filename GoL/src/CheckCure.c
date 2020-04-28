@@ -25,7 +25,8 @@
      $CheckCure.c$ 
 
  2.  DESCRIPTION
-
+    Chech neighbour cells if there is cure(num 3)
+    
  3.  VERSIONS
        Original:
          $Date$ / $Lauri Vuori$
