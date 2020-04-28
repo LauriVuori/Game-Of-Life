@@ -25,7 +25,7 @@
 
  2.  DESCRIPTION
     Spawn "cure" cells depending on neighbouring cells
-    
+
  3.  VERSIONS
        Original:
          $Date$ / $Lauri Vuori$
@@ -55,7 +55,7 @@
 **********************************************************************/
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
----------------------------------------------------------------------
+----------------------------------------------------------------------*/
 /**
  * @fn void Spawn_cure_cells(struct cell SpawnCure[BOARD_HEIGHT][BOARD_WIDTH])
  * @brief Spawn "cure" cells depending on neighbouring cells
