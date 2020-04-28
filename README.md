@@ -13,6 +13,6 @@ Virus "eats" live cells and cure cells eat "virus" cells.
 ![GOL DEMO](test/golvirus.gif)<br>
 
 <br>
-## Documentation:<br>
+##Documentation:<br>
 http://www.cc.puv.fi/~e1900498/docs/html/
 made with doxygen.
