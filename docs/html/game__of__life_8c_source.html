@@ -150,137 +150,154 @@ $(document).ready(function(){initNavTree('game__of__life_8c_source.html',''); in
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">   MAIN PROGRAM </span></div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">**********************************************************************/</span></div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">/**********************************************************************/</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="game__of__life_8c.html#a840291bc02cba5474a4cb46a9b9566fe">   81</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="game__of__life_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>){</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">struct </span><a class="code" href="structcell.html">cell</a> board [<a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>][<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>] ={{{0, 0, 0}}};</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">int</span> command = 0;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">struct </span>timespec Delay = {0, 100000000};</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;srand(time(NULL));    </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="game__of__life_8c.html#a840291bc02cba5474a4cb46a9b9566fe">   82</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="game__of__life_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a>(<span class="keywordtype">void</span>){</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">struct </span><a class="code" href="structcell.html">cell</a> board [<a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>][<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>] ={{{0, 0, 0}}};</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">struct </span>timespec Delay = {0, 200000000};</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keywordtype">int</span> command = 0;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;initscr (); </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;clear ();   </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;nodelay (stdscr, TRUE); </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;start_color(); </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;init_pair (<a class="code" href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>, COLOR_BLACK, COLOR_BLACK);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;init_pair (<a class="code" href="game__of__life_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a>, COLOR_BLACK, COLOR_RED); </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;init_pair (<a class="code" href="game__of__life_8h.html#a8b19cb6c72378825e932122e09437621">INFECTED</a>, COLOR_BLACK, COLOR_GREEN);  </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;bkgd (COLOR_PAIR (<a class="code" href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;noecho ();</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;keypad(stdscr, TRUE);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;curs_set(0);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keywordflow">do</span>{</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    clear();</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    command = <a class="code" href="game__of__life_8h.html#abe11cf53ebb70032db7576b97512fb03">Navigation</a>();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;srand(time(NULL)); </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;initscr (); </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;clear ();   </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;nodelay (stdscr, TRUE); </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;start_color(); </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;init_pair (<a class="code" href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>, COLOR_BLACK, COLOR_BLACK);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;init_pair (<a class="code" href="game__of__life_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a>, COLOR_BLACK, COLOR_RED); </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;init_pair (<a class="code" href="game__of__life_8h.html#a18915c8000378a1b6fda7a41043895b2">CURE</a>, COLOR_BLACK, COLOR_YELLOW);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;init_pair (<a class="code" href="game__of__life_8h.html#a8b19cb6c72378825e932122e09437621">INFECTED</a>, COLOR_BLACK, COLOR_GREEN);  </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;bkgd (COLOR_PAIR (<a class="code" href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;noecho ();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;keypad(stdscr, TRUE);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;curs_set(0);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">switch</span> (command){ <span class="comment">/*enter to exit*/</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <span class="keywordflow">case</span> 0:</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                clear();</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                attron(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a>));</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                mvaddstr(10,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Esc to exit&quot;</span>);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                mvaddstr(11,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Key 1 Faster&quot;</span>);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                mvaddstr(12,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Key 2 slower&quot;</span>);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                mvaddstr(14,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Key 3 Spawn live cells&quot;</span>);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                mvaddstr(15,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Key 4 Virus cells&quot;</span>);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                mvaddstr(17,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Key 5 spawn kokgalaxy&quot;</span>);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                mvaddstr(18,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Key 6 Clear table&quot;</span>);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                mvaddstr(19,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Key 7 Clear virus&quot;</span>);</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                attroff(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;           </div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                <span class="keywordflow">while</span> (command != <a class="code" href="game__of__life_8h.html#a86b2b2d4eda22067d85d2287c118e2d8">KEY_ESC</a>){</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                    command = getch();</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                    <span class="keywordflow">if</span> (command == <a class="code" href="game__of__life_8h.html#a5a7fd35018971faa28dacd3e33a8f737">KEY_1</a> &amp;&amp; Delay.tv_nsec &gt;= 30000000){</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                        Delay.tv_nsec -= 20000000;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                    }</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (command == <a class="code" href="game__of__life_8h.html#a3a146cb397d373be978dfa9fd1dc9b3a">KEY_2</a> &amp;&amp; Delay.tv_nsec &lt;= 400000000){</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                        Delay.tv_nsec += 20000000;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                    }</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (command == <a class="code" href="game__of__life_8h.html#a701a135e841c3cfb69d9c5bb1444e198">KEY_3</a>){</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                        <a class="code" href="game__of__life_8h.html#abcc04144a91aebe8feb8b4bee6005be2">RandBoard</a>(board);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                    }</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (command == <a class="code" href="game__of__life_8h.html#a219891753a1b6ccd51c8ae763905dbf9">KEY_4</a>){</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                        <a class="code" href="game__of__life_8h.html#a371bcccbed0b7da136b0d4081ba895a7">Spawn_virus_cells</a>(board);</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                        <span class="comment">/*save virus start time*/</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                        board[0][1].<a class="code" href="structcell.html#aad8eab95bc6ae0373f10cb2a0bdeb88c">generation</a> = board[0][0].<a class="code" href="structcell.html#aad8eab95bc6ae0373f10cb2a0bdeb88c">generation</a>;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                        <span class="comment">/*if new virus spawned, just to clear text*/</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                        mvaddstr(35,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;                     &quot;</span>);</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                    }</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (command == <a class="code" href="game__of__life_8h.html#a8520da12c76efb8ca95ca2068d1ca35c">KEY_5</a>){</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                        <a class="code" href="game__of__life_8h.html#a81226711cf5f0535497a973e41d3acbd">kokgalaxy</a>(board);</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                    }</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (command == <a class="code" href="game__of__life_8h.html#a4ab32ce5ef6b5d115253d2a712f2e19b">KEY_6</a>){</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                        memset(board, 0, <span class="keyword">sizeof</span> board);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                    }</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (command == <a class="code" href="game__of__life_8h.html#a5895875bee3ae13b13cdb5e85b45161b">KEY_7</a>){</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                        <a class="code" href="game__of__life_8h.html#ac4fda42085e1d5ef20ea6df0ba3ef073">ClearVirus</a>(board);</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                    }</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                    <span class="comment">/*After time virus dissappears*/</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                    <span class="keywordflow">if</span> ((board[0][0].generation - board[0][1].generation)  &gt;= 100){</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                        <a class="code" href="game__of__life_8h.html#ac4fda42085e1d5ef20ea6df0ba3ef073">ClearVirus</a>(board);</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                        attron(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a>));</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                        mvaddstr(35,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Virus cleared itself&quot;</span>);</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                        attroff(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                    }</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                    <a class="code" href="game__of__life_8h.html#aaa9ae83374dca5a69ed6b113a513d895">EvalFutureBoard</a>(board);                   </div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                    <a class="code" href="game__of__life_8h.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a>(board);</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                    nanosleep(&amp;Delay, (<span class="keyword">struct</span> timespec *) NULL);</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                }</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            <span class="keywordflow">case</span> 1:</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                clear();</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                attron(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a>));</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                mvaddstr(15,15, <span class="stringliteral">&quot;Press enter to exit&quot;</span>);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                attroff(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                <span class="keywordflow">break</span>;    </div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        }</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;}<span class="keywordflow">while</span> (command != <a class="code" href="game__of__life_8h.html#a4c5d3eedc773b8dcc3773744850c85eb">CASE_1</a>);</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    nodelay (stdscr, FALSE);</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    getch ();</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    endwin ();</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;} <span class="comment">/* end of main */</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keywordflow">do</span>{</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    clear();</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    command = <a class="code" href="game__of__life_8h.html#abe11cf53ebb70032db7576b97512fb03">Navigation</a>();</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordflow">switch</span> (command){ <span class="comment">/*enter to exit*/</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="keywordflow">case</span> 0:</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                clear();</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                attron(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a>));</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                mvaddstr(10,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Esc to exit&quot;</span>);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                mvaddstr(11,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Key 1 Faster&quot;</span>);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                mvaddstr(12,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Key 2 slower&quot;</span>);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                mvaddstr(14,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Key 3 Spawn live cells&quot;</span>);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                mvaddstr(15,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Key 4 Virus cells&quot;</span>);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                mvaddstr(16,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Key 5 Spawn Cure&quot;</span>);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                mvaddstr(18,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Key 6 spawn kokgalaxy&quot;</span>);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                mvaddstr(19,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Key 7 Clear table&quot;</span>);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                mvaddstr(20,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Key 8 Clear virus&quot;</span>);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                mvaddstr(23,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Red is live cell&quot;</span>);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                mvaddstr(24,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Green is virus cell&quot;</span>);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                mvaddstr(25,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Yellow is cure cell&quot;</span>);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                attroff(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;           </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                <span class="keywordflow">while</span> (command != <a class="code" href="game__of__life_8h.html#a86b2b2d4eda22067d85d2287c118e2d8">KEY_ESC</a>){</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                    command = getch();</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                    <span class="keywordflow">if</span> (command == <a class="code" href="game__of__life_8h.html#a5a7fd35018971faa28dacd3e33a8f737">KEY_1</a> &amp;&amp; Delay.tv_nsec &gt;= 30000000){</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                        Delay.tv_nsec -= 20000000;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                    }</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (command == <a class="code" href="game__of__life_8h.html#a3a146cb397d373be978dfa9fd1dc9b3a">KEY_2</a> &amp;&amp; Delay.tv_nsec &lt;= 400000000){</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                        Delay.tv_nsec += 20000000;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                    }</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (command == <a class="code" href="game__of__life_8h.html#a701a135e841c3cfb69d9c5bb1444e198">KEY_3</a>){</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                        <a class="code" href="game__of__life_8h.html#abcc04144a91aebe8feb8b4bee6005be2">RandBoard</a>(board);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                    }</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (command == <a class="code" href="game__of__life_8h.html#a219891753a1b6ccd51c8ae763905dbf9">KEY_4</a>){</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                        <a class="code" href="game__of__life_8h.html#a371bcccbed0b7da136b0d4081ba895a7">Spawn_virus_cells</a>(board);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                        <span class="comment">/*save virus start time*/</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                        board[0][1].<a class="code" href="structcell.html#aad8eab95bc6ae0373f10cb2a0bdeb88c">generation</a> = board[0][0].<a class="code" href="structcell.html#aad8eab95bc6ae0373f10cb2a0bdeb88c">generation</a>;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                        <span class="comment">/*if new virus spawned, just to clear text*/</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                        mvaddstr(35,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;                     &quot;</span>);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                    }</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                    </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (command == <a class="code" href="game__of__life_8h.html#a8520da12c76efb8ca95ca2068d1ca35c">KEY_5</a>){</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                        <a class="code" href="game__of__life_8h.html#aafb49b61096eb3bd3f3b18ea375164cc">Spawn_cure_cells</a>(board);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                    }</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (command == <a class="code" href="game__of__life_8h.html#a4ab32ce5ef6b5d115253d2a712f2e19b">KEY_6</a>){</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                        <a class="code" href="game__of__life_8h.html#a81226711cf5f0535497a973e41d3acbd">kokgalaxy</a>(board);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                    }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (command == <a class="code" href="game__of__life_8h.html#a5895875bee3ae13b13cdb5e85b45161b">KEY_7</a>){</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                        memset(board, 0, <span class="keyword">sizeof</span> board);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                    }</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (command == <a class="code" href="game__of__life_8h.html#ad2888e35bf1cbd0b25c3e82bc360c647">KEY_8</a>){</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                        <a class="code" href="game__of__life_8h.html#ac4fda42085e1d5ef20ea6df0ba3ef073">ClearVirus</a>(board);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                    }</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                    <span class="comment">/*After time virus dissappears*/</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                    <span class="keywordflow">if</span> ((board[0][0].generation - board[0][1].generation)  &gt;= 100){</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                        <a class="code" href="game__of__life_8h.html#ac4fda42085e1d5ef20ea6df0ba3ef073">ClearVirus</a>(board);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                        attron(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a>));</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                        mvaddstr(35,<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>+10, <span class="stringliteral">&quot;Virus cleared itself&quot;</span>);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                        attroff(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                    }</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                    <a class="code" href="game__of__life_8h.html#aaa9ae83374dca5a69ed6b113a513d895">EvalFutureBoard</a>(board);                   </div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                    <a class="code" href="game__of__life_8h.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a>(board);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                    nanosleep(&amp;Delay, (<span class="keyword">struct</span> timespec *) NULL);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                }</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            <span class="keywordflow">case</span> 1:</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                clear();</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                attron(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a>));</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                mvaddstr(15,15, <span class="stringliteral">&quot;Press enter to exit&quot;</span>);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                attroff(COLOR_PAIR(<a class="code" href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a>));</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                <span class="keywordflow">break</span>;    </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        }</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;}<span class="keywordflow">while</span> (command != <a class="code" href="game__of__life_8h.html#a4c5d3eedc773b8dcc3773744850c85eb">CASE_1</a>);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    nodelay (stdscr, FALSE);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    getch ();</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    endwin ();</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;} <span class="comment">/* end of main */</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="agame__of__life_8h_html_a8520da12c76efb8ca95ca2068d1ca35c"><div class="ttname"><a href="game__of__life_8h.html#a8520da12c76efb8ca95ca2068d1ca35c">KEY_5</a></div><div class="ttdeci">#define KEY_5</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00057">game_of_life.h:56</a></div></div>
-<div class="ttc" id="agame__of__life_8h_html_a1cd139e8d1f7ae83f54c8d477313d8ea"><div class="ttname"><a href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a></div><div class="ttdeci">#define BOARD_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00070">game_of_life.h:69</a></div></div>
-<div class="ttc" id="agame__of__life_8c_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="game__of__life_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdoc">Main file to operate game and initialize ncurses.</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8c_source.html#l00081">game_of_life.c:81</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a1cd139e8d1f7ae83f54c8d477313d8ea"><div class="ttname"><a href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a></div><div class="ttdeci">#define BOARD_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00071">game_of_life.h:70</a></div></div>
+<div class="ttc" id="agame__of__life_8c_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="game__of__life_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdoc">Main file to operate game and initialize ncurses.</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8c_source.html#l00082">game_of_life.c:82</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_abcc04144a91aebe8feb8b4bee6005be2"><div class="ttname"><a href="game__of__life_8h.html#abcc04144a91aebe8feb8b4bee6005be2">RandBoard</a></div><div class="ttdeci">void RandBoard(struct cell start[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdoc">Go every array cell and change value with random 0-1.</div><div class="ttdef"><b>Definition:</b> <a href="_rand_board_8c_source.html#l00062">RandBoard.c:62</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_a3a146cb397d373be978dfa9fd1dc9b3a"><div class="ttname"><a href="game__of__life_8h.html#a3a146cb397d373be978dfa9fd1dc9b3a">KEY_2</a></div><div class="ttdeci">#define KEY_2</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00054">game_of_life.h:53</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_a371bcccbed0b7da136b0d4081ba895a7"><div class="ttname"><a href="game__of__life_8h.html#a371bcccbed0b7da136b0d4081ba895a7">Spawn_virus_cells</a></div><div class="ttdeci">void Spawn_virus_cells(struct cell SpawnVirus[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdoc">Spawn virus randomly to board.</div><div class="ttdef"><b>Definition:</b> <a href="_spawn_virus_8c_source.html#l00062">SpawnVirus.c:62</a></div></div>
-<div class="ttc" id="agame__of__life_8h_html_a94ed08e31d2f3a38d35f0cb89c762f04"><div class="ttname"><a href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a></div><div class="ttdeci">#define BOARD_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00072">game_of_life.h:71</a></div></div>
-<div class="ttc" id="agame__of__life_8h_html_a3da44afeba217135a680a7477b5e3ce3"><div class="ttname"><a href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a></div><div class="ttdeci">#define DEFAULT</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00075">game_of_life.h:74</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a94ed08e31d2f3a38d35f0cb89c762f04"><div class="ttname"><a href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a></div><div class="ttdeci">#define BOARD_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00073">game_of_life.h:72</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a3da44afeba217135a680a7477b5e3ce3"><div class="ttname"><a href="game__of__life_8h.html#a3da44afeba217135a680a7477b5e3ce3">DEFAULT</a></div><div class="ttdeci">#define DEFAULT</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00076">game_of_life.h:75</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_ad2888e35bf1cbd0b25c3e82bc360c647"><div class="ttname"><a href="game__of__life_8h.html#ad2888e35bf1cbd0b25c3e82bc360c647">KEY_8</a></div><div class="ttdeci">#define KEY_8</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00060">game_of_life.h:59</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_a5895875bee3ae13b13cdb5e85b45161b"><div class="ttname"><a href="game__of__life_8h.html#a5895875bee3ae13b13cdb5e85b45161b">KEY_7</a></div><div class="ttdeci">#define KEY_7</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00059">game_of_life.h:58</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html"><div class="ttname"><a href="game__of__life_8h.html">game_of_life.h</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_a219891753a1b6ccd51c8ae763905dbf9"><div class="ttname"><a href="game__of__life_8h.html#a219891753a1b6ccd51c8ae763905dbf9">KEY_4</a></div><div class="ttdeci">#define KEY_4</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00056">game_of_life.h:55</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_abe11cf53ebb70032db7576b97512fb03"><div class="ttname"><a href="game__of__life_8h.html#abe11cf53ebb70032db7576b97512fb03">Navigation</a></div><div class="ttdeci">int Navigation(void)</div><div class="ttdoc">Draw menu options.</div><div class="ttdef"><b>Definition:</b> <a href="_navigation_8c_source.html#l00072">Navigation.c:72</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_a701a135e841c3cfb69d9c5bb1444e198"><div class="ttname"><a href="game__of__life_8h.html#a701a135e841c3cfb69d9c5bb1444e198">KEY_3</a></div><div class="ttdeci">#define KEY_3</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00055">game_of_life.h:54</a></div></div>
-<div class="ttc" id="agame__of__life_8h_html_a3148d7709dc6606cdc38956bd2635940"><div class="ttname"><a href="game__of__life_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a></div><div class="ttdeci">#define LIVE</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00076">game_of_life.h:75</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a18915c8000378a1b6fda7a41043895b2"><div class="ttname"><a href="game__of__life_8h.html#a18915c8000378a1b6fda7a41043895b2">CURE</a></div><div class="ttdeci">#define CURE</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00079">game_of_life.h:78</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a3148d7709dc6606cdc38956bd2635940"><div class="ttname"><a href="game__of__life_8h.html#a3148d7709dc6606cdc38956bd2635940">LIVE</a></div><div class="ttdeci">#define LIVE</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00077">game_of_life.h:76</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_a5e8b0ed42c6261475451afc16309cb51"><div class="ttname"><a href="game__of__life_8h.html#a5e8b0ed42c6261475451afc16309cb51">Drawboard</a></div><div class="ttdeci">void Drawboard(struct cell Drawboard[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdoc">Draw dots based on array.</div><div class="ttdef"><b>Definition:</b> <a href="_drawboard_8c_source.html#l00062">Drawboard.c:62</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_a5a7fd35018971faa28dacd3e33a8f737"><div class="ttname"><a href="game__of__life_8h.html#a5a7fd35018971faa28dacd3e33a8f737">KEY_1</a></div><div class="ttdeci">#define KEY_1</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00053">game_of_life.h:52</a></div></div>
-<div class="ttc" id="astructcell_html_aad8eab95bc6ae0373f10cb2a0bdeb88c"><div class="ttname"><a href="structcell.html#aad8eab95bc6ae0373f10cb2a0bdeb88c">cell::generation</a></div><div class="ttdeci">int generation</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00086">game_of_life.h:86</a></div></div>
+<div class="ttc" id="astructcell_html_aad8eab95bc6ae0373f10cb2a0bdeb88c"><div class="ttname"><a href="structcell.html#aad8eab95bc6ae0373f10cb2a0bdeb88c">cell::generation</a></div><div class="ttdeci">int generation</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00088">game_of_life.h:88</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_a4ab32ce5ef6b5d115253d2a712f2e19b"><div class="ttname"><a href="game__of__life_8h.html#a4ab32ce5ef6b5d115253d2a712f2e19b">KEY_6</a></div><div class="ttdeci">#define KEY_6</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00058">game_of_life.h:57</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_ac4fda42085e1d5ef20ea6df0ba3ef073"><div class="ttname"><a href="game__of__life_8h.html#ac4fda42085e1d5ef20ea6df0ba3ef073">ClearVirus</a></div><div class="ttdeci">void ClearVirus(struct cell board[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdoc">Clear board from virus(num 2)</div><div class="ttdef"><b>Definition:</b> <a href="_clear_virus_8c_source.html#l00062">ClearVirus.c:62</a></div></div>
-<div class="ttc" id="astructcell_html"><div class="ttname"><a href="structcell.html">cell</a></div><div class="ttdoc">Structure to hold current and future tables.</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00082">game_of_life.h:82</a></div></div>
-<div class="ttc" id="agame__of__life_8h_html_a8b19cb6c72378825e932122e09437621"><div class="ttname"><a href="game__of__life_8h.html#a8b19cb6c72378825e932122e09437621">INFECTED</a></div><div class="ttdeci">#define INFECTED</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00077">game_of_life.h:76</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_aafb49b61096eb3bd3f3b18ea375164cc"><div class="ttname"><a href="game__of__life_8h.html#aafb49b61096eb3bd3f3b18ea375164cc">Spawn_cure_cells</a></div><div class="ttdeci">void Spawn_cure_cells(struct cell SpawnCure[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdef"><b>Definition:</b> <a href="_spawn_cure_8c_source.html#l00065">SpawnCure.c:65</a></div></div>
+<div class="ttc" id="astructcell_html"><div class="ttname"><a href="structcell.html">cell</a></div><div class="ttdoc">Structure to hold current and future tables.</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00084">game_of_life.h:84</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a8b19cb6c72378825e932122e09437621"><div class="ttname"><a href="game__of__life_8h.html#a8b19cb6c72378825e932122e09437621">INFECTED</a></div><div class="ttdeci">#define INFECTED</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00078">game_of_life.h:77</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_aaa9ae83374dca5a69ed6b113a513d895"><div class="ttname"><a href="game__of__life_8h.html#aaa9ae83374dca5a69ed6b113a513d895">EvalFutureBoard</a></div><div class="ttdeci">void EvalFutureBoard(struct cell FutBoard[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdoc">Evaluate what happens to cell.</div><div class="ttdef"><b>Definition:</b> <a href="_evalfuture_board_8c_source.html#l00062">EvalfutureBoard.c:62</a></div></div>
-<div class="ttc" id="agame__of__life_8h_html_a86b2b2d4eda22067d85d2287c118e2d8"><div class="ttname"><a href="game__of__life_8h.html#a86b2b2d4eda22067d85d2287c118e2d8">KEY_ESC</a></div><div class="ttdeci">#define KEY_ESC</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00060">game_of_life.h:59</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a86b2b2d4eda22067d85d2287c118e2d8"><div class="ttname"><a href="game__of__life_8h.html#a86b2b2d4eda22067d85d2287c118e2d8">KEY_ESC</a></div><div class="ttdeci">#define KEY_ESC</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00061">game_of_life.h:60</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_a81226711cf5f0535497a973e41d3acbd"><div class="ttname"><a href="game__of__life_8h.html#a81226711cf5f0535497a973e41d3acbd">kokgalaxy</a></div><div class="ttdeci">void kokgalaxy(struct cell galaxy[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdoc">Draw predefined pattern on array.</div><div class="ttdef"><b>Definition:</b> <a href="kokgalaxy_8c_source.html#l00062">kokgalaxy.c:62</a></div></div>
-<div class="ttc" id="agame__of__life_8h_html_a4c5d3eedc773b8dcc3773744850c85eb"><div class="ttname"><a href="game__of__life_8h.html#a4c5d3eedc773b8dcc3773744850c85eb">CASE_1</a></div><div class="ttdeci">#define CASE_1</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00079">game_of_life.h:78</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a4c5d3eedc773b8dcc3773744850c85eb"><div class="ttname"><a href="game__of__life_8h.html#a4c5d3eedc773b8dcc3773744850c85eb">CASE_1</a></div><div class="ttdeci">#define CASE_1</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00081">game_of_life.h:80</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

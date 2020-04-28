@@ -153,52 +153,63 @@ $(document).ready(function(){initNavTree('_evalfuture_board_8c_source.html','');
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            neighbours = <a class="code" href="game__of__life_8h.html#ac01f727eb0a8c5587522f7e6f486ddf2">CountNeighbour</a>(FutBoard, row, colum);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                <span class="keywordflow">if</span> (state == 0 &amp;&amp; neighbours == 3){</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                    <span class="keywordflow">if</span> ((<a class="code" href="game__of__life_8h.html#a8ee02d88bdab2e975ec6823743ff5220">Checkinfected</a>(FutBoard,row,colum)) == 2){</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                        FutBoard[row][colum].future = 2;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                    <span class="keywordflow">if</span>((<a class="code" href="game__of__life_8h.html#a4cbe7d4aef7d94593db7aa192a7953ce">CheckCure</a>(FutBoard,row,colum)) == 3){</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                        FutBoard[row][colum].future = 3;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                    }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                    <span class="keywordflow">else</span>{</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                        FutBoard[row][colum].future = 1;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                    } </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 1 &amp;&amp; (neighbours &lt; 2 || neighbours &gt; 3)){</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                    FutBoard[row][colum].future = 0;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                } </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 1 &amp;&amp; (neighbours == 2 || neighbours == 3)){</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                    FutBoard[row][colum].future = 1;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 2 &amp;&amp; (neighbours == 2 || neighbours == 3)){</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                    <span class="comment">/* CHANCE TO INFECTED DIE RANDOM---&gt;*/</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                    <span class="keywordflow">if</span> (rand()%<a class="code" href="game__of__life_8h.html#a203b677f6ecda62066d4024c36bedfe3">MAX_RAND_DEATH</a>+<a class="code" href="game__of__life_8h.html#a7ea6a5c5680fceb7a1cf0001e7ce53af">MIN_RAND_DEATH</a>== 1){</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                        FutBoard[row][colum].future = 0;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                    }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                    <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                    FutBoard[row][colum].future = 2;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                    }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 2 &amp;&amp; (neighbours &lt; 2 || neighbours &gt; 3)){</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                    FutBoard[row][colum].future = 0;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                } </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        }</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="comment">/*Current to new array */</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordflow">for</span> (row = 0; row &lt; <a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>; row++){</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordflow">for</span> (colum = 0; colum &lt; <a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>; colum++){</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            FutBoard[row][colum].current = FutBoard[row][colum].future;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        }</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> ((<a class="code" href="game__of__life_8h.html#a8ee02d88bdab2e975ec6823743ff5220">Checkinfected</a>(FutBoard,row,colum)) == 2){</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                        FutBoard[row][colum].future = 2;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                    }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                    <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                        FutBoard[row][colum].future = 1;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                    } </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 1 &amp;&amp; (neighbours &lt; 2 || neighbours &gt; 3)){</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                    FutBoard[row][colum].future = 0;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                } </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 1 &amp;&amp; (neighbours == 2 || neighbours == 3)){</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                    FutBoard[row][colum].future = 1;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 2 &amp;&amp; (neighbours == 2 || neighbours == 3)){</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                    <span class="comment">/* CHANCE TO INFECTED DIE RANDOM---&gt;*/</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                    <span class="keywordflow">if</span> (rand()%<a class="code" href="game__of__life_8h.html#a203b677f6ecda62066d4024c36bedfe3">MAX_RAND_DEATH</a>+<a class="code" href="game__of__life_8h.html#a7ea6a5c5680fceb7a1cf0001e7ce53af">MIN_RAND_DEATH</a>== 1){</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                        FutBoard[row][colum].future = 0;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                    }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                    FutBoard[row][colum].future = 2;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                    }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 2 &amp;&amp; (neighbours &lt; 2 || neighbours &gt; 3)){</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                    FutBoard[row][colum].future = 0;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                } </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 3 &amp;&amp; (neighbours == 2 || neighbours == 3)){</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                    FutBoard[row][colum].future = 3;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                }</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (state == 3 &amp;&amp; (neighbours &lt; 2 || neighbours &gt; 3)){</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                    FutBoard[row][colum].future = 0;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="comment">/*Current to new array */</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">for</span> (row = 0; row &lt; <a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>; row++){</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">for</span> (colum = 0; colum &lt; <a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>; colum++){</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            FutBoard[row][colum].current = FutBoard[row][colum].future;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="agame__of__life_8h_html_a1cd139e8d1f7ae83f54c8d477313d8ea"><div class="ttname"><a href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a></div><div class="ttdeci">#define BOARD_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00070">game_of_life.h:69</a></div></div>
-<div class="ttc" id="agame__of__life_8h_html_a94ed08e31d2f3a38d35f0cb89c762f04"><div class="ttname"><a href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a></div><div class="ttdeci">#define BOARD_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00072">game_of_life.h:71</a></div></div>
-<div class="ttc" id="agame__of__life_8h_html_a203b677f6ecda62066d4024c36bedfe3"><div class="ttname"><a href="game__of__life_8h.html#a203b677f6ecda62066d4024c36bedfe3">MAX_RAND_DEATH</a></div><div class="ttdeci">#define MAX_RAND_DEATH</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00067">game_of_life.h:66</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a1cd139e8d1f7ae83f54c8d477313d8ea"><div class="ttname"><a href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a></div><div class="ttdeci">#define BOARD_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00071">game_of_life.h:70</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a94ed08e31d2f3a38d35f0cb89c762f04"><div class="ttname"><a href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a></div><div class="ttdeci">#define BOARD_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00073">game_of_life.h:72</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a203b677f6ecda62066d4024c36bedfe3"><div class="ttname"><a href="game__of__life_8h.html#a203b677f6ecda62066d4024c36bedfe3">MAX_RAND_DEATH</a></div><div class="ttdeci">#define MAX_RAND_DEATH</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00068">game_of_life.h:67</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a4cbe7d4aef7d94593db7aa192a7953ce"><div class="ttname"><a href="game__of__life_8h.html#a4cbe7d4aef7d94593db7aa192a7953ce">CheckCure</a></div><div class="ttdeci">int CheckCure(struct cell Cure[BOARD_HEIGHT][BOARD_WIDTH], int cRow, int cCol)</div><div class="ttdef"><b>Definition:</b> <a href="_check_cure_8c_source.html#l00068">CheckCure.c:68</a></div></div>
 <div class="ttc" id="a_evalfuture_board_8c_html_aaa9ae83374dca5a69ed6b113a513d895"><div class="ttname"><a href="_evalfuture_board_8c.html#aaa9ae83374dca5a69ed6b113a513d895">EvalFutureBoard</a></div><div class="ttdeci">void EvalFutureBoard(struct cell FutBoard[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdoc">Evaluate what happens to cell.</div><div class="ttdef"><b>Definition:</b> <a href="_evalfuture_board_8c_source.html#l00062">EvalfutureBoard.c:62</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html"><div class="ttname"><a href="game__of__life_8h.html">game_of_life.h</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_a8ee02d88bdab2e975ec6823743ff5220"><div class="ttname"><a href="game__of__life_8h.html#a8ee02d88bdab2e975ec6823743ff5220">Checkinfected</a></div><div class="ttdeci">int Checkinfected(struct cell infected[BOARD_HEIGHT][BOARD_WIDTH], int cRow, int cCol)</div><div class="ttdoc">Chech neighbour cells if there is infected(num 2)</div><div class="ttdef"><b>Definition:</b> <a href="_check_infected_8c_source.html#l00064">CheckInfected.c:64</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_ac01f727eb0a8c5587522f7e6f486ddf2"><div class="ttname"><a href="game__of__life_8h.html#ac01f727eb0a8c5587522f7e6f486ddf2">CountNeighbour</a></div><div class="ttdeci">int CountNeighbour(struct cell Neighbour[BOARD_HEIGHT][BOARD_WIDTH], int cRow, int cCol)</div><div class="ttdoc">Count numbers around cell and return it.</div><div class="ttdef"><b>Definition:</b> <a href="_count_neighbour_8c_source.html#l00065">CountNeighbour.c:65</a></div></div>
-<div class="ttc" id="astructcell_html"><div class="ttname"><a href="structcell.html">cell</a></div><div class="ttdoc">Structure to hold current and future tables.</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00082">game_of_life.h:82</a></div></div>
-<div class="ttc" id="agame__of__life_8h_html_a7ea6a5c5680fceb7a1cf0001e7ce53af"><div class="ttname"><a href="game__of__life_8h.html#a7ea6a5c5680fceb7a1cf0001e7ce53af">MIN_RAND_DEATH</a></div><div class="ttdeci">#define MIN_RAND_DEATH</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00066">game_of_life.h:65</a></div></div>
+<div class="ttc" id="astructcell_html"><div class="ttname"><a href="structcell.html">cell</a></div><div class="ttdoc">Structure to hold current and future tables.</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00084">game_of_life.h:84</a></div></div>
+<div class="ttc" id="agame__of__life_8h_html_a7ea6a5c5680fceb7a1cf0001e7ce53af"><div class="ttname"><a href="game__of__life_8h.html#a7ea6a5c5680fceb7a1cf0001e7ce53af">MIN_RAND_DEATH</a></div><div class="ttdeci">#define MIN_RAND_DEATH</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00067">game_of_life.h:66</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

@@ -21,7 +21,7 @@
 /*********************************************************************
 
  1.  NAME
-     $Source$ 
+     $SpawnCure.c$ 
 
  2.  DESCRIPTION
 
@@ -36,52 +36,32 @@
 /*-------------------------------------------------------------------*
 *    HEADER FILES                                                    *
 *--------------------------------------------------------------------*/
+
 #include "game_of_life.h"
 
 /*-------------------------------------------------------------------*
 *    GLOBAL VARIABLES AND CONSTANTS                                  *
 *--------------------------------------------------------------------*/
 /* Control flags */
-#define DEBUG 
-
 /* Global constants */
-#define MIN 10
-
 /* Global variables */
-
 /* Global structures */
-
 /*-------------------------------------------------------------------*
 *    FUNCTION PROTOTYPES                                             *
 *--------------------------------------------------------------------*/
 /*********************************************************************
 *    FUNCTIONS                                                       *
 **********************************************************************/
-
 /*********************************************************************
 	F U N C T I O N    D E S C R I P T I O N
 ---------------------------------------------------------------------
- NAME:
- DESCRIPTION:
-	Input:
-	Output:
-  Used global variables:
-  Used global constants:
- REMARKS when using this function:
-*********************************************************************/
-/*void Spawn_cure_cells(struct cell SpawnCure[BOARD_HEIGHT][BOARD_WIDTH]){
-int startrow = 0;
-int startcolum= 0;
-
-    startrow = rand()%BOARD_HEIGHT + 0;
-    startcolum = rand()%BOARD_WIDTH + 0;
-    SpawnCure[startrow+2][startcolum+3].current = 3;
-    SpawnCure[startrow+2][startcolum+4].current = 3;
-    SpawnCure[startrow+2][startcolum+5].current = 3;
-    SpawnCure[startrow+1][startcolum+5].current = 3;
-    SpawnCure[startrow+0][startcolum+4].current = 3;
-}*/
-
+/**
+ * @fn void Spawn_cure_cells(struct cell SpawnCure[BOARD_HEIGHT][BOARD_WIDTH])
+ * @brief Spawn "cure" cells depending on neighbouring cells
+ * @param SpawnCure 2d array 
+ * @return "Cure" cells in array
+ */
+/*********************************************************************/
 void Spawn_cure_cells(struct cell SpawnCure[BOARD_HEIGHT][BOARD_WIDTH]){
 int row,colum, neighbours = 0, state = 0;
 
@@ -90,7 +70,7 @@ int row,colum, neighbours = 0, state = 0;
             state = SpawnCure[row][colum].current;
             neighbours = CountNeighbour(SpawnCure, row, colum);
 
-              if (state == 2 && neighbours >= 4){
+              if (state == 2 && neighbours >= 5){
                   SpawnCure[row+2][colum+3].current = 3;
                   SpawnCure[row+2][colum+4].current = 3;
                   SpawnCure[row+2][colum+5].current = 3;

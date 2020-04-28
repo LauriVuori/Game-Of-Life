@@ -47,7 +47,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_check_infected_8c.html"
+"_check_cure_8c.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
