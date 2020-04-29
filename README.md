@@ -7,7 +7,7 @@ http://www.cc.puv.fi/~e1900498/docs/html/
 made with doxygen.
 
 # Rules:
-My version have also "virus" that spreads rapidly neighbouring cells. Virus survives predefined "generations". "Cure" cells eat virus cells.<br>
+My version have also "virus" that spreads rapidly neighbouring cells. Virus survives predefined "generations". "Cure" cells eat "virus" cells.<br>
 <br>
 ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `Is "live" cells`<br>
 ![#7CFC00](https://placehold.it/15/7cfc00/000000?text=+) `Is "virus" cells`<br>
