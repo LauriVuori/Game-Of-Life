@@ -14,7 +14,7 @@ My version have also "virus" that spreads rapidly neighbouring cells. Virus surv
 ![#FFFF00](https://placehold.it/15/ffff00/000000?text=+) `Is "cure" cells`<br>
 Virus "eats" live cells and cure cells eat "virus" cells. <br>
 
-![GOL DEMO](test/golvirus.gif)<br>
+![GOLDEMO ](test/golvirus.gif)<br>
 
 <br>
 
