@@ -113,60 +113,61 @@ $(document).ready(function(){initNavTree('_spawn_cure_8c_source.html',''); initR
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">     $SpawnCure.c$ </span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"></span> </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"> 2.  DESCRIPTION</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> 3.  VERSIONS</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">       Original:</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">         $Date$ / $Lauri Vuori$</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">       Version history:</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">**********************************************************************/</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">*    HEADER FILES                                                    *</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="game__of__life_8h.html">game_of_life.h</a>&quot;</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">*    GLOBAL VARIABLES AND CONSTANTS                                  *</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">/* Control flags */</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">/* Global constants */</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">/* Global variables */</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">/* Global structures */</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">*    FUNCTION PROTOTYPES                                             *</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">/*********************************************************************</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">*    FUNCTIONS                                                       *</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">**********************************************************************/</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">/*********************************************************************</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">    F U N C T I O N    D E S C R I P T I O N</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">---------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment"></span><span class="comment">/*********************************************************************/</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="_spawn_cure_8c.html#aafb49b61096eb3bd3f3b18ea375164cc">   65</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_spawn_cure_8c.html#aafb49b61096eb3bd3f3b18ea375164cc">Spawn_cure_cells</a>(<span class="keyword">struct</span> <a class="code" href="structcell.html">cell</a> SpawnCure[<a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>][<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>]){</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">int</span> row,colum, neighbours = 0, state = 0;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">for</span> (row = 0; row &lt; <a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>; row++){</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">for</span> (colum = 0; colum &lt; <a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>; colum++){</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            state = SpawnCure[row][colum].current;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            neighbours = <a class="code" href="game__of__life_8h.html#ac01f727eb0a8c5587522f7e6f486ddf2">CountNeighbour</a>(SpawnCure, row, colum);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;              <span class="keywordflow">if</span> (state == 2 &amp;&amp; neighbours &gt;= 5){</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                  SpawnCure[row+2][colum+3].current = 3;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                  SpawnCure[row+2][colum+4].current = 3;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                  SpawnCure[row+2][colum+5].current = 3;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                  SpawnCure[row+1][colum+5].current = 3;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                  SpawnCure[row+0][colum+4].current = 3;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;              }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">    Spawn &quot;cure&quot; cells depending on neighbouring cells</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> 3.  VERSIONS</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">       Original:</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">         $Date$ / $Lauri Vuori$</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">       Version history:</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">**********************************************************************/</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">*    HEADER FILES                                                    *</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="game__of__life_8h.html">game_of_life.h</a>&quot;</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">*    GLOBAL VARIABLES AND CONSTANTS                                  *</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">/* Control flags */</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">/* Global constants */</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">/* Global variables */</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">/* Global structures */</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">/*-------------------------------------------------------------------*</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">*    FUNCTION PROTOTYPES                                             *</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">*--------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">/*********************************************************************</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">*    FUNCTIONS                                                       *</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">**********************************************************************/</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">/*********************************************************************</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">    F U N C T I O N    D E S C R I P T I O N</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">----------------------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">/*********************************************************************/</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="_spawn_cure_8c.html#aafb49b61096eb3bd3f3b18ea375164cc">   66</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_spawn_cure_8c.html#aafb49b61096eb3bd3f3b18ea375164cc">Spawn_cure_cells</a>(<span class="keyword">struct</span> <a class="code" href="structcell.html">cell</a> SpawnCure[<a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>][<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>]){</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">int</span> row,colum, neighbours = 0, state = 0;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">for</span> (row = 0; row &lt; <a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>; row++){</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">for</span> (colum = 0; colum &lt; <a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>; colum++){</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            state = SpawnCure[row][colum].current;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            neighbours = <a class="code" href="game__of__life_8h.html#ac01f727eb0a8c5587522f7e6f486ddf2">CountNeighbour</a>(SpawnCure, row, colum);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;              <span class="keywordflow">if</span> (state == 2 &amp;&amp; neighbours &gt;= 5){</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                  SpawnCure[row+2][colum+3].current = 3;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                  SpawnCure[row+2][colum+4].current = 3;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                  SpawnCure[row+2][colum+5].current = 3;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                  SpawnCure[row+1][colum+5].current = 3;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                  SpawnCure[row+0][colum+4].current = 3;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;              }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="agame__of__life_8h_html_a1cd139e8d1f7ae83f54c8d477313d8ea"><div class="ttname"><a href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a></div><div class="ttdeci">#define BOARD_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00071">game_of_life.h:70</a></div></div>
-<div class="ttc" id="a_spawn_cure_8c_html_aafb49b61096eb3bd3f3b18ea375164cc"><div class="ttname"><a href="_spawn_cure_8c.html#aafb49b61096eb3bd3f3b18ea375164cc">Spawn_cure_cells</a></div><div class="ttdeci">void Spawn_cure_cells(struct cell SpawnCure[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdef"><b>Definition:</b> <a href="_spawn_cure_8c_source.html#l00065">SpawnCure.c:65</a></div></div>
+<div class="ttc" id="a_spawn_cure_8c_html_aafb49b61096eb3bd3f3b18ea375164cc"><div class="ttname"><a href="_spawn_cure_8c.html#aafb49b61096eb3bd3f3b18ea375164cc">Spawn_cure_cells</a></div><div class="ttdeci">void Spawn_cure_cells(struct cell SpawnCure[BOARD_HEIGHT][BOARD_WIDTH])</div><div class="ttdoc">Spawn &quot;cure&quot; cells depending on neighbouring cells.</div><div class="ttdef"><b>Definition:</b> <a href="_spawn_cure_8c_source.html#l00066">SpawnCure.c:66</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_a94ed08e31d2f3a38d35f0cb89c762f04"><div class="ttname"><a href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a></div><div class="ttdeci">#define BOARD_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="game__of__life_8h_source.html#l00073">game_of_life.h:72</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html"><div class="ttname"><a href="game__of__life_8h.html">game_of_life.h</a></div></div>
 <div class="ttc" id="agame__of__life_8h_html_ac01f727eb0a8c5587522f7e6f486ddf2"><div class="ttname"><a href="game__of__life_8h.html#ac01f727eb0a8c5587522f7e6f486ddf2">CountNeighbour</a></div><div class="ttdeci">int CountNeighbour(struct cell Neighbour[BOARD_HEIGHT][BOARD_WIDTH], int cRow, int cCol)</div><div class="ttdoc">Count numbers around cell and return it.</div><div class="ttdef"><b>Definition:</b> <a href="_count_neighbour_8c_source.html#l00065">CountNeighbour.c:65</a></div></div>

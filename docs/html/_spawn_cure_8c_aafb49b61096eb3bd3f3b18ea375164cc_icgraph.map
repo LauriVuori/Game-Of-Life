@@ -1,4 +1,4 @@
 <map id="Spawn_cure_cells" name="Spawn_cure_cells">
-<area shape="rect" id="node1" title=" " alt="" coords="104,5,231,32"/>
+<area shape="rect" id="node1" title="Spawn &quot;cure&quot; cells depending on neighbouring cells." alt="" coords="104,5,231,32"/>
 <area shape="rect" id="node2" href="$game__of__life_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Main file to operate game and initialize ncurses." alt="" coords="5,5,56,32"/>
 </map>

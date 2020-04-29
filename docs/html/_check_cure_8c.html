@@ -111,6 +111,8 @@ Include dependency graph for CheckCure.c:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a4cbe7d4aef7d94593db7aa192a7953ce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_check_cure_8c.html#a4cbe7d4aef7d94593db7aa192a7953ce">CheckCure</a> (struct <a class="el" href="structcell.html">cell</a> Cure[<a class="el" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>][<a class="el" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>], int cRow, int cCol)</td></tr>
+<tr class="memdesc:a4cbe7d4aef7d94593db7aa192a7953ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chech neighbour cells if there is cure(num 3) <br  />
+  <a href="_check_cure_8c.html#a4cbe7d4aef7d94593db7aa192a7953ce">More...</a><br /></td></tr>
 <tr class="separator:a4cbe7d4aef7d94593db7aa192a7953ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -146,33 +148,45 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_check_cure_8c_source.html#l00068">68</a> of file <a class="el" href="_check_cure_8c_source.html">CheckCure.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                                                                             {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keywordtype">int</span> row,colum, Mcol, Mrow, Cured;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">for</span> (row = -1; row &lt; 2; row++){</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">for</span> (colum = -1; colum &lt; 2; colum++){</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                Mrow = (<a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a> + row + cRow) % <a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                Mcol = (<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> + colum + cCol) % <a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                    <span class="keywordflow">if</span> (Cure[Mrow][Mcol].current == 3){</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                        Cured = 3;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                        <span class="keywordflow">return</span> Cured;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                    }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (Cure[Mrow][Mcol].current == 1){</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                        Cured = 1;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                        <span class="keywordflow">return</span> Cured;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                    }</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            }</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
+<p>Chech neighbour cells if there is cure(num 3) <br  />
+ </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Cure</td><td>2d array to go trough cells </td></tr>
+    <tr><td class="paramname">cRow</td><td>interger to determine current row </td></tr>
+    <tr><td class="paramname">cCol</td><td>interger to determine current colum </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>If there is number 3 in nearby cells return 3 else 1. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_check_cure_8c_source.html#l00069">69</a> of file <a class="el" href="_check_cure_8c_source.html">CheckCure.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                                                                             {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">int</span> row,colum, Mcol, Mrow, Cured;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">for</span> (row = -1; row &lt; 2; row++){</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">for</span> (colum = -1; colum &lt; 2; colum++){</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                Mrow = (<a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a> + row + cRow) % <a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                Mcol = (<a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a> + colum + cCol) % <a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                    <span class="keywordflow">if</span> (Cure[Mrow][Mcol].current == 3){</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                        Cured = 3;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                        <span class="keywordflow">return</span> Cured;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                    }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (Cure[Mrow][Mcol].current == 1){</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                        Cured = 1;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                        <span class="keywordflow">return</span> Cured;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                    }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="_check_cure_8c_a4cbe7d4aef7d94593db7aa192a7953ce_icgraph.png" border="0" usemap="#_check_cure_8c_a4cbe7d4aef7d94593db7aa192a7953ce_icgraph" alt=""/></div>
 <map name="_check_cure_8c_a4cbe7d4aef7d94593db7aa192a7953ce_icgraph" id="_check_cure_8c_a4cbe7d4aef7d94593db7aa192a7953ce_icgraph">
-<area shape="rect" title=" " alt="" coords="269,5,356,32"/>
+<area shape="rect" title="Chech neighbour cells if there is cure(num 3)" alt="" coords="269,5,356,32"/>
 <area shape="rect" href="_evalfuture_board_8c.html#aaa9ae83374dca5a69ed6b113a513d895" title="Evaluate what happens to cell." alt="" coords="104,5,221,32"/>
 <area shape="rect" href="game__of__life_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Main file to operate game and initialize ncurses." alt="" coords="5,5,56,32"/>
 </map>

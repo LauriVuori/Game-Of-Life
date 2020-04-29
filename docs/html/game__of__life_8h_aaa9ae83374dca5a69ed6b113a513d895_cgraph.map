@@ -1,6 +1,6 @@
 <map id="EvalFutureBoard" name="EvalFutureBoard">
 <area shape="rect" id="node1" title="Evaluate what happens to cell." alt="" coords="5,56,123,83"/>
-<area shape="rect" id="node2" href="$game__of__life_8h.html#a4cbe7d4aef7d94593db7aa192a7953ce" title=" " alt="" coords="185,5,271,32"/>
+<area shape="rect" id="node2" href="$game__of__life_8h.html#a4cbe7d4aef7d94593db7aa192a7953ce" title="Chech neighbour cells if there is cure(num 3)" alt="" coords="185,5,271,32"/>
 <area shape="rect" id="node3" href="$game__of__life_8h.html#a8ee02d88bdab2e975ec6823743ff5220" title="Chech neighbour cells if there is infected(num 2)" alt="" coords="176,56,280,83"/>
 <area shape="rect" id="node4" href="$game__of__life_8h.html#ac01f727eb0a8c5587522f7e6f486ddf2" title="Count numbers around cell and return it." alt="" coords="171,107,285,133"/>
 </map>

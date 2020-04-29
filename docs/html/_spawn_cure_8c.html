@@ -111,6 +111,7 @@ Include dependency graph for SpawnCure.c:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aafb49b61096eb3bd3f3b18ea375164cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_spawn_cure_8c.html#aafb49b61096eb3bd3f3b18ea375164cc">Spawn_cure_cells</a> (struct <a class="el" href="structcell.html">cell</a> SpawnCure[<a class="el" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>][<a class="el" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>])</td></tr>
+<tr class="memdesc:aafb49b61096eb3bd3f3b18ea375164cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spawn "cure" cells depending on neighbouring cells.  <a href="_spawn_cure_8c.html#aafb49b61096eb3bd3f3b18ea375164cc">More...</a><br /></td></tr>
 <tr class="separator:aafb49b61096eb3bd3f3b18ea375164cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -130,31 +131,40 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_spawn_cure_8c_source.html#l00065">65</a> of file <a class="el" href="_spawn_cure_8c_source.html">SpawnCure.c</a>.</p>
-<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                                                                       {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">int</span> row,colum, neighbours = 0, state = 0;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">for</span> (row = 0; row &lt; <a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>; row++){</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">for</span> (colum = 0; colum &lt; <a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>; colum++){</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            state = SpawnCure[row][colum].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a>;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            neighbours = <a class="code" href="game__of__life_8h.html#ac01f727eb0a8c5587522f7e6f486ddf2">CountNeighbour</a>(SpawnCure, row, colum);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;              <span class="keywordflow">if</span> (state == 2 &amp;&amp; neighbours &gt;= 5){</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                  SpawnCure[row+2][colum+3].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 3;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                  SpawnCure[row+2][colum+4].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 3;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                  SpawnCure[row+2][colum+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 3;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                  SpawnCure[row+1][colum+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 3;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                  SpawnCure[row+0][colum+4].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 3;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;              }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
+<p>Spawn "cure" cells depending on neighbouring cells. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SpawnCure</td><td>2d array </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"Cure" cells in array </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_spawn_cure_8c_source.html#l00066">66</a> of file <a class="el" href="_spawn_cure_8c_source.html">SpawnCure.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                                                                       {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">int</span> row,colum, neighbours = 0, state = 0;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">for</span> (row = 0; row &lt; <a class="code" href="game__of__life_8h.html#a94ed08e31d2f3a38d35f0cb89c762f04">BOARD_HEIGHT</a>; row++){</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">for</span> (colum = 0; colum &lt; <a class="code" href="game__of__life_8h.html#a1cd139e8d1f7ae83f54c8d477313d8ea">BOARD_WIDTH</a>; colum++){</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            state = SpawnCure[row][colum].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            neighbours = <a class="code" href="game__of__life_8h.html#ac01f727eb0a8c5587522f7e6f486ddf2">CountNeighbour</a>(SpawnCure, row, colum);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;              <span class="keywordflow">if</span> (state == 2 &amp;&amp; neighbours &gt;= 5){</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                  SpawnCure[row+2][colum+3].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 3;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                  SpawnCure[row+2][colum+4].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 3;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                  SpawnCure[row+2][colum+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 3;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                  SpawnCure[row+1][colum+5].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 3;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                  SpawnCure[row+0][colum+4].<a class="code" href="structcell.html#ab04e2d55ea4a544f3575812582af7b51">current</a> = 3;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;              }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="_spawn_cure_8c_aafb49b61096eb3bd3f3b18ea375164cc_cgraph.png" border="0" usemap="#_spawn_cure_8c_aafb49b61096eb3bd3f3b18ea375164cc_cgraph" alt=""/></div>
 <map name="_spawn_cure_8c_aafb49b61096eb3bd3f3b18ea375164cc_cgraph" id="_spawn_cure_8c_aafb49b61096eb3bd3f3b18ea375164cc_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,132,32"/>
+<area shape="rect" title="Spawn &quot;cure&quot; cells depending on neighbouring cells." alt="" coords="5,5,132,32"/>
 <area shape="rect" href="game__of__life_8h.html#ac01f727eb0a8c5587522f7e6f486ddf2" title="Count numbers around cell and return it." alt="" coords="180,5,295,32"/>
 </map>
 </div>
@@ -163,7 +173,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="_spawn_cure_8c_aafb49b61096eb3bd3f3b18ea375164cc_icgraph.png" border="0" usemap="#_spawn_cure_8c_aafb49b61096eb3bd3f3b18ea375164cc_icgraph" alt=""/></div>
 <map name="_spawn_cure_8c_aafb49b61096eb3bd3f3b18ea375164cc_icgraph" id="_spawn_cure_8c_aafb49b61096eb3bd3f3b18ea375164cc_icgraph">
-<area shape="rect" title=" " alt="" coords="104,5,231,32"/>
+<area shape="rect" title="Spawn &quot;cure&quot; cells depending on neighbouring cells." alt="" coords="104,5,231,32"/>
 <area shape="rect" href="game__of__life_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Main file to operate game and initialize ncurses." alt="" coords="5,5,56,32"/>
 </map>
 </div>

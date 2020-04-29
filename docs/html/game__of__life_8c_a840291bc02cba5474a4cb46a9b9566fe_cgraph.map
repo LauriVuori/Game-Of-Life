@@ -6,9 +6,9 @@
 <area shape="rect" id="node8" href="$game__of__life_8h.html#a81226711cf5f0535497a973e41d3acbd" title="Draw predefined pattern on array." alt="" coords="127,157,209,184"/>
 <area shape="rect" id="node9" href="$game__of__life_8h.html#abe11cf53ebb70032db7576b97512fb03" title="Draw menu options." alt="" coords="127,208,209,235"/>
 <area shape="rect" id="node10" href="$game__of__life_8h.html#abcc04144a91aebe8feb8b4bee6005be2" title="Go every array cell and change value with random 0&#45;1." alt="" coords="125,259,211,285"/>
-<area shape="rect" id="node11" href="$game__of__life_8h.html#aafb49b61096eb3bd3f3b18ea375164cc" title=" " alt="" coords="105,309,231,336"/>
+<area shape="rect" id="node11" href="$game__of__life_8h.html#aafb49b61096eb3bd3f3b18ea375164cc" title="Spawn &quot;cure&quot; cells depending on neighbouring cells." alt="" coords="105,309,231,336"/>
 <area shape="rect" id="node12" href="$game__of__life_8h.html#a371bcccbed0b7da136b0d4081ba895a7" title="Spawn virus randomly to board." alt="" coords="104,360,232,387"/>
-<area shape="rect" id="node5" href="$game__of__life_8h.html#a4cbe7d4aef7d94593db7aa192a7953ce" title=" " alt="" coords="294,81,381,108"/>
+<area shape="rect" id="node5" href="$game__of__life_8h.html#a4cbe7d4aef7d94593db7aa192a7953ce" title="Chech neighbour cells if there is cure(num 3)" alt="" coords="294,81,381,108"/>
 <area shape="rect" id="node6" href="$game__of__life_8h.html#a8ee02d88bdab2e975ec6823743ff5220" title="Chech neighbour cells if there is infected(num 2)" alt="" coords="285,132,389,159"/>
 <area shape="rect" id="node7" href="$game__of__life_8h.html#ac01f727eb0a8c5587522f7e6f486ddf2" title="Count numbers around cell and return it." alt="" coords="280,233,395,260"/>
 </map>
